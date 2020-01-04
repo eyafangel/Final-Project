@@ -14,12 +14,13 @@ class CreateAdmissionsTable extends Migration
     public function up()
     {
         Schema::create('admissions', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('patient_type');
+            $table->bigIncrements('id'); 
+            $table->bigInteger('patient_id');           
             $table->date('admission_date');
             $table->bigInteger('users_id')->unsigned();
             $table->string('room');
             $table->string('category');
+            $table->string('status');
             $table->timestamps();
         });
     }

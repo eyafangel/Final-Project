@@ -15,6 +15,12 @@ class CreateVitalSignsTable extends Migration
     {
         Schema::create('vital_signs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('users_id')->unsigned();
+            $table->date('datetime_taken');
+            $table->string('blood_pressure');
+            $table->string('temperature');
+            $table->string('respiratory_rate');
+            $table->string('o2_saturation');
             $table->timestamps();
         });
     }

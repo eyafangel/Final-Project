@@ -15,6 +15,19 @@ class CreateChartsTable extends Migration
     {
         Schema::create('charts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('chief_complaint');
+            $table->bigInteger('vitals_id')->unsigned();
+            $table->text('diagnosis');
+            $table->string('ivf');
+            $table->text('treatment');
+            $table->string('prn');
+            $table->bigInteger('medications_id')->unsigned();
+            $table->double('height');
+            $table->double('weight');
+            $table->double('bmi');
+            $table->string('blood_type');
+            $table->text('diet');
+            $table->text('doctors_notes');
             $table->timestamps();
         });
     }

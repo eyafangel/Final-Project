@@ -15,6 +15,10 @@ class CreateSchedulesTable extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('patients_id')->unsigned();
+            $table->string('reminders');
+            $table->date('date');
             $table->timestamps();
         });
     }
