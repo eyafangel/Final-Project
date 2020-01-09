@@ -20,4 +20,5 @@ class HeadNurseController extends Controller
     {
     	//stores registered patients
     }
+    
 }
