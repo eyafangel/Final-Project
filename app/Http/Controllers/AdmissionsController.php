@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Patient;
 use Illuminate\Http\Request;
 
 class AdmissionsController extends Controller
@@ -12,7 +13,7 @@ class AdmissionsController extends Controller
     }
     public function create()
     {
-        return view('patients.create_patient');
+        return view('admissions.create_patient');
     }
 
     public function store()
@@ -23,7 +24,7 @@ class AdmissionsController extends Controller
         $patient->first_name = request('first_name');
         $patient->middle_name = request('middle_name');
         $patient->sex = request('sex');
-        $patient->birthday = request('birthday');
+        $patient->birthday = date('Y-m-d', strtotime($patient['birthday']));        
         $patient->age = request('age');
         $patient->contact_number = request('contact_number');
         $patient->marital_status = request('marital_status');
@@ -31,7 +32,7 @@ class AdmissionsController extends Controller
  
         $patient->save();
  
-        return redirect('/');
+        return redirect('admissions');
     }
     
 }

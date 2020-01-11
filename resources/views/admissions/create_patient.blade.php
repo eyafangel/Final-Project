@@ -1,4 +1,4 @@
-@extends('layouts.admissions')
+@extends('layouts.admission')
 
 @section('title')
 	Create Patient
@@ -19,11 +19,13 @@
 </div>
 <div class="form-group">
     {!! Form::label('sex', 'Sex') !!}
-    {!! Form::radio('sex', 'Female', ['class' => 'form-control']) !!}   
-    {!! Form::radio('sex', 'Male', ['class' => 'form-control']) !!}
+    {{-- {!! Form::radio('sex', 'F', ['class' => 'form-control']) !!}   
+    {!! Form::radio('sex', 'M', ['class' => 'form-control']) !!} --}}
+    {{!! Form::radio('sex', 'F' , true) !!}}
+    {{!! Form::radio('sex', 'M' , false) !!}}
 
     {!! Form::label('birthday', 'Birthday') !!}
-    {!! Form::text('patient', null, ['class' => 'form-control']) !!}
+    {!! Form::date('birthday', date('D-m-y'), ['class' => 'form-control']) !!}
 
     {!! Form::label('contact_number', 'Contact Number') !!}
     {!! Form::text('contact_number', null, ['class' => 'form-control']) !!}
