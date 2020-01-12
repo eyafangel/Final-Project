@@ -18,11 +18,9 @@
     {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('sex', 'Sex') !!}
-    {{-- {!! Form::radio('sex', 'F', ['class' => 'form-control']) !!}   
-    {!! Form::radio('sex', 'M', ['class' => 'form-control']) !!} --}}
-    {{!! Form::radio('sex', 'F' , true) !!}}
-    {{!! Form::radio('sex', 'M' , false) !!}}
+    {!! Form::label('sex', 'Sex') !!}    
+    {{!! Form::radio('sex', 'female' , true) !!}}
+    {{!! Form::radio('sex', 'male' , false) !!}}
 
     {!! Form::label('birthday', 'Birthday') !!}
     {!! Form::date('birthday', date('D-m-y'), ['class' => 'form-control']) !!}
@@ -39,6 +37,46 @@
 
     {!! Form::label('nationality', 'Nationality') !!}
     {!! Form::text('nationality', null, ['class' => 'form-control']) !!}
+</div>
+<div class ="residence-form">
+    Residence Form<br>
+    {!! Form::label('lot', 'Lot') !!}
+    {!! Form::text('lot', null, ['class' => 'form-control']) !!}
+
+    {!! Form::label('street', 'Street') !!}
+    {!! Form::text('street', null, ['class' => 'form-control']) !!}
+
+    {!! Form::label('city', 'City') !!}
+    {!! Form::text('city', null, ['class' => 'form-control']) !!}
+
+</div>
+<div class ="residence-form">
+{!! Form::label('postal_code', 'Postal Code') !!}
+    {!! Form::text('postal_code', null, ['class' => 'residence-form']) !!}
+
+    {!! Form::label('province', 'Province') !!}
+    {!! Form::text('province', null, ['class' => 'residence-form']) !!}
+
+    {!! Form::label('country', 'Country') !!}
+    {!! Form::text('country', null, ['class' => 'residence-form']) !!}
+</div>
+<div class ="guardian-form">
+    Guardian Information<br>
+    {!! Form::label('guardian_last_name', 'Last Name') !!}
+    {!! Form::text('guardian_last_name', null, ['class' => 'guardian-form']) !!}
+
+    {!! Form::label('guardian_first_name', 'First Name') !!}
+    {!! Form::text('guardian_first_name', null, ['class' => 'guardian-form']) !!}
+
+    {!! Form::label('guardian_middle_name', 'Middle Name') !!}
+    {!! Form::text('guardian_middle_name', null, ['class' => 'guardian-form']) !!}
+</div>
+<div class ="guardian-form">
+    {!! Form::label('relationship_to_patient', 'Relationship to Patient') !!}
+    {!! Form::text('relationship_to_patient', null, ['class' => 'guardian-form']) !!}
+
+    {!! Form::label('guardian_contact_number', 'Contact Number') !!}
+    {!! Form::text('guardian_contact_number', null, ['class' => 'guardian-form']) !!}
 </div>
 
 {!! Form::submit('Create', ['class' => 'btn btn-info']) !!}
