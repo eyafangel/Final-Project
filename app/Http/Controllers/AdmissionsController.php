@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Guardian;
 use App\Patient;
+use App\Residence;
 use Illuminate\Http\Request;
 
 class AdmissionsController extends Controller
 {
+    public function index()
+    {
+        $patients = Patient::all();
+ 
+        return view('admissions.list',compact('patients'));
+    }
+    
     public function home()
     {
         return view('admissions.home');

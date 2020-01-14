@@ -19,9 +19,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Patient
-Route::group(['middleware' => ['web']], function () {
-Route::resource('/patients', 'PatientController');
-});
+
+Route::resource('/profile', 'PatientController');
+
 
 //Nurse
 Route::group(['middleware' => ['web']], function () {
@@ -36,6 +36,7 @@ Route::resource('/headnurse', 'HeadNurseController');
 //Admissions
 Route::group(['middleware' => ['web']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+Route::get('patient', 'AdmissionsController@index');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
 });

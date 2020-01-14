@@ -15,8 +15,8 @@ class Residence extends Model
         return $this->belongsTo('App\Patient');
     }
 
-    public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\User');
+    // }
 }
