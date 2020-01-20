@@ -15,6 +15,10 @@
                     @endif
 
                     Hello there ADMIN!
+
+                    {{-- @if (Route::has('register'))  
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register User') }}</a>
+                    @endif --}} 
                 </div>
             </div>
         </div>
