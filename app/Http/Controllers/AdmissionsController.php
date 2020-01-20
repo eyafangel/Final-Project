@@ -19,6 +19,8 @@ class AdmissionsController extends Controller
     public function store()
     {
         $patient = new Patient();
+        $residence = new Residence();
+        $guardian = new Guardian();
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
@@ -29,9 +31,27 @@ class AdmissionsController extends Controller
         $patient->contact_number = request('contact_number');
         $patient->marital_status = request('marital_status');
         $patient->nationality = request('nationality');
- 
+                
+        $residence->lot=request('lot');
+        $residence->street=request('street');        
+        $residence->city=request('city');
+        $residence->postal_code=request('postal_code');
+        $residence->province=request('province');
+        $residence->country=request('country');
+
+        // $patient->residence()->associate($residence);
+        // $patient->guardian()->associate($guardian);        
+                
+        $guardian->guardian_last_name=request('guardian_last_name');
+        $guardian->guardian_first_name=request('guardian_first_name');
+        $guardian->guardian_middle_name=request('guardian_middle_name');
+        $guardian->guardian_contact_number=request('guardian_contact_number');
+        $guardian->relationship_to_patient=request('relationship_to_patient');
+        
+        $residence->save();
         $patient->save();
- 
+        $guardian->save();
+
         return redirect('admissions');
     }
     

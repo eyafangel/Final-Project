@@ -15,6 +15,12 @@
                     @endif
 
                     You are logged in!
+
+                    {{-- @if(Auth::user()->hasRole('admin'))
+                    <a class="btn btn-primary" href="/admin">
+                        Admin Page
+                    </a>
+                    @endif --}}
                 </div>
             </div>
         </div>
