@@ -1,16 +1,15 @@
 @extends('layouts.doctor')
 
-{!! Form::open(['route' => 'order.store', 'class' => 'form']) !!}
+{!! Form::open(['route' => 'order.storeOrder', 'class' => 'form']) !!}
 
 <div class="form-group">
-    {!! Form::label('patient', 'Order for Patient') !!}
-    {!! Form::text('patient', null, ['class' => 'form-control']) !!}
+    Order for Patient: 
+    {!! Form::label('patient_id', $patient->id) !!}  
 </div>
 
 <div class="form-group">
-    {!! Form::label('receiver', 'Receiver') !!}
-    {!! Form::select('receiver', array('nurse_in_charge' => 'Nurse-in-Charge', 'head_nurse' => 'Head Nurse')) !!}
-    {{-- {!! Form::text('receiver', null, ['class' => 'form-control']) !!} --}}
+    {!! Form::label('receiver', 'Receiver') !!}    
+    {!! Form::text('receiver', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group">

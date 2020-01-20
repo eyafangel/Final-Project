@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
 
-    protected $fillable = ['last_name', 'first_name', 
+    protected $fillable = ['id', 'last_name', 'first_name', 
                         'middle_name', 'sex', 'birthday', 
                         'age', 'contact_number', 'marital_status', 
                         'nationality'];
@@ -33,6 +33,8 @@ class Patient extends Model
         return $this->hasMany('App\Chart');
     }
 
-    
-
+    public function orders()
+    {
+        return $this->hasMany('App\Orders');
+    }
 }

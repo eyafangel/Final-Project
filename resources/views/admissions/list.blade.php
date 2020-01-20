@@ -7,10 +7,11 @@
  
 <h1>List of Patients</h1>
  <div class="pat">
-     
+
 @foreach ($patients as $patient)
  
-<li>{{ $patient->last_name}}, {{$patient->first_name}} <a href="/profile/{{$patient->id}}" class="btn btn-primary">Button</a></li>
+<li>{{ $patient->last_name}}, {{$patient->first_name}} 
+    <a href="/profile/{{$patient->id}}" class="btn btn-primary">Button</a></li>
 
 @endforeach
  </div>

@@ -46,6 +46,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('schedule', 'DoctorController@edit');
     Route::get('list', 'DoctorController@show')->name('list');
     Route::get('doctor/home', 'DoctorController@home')->name('doctorHome');
-    Route::get('order', 'DoctorController@create')->name('order.create');
-    Route::post('order', 'DoctorController@store')->name('order.store');       
+    Route::get('order', 'DoctorController@createOrder')->name('order.create');
+    Route::post('order', 'DoctorController@storeOrder')->name('order.store');    
+    Route::get('transfer', 'DoctorController@createTransfer')->name('transfer.create');   
 });
