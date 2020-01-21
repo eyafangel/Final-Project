@@ -8,7 +8,7 @@ class DoctorController extends Controller
 {
     public function home()
     {
-        return view('doctors.doctorHome');
+        return view('doctors.home');
     }
 
     public function create()

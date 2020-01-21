@@ -18,6 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+//users
+Route::group(['middleware' => ['auth']], function(){
+    
+	Route::get('/user', 'UserController@userPage')->name('user');
+	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
+
+	// Route::group(['middleware' => ['admin']], function(){
+		Route::get('/admin', 'UserController@adminPage')->name('admin');
+		// });
+});
+
 //Patient
 Route::group(['middleware' => ['web']], function () {
 Route::resource('/patients', 'PatientController');
