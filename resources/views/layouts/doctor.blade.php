@@ -7,6 +7,7 @@
     <body>
         @yield('home')
         @yield('profile')
-        @yield('content')        
+        @yield('content') 
+        @yield('options')       
     </body>
 </html>

@@ -30,9 +30,9 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 //Patient
-Route::group(['middleware' => ['web']], function () {
-Route::resource('/patients', 'PatientController');
-});
+
+Route::resource('/profile', 'PatientController');
+
 
 //Nurse
 Route::group(['middleware' => ['web']], function () {
@@ -47,6 +47,7 @@ Route::resource('/headnurse', 'HeadNurseController');
 //Admissions
 Route::group(['middleware' => ['web']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+Route::get('patient', 'AdmissionsController@index');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
 });
@@ -56,6 +57,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('schedule', 'DoctorController@edit');
     Route::get('list', 'DoctorController@show')->name('list');
     Route::get('doctor/home', 'DoctorController@home')->name('doctorHome');
-    Route::get('order', 'DoctorController@create')->name('order.create');
-    Route::post('order', 'DoctorController@store')->name('order.store');       
+    Route::get('order', 'DoctorController@createOrder')->name('order.create');
+    Route::post('order', 'DoctorController@storeOrder')->name('order.store');    
+    Route::get('transfer', 'DoctorController@createTransfer')->name('transfer.create');   
 });
