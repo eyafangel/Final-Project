@@ -14,11 +14,10 @@ class DropAdmissionChart extends Migration
     public function up()
     {
         Schema::table('patients', function (Blueprint $table)
-    {
+        {
         $table->dropColumn('admission_id');
         $table->dropColumn('chart_id');
-
-    });
+        });
     }
     
 
@@ -30,10 +29,10 @@ class DropAdmissionChart extends Migration
     public function down()
     {
         Schema::table('patients', function (Blueprint $table)
-    {
+        {
         $table->bigInteger('chart_id')->unsigned();
         $table->bigInteger('admission_id')->unsigned();
-    });      
+        });      
 
     }
 }

@@ -15,6 +15,7 @@ class CreateNurseNotesTable extends Migration
     {
         Schema::create('nurse_notes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('patient_id')->unsigned();
             $table->text('focus');
             $table->text('notes');

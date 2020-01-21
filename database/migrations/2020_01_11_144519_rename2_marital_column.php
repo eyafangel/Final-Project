@@ -14,10 +14,9 @@ class Rename2MaritalColumn extends Migration
     public function up()
     {
         Schema::table('patients', function(Blueprint $table)
-{
-    $table->renameColumn('marital_status_id', 'marital_status');
-
-});
+        {
+            $table->renameColumn('marital_status_id', 'marital_status');
+        });
     }
 
     /**
@@ -28,9 +27,8 @@ class Rename2MaritalColumn extends Migration
     public function down()
     {
         Schema::table('patients', function(Blueprint $table)
-{
-    $table->renameColumn('marital_status', 'marital_status_id');
-
-});
+        {
+            $table->renameColumn('marital_status', 'marital_status_id');
+        });
     }
 }
