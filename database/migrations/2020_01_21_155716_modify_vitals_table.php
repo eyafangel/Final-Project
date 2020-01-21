@@ -31,6 +31,7 @@ class ModifyVitalsTable extends Migration
     {
         Schema::table('vital_signs', function (Blueprint $table)
         {
+            
         $table->date('datetime_taken');
         $table->dropColumn('patient_id');       
         $table->dropColumn('pulse_rate');

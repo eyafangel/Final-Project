@@ -17,6 +17,7 @@ class CreateNurseNotesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('patient_id')->unsigned();
+            
             $table->text('focus');
             $table->text('notes');
             $table->timestamps();

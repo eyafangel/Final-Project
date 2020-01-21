@@ -24,7 +24,7 @@ class CreateIVFSTable extends Migration
             $table->string('level');
             $table->date('time_started');
             $table->date('time_consumed');
-            $table->string('remarks');
+            $table->string('notes');
             $table->timestamps();
         });
     }
