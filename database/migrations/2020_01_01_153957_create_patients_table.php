@@ -22,6 +22,7 @@ class CreatePatientsTable extends Migration
             $table->date('birthday');
             $table->integer('age');
             $table->string('contact_number')->nullable();
+            $table->bigInteger('marital_status_id')->unsigned();
             $table->string('nationality');
             $table->bigInteger('residence_id')->unsigned();
             $table->bigInteger('guardian_id')->unsigned();
