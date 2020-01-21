@@ -1,4 +1,4 @@
-@extends('layouts.admission')
+@extends('layouts.app')
 
 @section('title')
 	Create Patient

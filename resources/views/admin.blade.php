@@ -14,13 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Hello there ADMIN!
 
-                    {{-- @if(Auth::user()->hasRole('admin'))
-                    <a class="btn btn-primary" href="/admin">
-                        Admin Page
-                    </a>
-                    @endif --}}
+                    {{-- @if (Route::has('register'))  
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register User') }}</a>
+                    @endif --}} 
                 </div>
             </div>
         </div>

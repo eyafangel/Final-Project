@@ -8,7 +8,7 @@ class DoctorController extends Controller
 {
     public function home()
     {
-        return view('doctors.doctorHome');
+        return view('doctors.home');
     }
 
     public function createOrder()
@@ -17,12 +17,12 @@ class DoctorController extends Controller
     }
 
     public function storeOrder(Request $request)
-    {     
-       
+    {         
         $order = new Order();    
     
-        $patient_id = $request->input('patient');                
-        $patient= DB::table('charts')->where('patient_id', $patient_id)->first();
+        $patient_id = $request->input('patient');   
+        $order->patient_id = $patient_id;             
+        $order->progress_notes = request('progress_notes'); 
         $order->order = request('order');        
         
     //flash('Order Successfully Created!')->success();

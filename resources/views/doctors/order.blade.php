@@ -8,11 +8,13 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('receiver', 'Receiver') !!}    
-    {!! Form::text('receiver', null, ['class' => 'form-control']) !!}
-</div>
+    {!! Form::label('date_time', 'Date/Time') !!}  
+    {!! Form::label('date_time', $order->created_at) !!}  
 
-<div class="form-group">
+    {!! Form::label('progress_notes', 'Progress Notes') !!}  
+    {!! Form::textarea('progress_notes', null, ['class' => 'form-control']) !!}
+
+    {!! Form::label('order', 'Physician Order') !!}  
     {!! Form::textarea('order', null, ['class' => 'form-control']) !!}
 </div>
 
