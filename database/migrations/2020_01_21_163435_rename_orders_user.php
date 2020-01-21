@@ -28,6 +28,7 @@ class RenameOrdersUser extends Migration
     {
         Schema::table('orders', function(Blueprint $table)
         {
+            
             $table->renameColumn('user_id', 'users_id');
         });
     }

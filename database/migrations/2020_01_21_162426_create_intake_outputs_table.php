@@ -13,6 +13,7 @@ class CreateIntakeOutputsTable extends Migration
      */
     public function up()
     {        
+        
         Schema::create('intake_outputs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();

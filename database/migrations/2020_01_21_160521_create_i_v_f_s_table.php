@@ -21,6 +21,7 @@ class CreateIVFSTable extends Migration
             $table->string('bottle_number');
             $table->string('medication');
             $table->string('regulation');
+            
             $table->string('level');
             $table->date('time_started');
             $table->date('time_consumed');

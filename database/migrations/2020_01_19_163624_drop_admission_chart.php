@@ -33,6 +33,7 @@ class DropAdmissionChart extends Migration
         $table->bigInteger('chart_id')->unsigned();
         $table->bigInteger('admission_id')->unsigned();
         });      
+        
 
     }
 }

@@ -15,6 +15,7 @@ class Rename2MaritalColumn extends Migration
     {
         Schema::table('patients', function(Blueprint $table)
         {
+            
             $table->renameColumn('marital_status_id', 'marital_status');
         });
     }

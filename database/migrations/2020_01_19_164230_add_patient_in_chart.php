@@ -12,6 +12,7 @@ class AddPatientInChart extends Migration
      * @return void
      */
     public function up()
+    
     {
         Schema::table('charts', function (Blueprint $table) {
             $table->bigInteger('patient_id')->unsigned();

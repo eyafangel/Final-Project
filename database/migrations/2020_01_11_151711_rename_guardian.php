@@ -37,5 +37,6 @@ class RenameGuardian extends Migration
             $table->renameColumn('guardian_middle_name', 'middle_name');
             $table->renameColumn('guardian_contact_number', 'contact_number');
         });
+        
     }
 }
