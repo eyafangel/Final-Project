@@ -1,10 +1,9 @@
-@extends('layouts.doctor')
+@extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Doctor')
 
-@section('home')
+@section('content')    
     
-    <li><a href="/order">Create Order</a></li>
     <li><a href="/schedule">Schedule</a></li>
     <li><a href="/list">Patient List</a></li>
 

@@ -11,13 +11,14 @@ class UserController extends Controller
     	return view('user');
     }
 
-    public function adminPage(){
-    	$userRoles = Auth::user()->roles->pluck('name');
-        if(!$userRoles->contains('admin')){
-                return redirect('/nopermission');
-        }
-    	return view('admin');
-    }
+    // public function adminPage(){
+    	// $userRoles = Auth::user()->users->pluck('name');
+     //    dd($userRoles);
+     //    if(!$userRoles->contains('admin')){
+     //            return redirect('/nopermission');
+     //    }
+    // 	return view('admin.admin');
+    // }
 
     public function permissionDenied(){
     	return view('nopermission');
