@@ -4,8 +4,21 @@
 	Create Patient
 @endsection
 
+<?php $status=['new'=> 'New', 'old' => 'Old', 'returning' => 'Returning']; ?>
+
 @section('content')
 {!! Form::open(['route' => 'create.patient', 'class' => 'form']) !!}
+
+<div class="form-group">
+    {!! Form::label('', 'Last Name') !!}
+    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+
+    {!! Form::label('first_name', 'First Name') !!}
+    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+
+    {!! Form::label('middle_name', 'Middle Name') !!}
+    {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
+</div>
 
 <div class="form-group">
     {!! Form::label('last_name', 'Last Name') !!}
