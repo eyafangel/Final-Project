@@ -4,20 +4,27 @@
 	Create Patient
 @endsection
 
-<?php $status=['new'=> 'New', 'old' => 'Old', 'returning' => 'Returning']; ?>
+<?php 
+    $status=['new'=> 'New', 'old' => 'Old', 'returning' => 'Returning']; 
+    
+?>
 
 @section('content')
 {!! Form::open(['route' => 'create.patient', 'class' => 'form']) !!}
 
-<div class="form-group">
-    {!! Form::label('', 'Last Name') !!}
-    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+<div class="room-info">
 
-    {!! Form::label('first_name', 'First Name') !!}
-    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+    {!! Form::label('room', 'Room Number: ') !!}
+    {!! Form::text('room', null, ['class' => 'room-info']) !!}
 
-    {!! Form::label('middle_name', 'Middle Name') !!}
-    {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
+    {!! Form::label('category', 'Category: ') !!}
+    {!! Form::text('category', null, ['class' => 'room-info']) !!}
+
+    {!! Form::label('status', 'Status: ') !!}
+    {!! Form::select('status', $status, ['class' => 'room-info']) !!}
+
+    {!! Form::label('admission_date', 'Admission Date: ') !!}
+    {!! Form::text('admission_date', date("y-m-d"), ['class' => 'room-info'], ['read-only']) !!}
 </div>
 
 <div class="form-group">

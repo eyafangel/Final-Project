@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Guardian;
 use App\Patient;
 use App\Residence;
+use App\Admission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdmissionsController extends Controller
 {
@@ -30,6 +32,15 @@ class AdmissionsController extends Controller
         $patient = new Patient();
         $residence = new Residence();
         $guardian = new Guardian();
+        $admission = new Admission();
+
+        $id = Auth::id();
+
+        $admission->room = request('room');
+        $admission->category = request('category');
+        $admission->status = request('status');
+        $admission->admission_date = request('admission_date');
+        $admission->users_id = $id;
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
@@ -57,6 +68,7 @@ class AdmissionsController extends Controller
         $guardian->guardian_contact_number=request('guardian_contact_number');
         $guardian->relationship_to_patient=request('relationship_to_patient');
         
+        $admission->save();
         $residence->save();
         $patient->save();
         $guardian->save();
