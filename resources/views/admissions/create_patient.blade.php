@@ -5,7 +5,28 @@
 @endsection
 
 @section('content')
+
+<?php 
+    $status = ['new' => 'New', 'old' => 'Old', 'returning' => 'Returning'];
+?>
+
 {!! Form::open(['route' => 'create.patient', 'class' => 'form']) !!}
+
+<div class="card">
+    <div class="card-title">
+        <h1>Patient's Information</h1>
+    </div>
+
+    <div class ="room-info">
+    {!! Form::label('room', 'Room number') !!}
+    {!! Form::text('room', null, ['class' => 'room-info']) !!}
+
+    {!! Form::label('category', 'Category') !!}
+    {!! Form::text('category', null, ['class' => 'room-info']) !!}
+
+    {!! Form::Label('status', 'Status') !!}
+    {!! Form::select('status', $status, null, ['class' => 'room-info']) !!}
+    </div>
 
 <div class="form-group">
     {!! Form::label('last_name', 'Last Name') !!}
@@ -39,7 +60,7 @@
     {!! Form::text('nationality', null, ['class' => 'form-control']) !!}
 </div>
 <div class ="residence-form">
-    Residence Form<br>
+   <h5>Residence:</h5>
     {!! Form::label('lot', 'Lot') !!}
     {!! Form::text('lot', null, ['class' => 'form-control']) !!}
 
@@ -50,7 +71,7 @@
     {!! Form::text('city', null, ['class' => 'form-control']) !!}
 
 </div>
-<div class ="residence-form">
+<div class ="residence-form"><br>
 {!! Form::label('postal_code', 'Postal Code') !!}
     {!! Form::text('postal_code', null, ['class' => 'residence-form']) !!}
 
@@ -60,8 +81,8 @@
     {!! Form::label('country', 'Country') !!}
     {!! Form::text('country', null, ['class' => 'residence-form']) !!}
 </div>
-<div class ="guardian-form">
-    Guardian Information<br>
+<div class ="guardian-form"><br><br>
+    <h5>Guardian's Information</h5>
     {!! Form::label('guardian_last_name', 'Last Name') !!}
     {!! Form::text('guardian_last_name', null, ['class' => 'guardian-form']) !!}
 
@@ -77,6 +98,8 @@
 
     {!! Form::label('guardian_contact_number', 'Contact Number') !!}
     {!! Form::text('guardian_contact_number', null, ['class' => 'guardian-form']) !!}
+</div>
+
 </div>
 
 {!! Form::submit('Create', ['class' => 'btn btn-info']) !!}

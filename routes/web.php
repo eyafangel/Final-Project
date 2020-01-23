@@ -32,8 +32,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 //Patient
-
-Route::resource('/profile', 'PatientController');
+// Route::resource('/profile', 'PatientController');
 
 
 //Nurse
@@ -43,7 +42,8 @@ Route::resource('/nurse', 'NurseController');
 
 //HeadNurse
 Route::group(['middleware' => ['headNurse']], function () {
-Route::resource('/headnurse', 'HeadNurseController');
+Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
+Route::get('assign', 'HeadNurseController@create')->name('assign');
 });
 
 //Admissions

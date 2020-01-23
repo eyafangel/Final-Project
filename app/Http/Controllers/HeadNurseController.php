@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class HeadNurseController extends Controller
 {
@@ -13,7 +14,8 @@ class HeadNurseController extends Controller
 
     public function create()
     {
-    	return view('headnurse.assignnurse');
+        $users = DB::select('select * from users where role="nurse"');
+    	return view('headnurse.assignnurse', ['user'=>$users]);
     }
     
     public function store()

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Guardian;
 use App\Patient;
 use App\Residence;
+use App\Admission;
 use Illuminate\Http\Request;
 
 class AdmissionsController extends Controller
@@ -30,6 +31,11 @@ class AdmissionsController extends Controller
         $patient = new Patient();
         $residence = new Residence();
         $guardian = new Guardian();
+        $admission = new Admission();
+
+        $admission->room = request('room');
+        $admission->category = request('category');
+        $admission->status = request('status');
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
