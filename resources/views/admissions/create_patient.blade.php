@@ -98,8 +98,14 @@
     {!! Form::label('guardian_contact_number', 'Contact Number') !!}
     {!! Form::text('guardian_contact_number', null, ['class' => 'guardian-form']) !!}
 </div>
-
+{{-- @if(Session::has('flash_message'))
+    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+@endif --}}
 {!! Form::submit('Create', ['class' => 'btn btn-info']) !!}
 
+{{-- @if(session('message')) <div data-expires="5000"> {{session('message')}} </div> @endif --}}
+
 {!! Form::close() !!}
+@if(session('message')) <div data-expires="5000"> {{session('message')}} </div> @endif
+
 @endsection

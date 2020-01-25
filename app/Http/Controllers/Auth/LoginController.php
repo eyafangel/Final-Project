@@ -33,7 +33,7 @@ class LoginController extends Controller
         return('doctor/home');
     }
     elseif (Auth::check() && Auth::user()->role == 'nurse') {
-        return('nurses/index');
+        return('nurse');
     }
     elseif (Auth::check() && Auth::user()->role == 'admission') {
         return('admissions');

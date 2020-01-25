@@ -8,19 +8,20 @@ use App\Residence;
 use App\Admission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdmissionsController extends Controller
 {
-    public function index()
-    {
-        $patients = Patient::all();
- 
-        return view('admissions.list',compact('patients'));
-    }
     
     public function home()
     {
         return view('admissions.home');
+    }
+    public function patientlist()
+    {
+        $patients = Patient::all();
+ 
+        return view('admissions.list',compact('patients'));
     }
     public function create()
     {
@@ -73,7 +74,22 @@ class AdmissionsController extends Controller
         $patient->save();
         $guardian->save();
 
-        return redirect('admissions');
+        // Session::flash('alert-success', 'User was successful added!');
+        return redirect('admissions')->with('message','Success');
     }
+
+    // public function profile(){
+    //     $user = Patient::where('username', '=' , $user);
+
+    // if($user->count()) {
+    //     $user = $user->first();
+
+    //     return View::make('profile.user')
+    //         ->with('user', $user);
+    // }
+
+    // return App::abort(404);
+    // }
+    // }
     
 }
