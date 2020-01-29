@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-{!! Form::open(['route' => 'create.patient', 'class' => 'form']) !!}
+{!! Form::open(['route' => 'store.patient', 'class' => 'form']) !!}
 
 <div class="form-group">
     {!! Form::label('last_name', 'Last Name') !!}
