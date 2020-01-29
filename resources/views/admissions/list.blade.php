@@ -21,7 +21,9 @@
  		</tr>
  		@endforeach
 
+
  	</table>
+
 
  
 {{-- <li>, {{$patient->first_name}} 

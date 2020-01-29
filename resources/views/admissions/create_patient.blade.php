@@ -10,7 +10,7 @@
 ?>
 
 @section('content')
-{!! Form::open(['route' => 'create.patient', 'class' => 'form']) !!}
+{!! Form::open(['route' => 'store.patient', 'class' => 'form']) !!}
 
 <div class="room-info">
 
