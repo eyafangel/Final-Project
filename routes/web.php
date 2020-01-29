@@ -52,7 +52,7 @@ Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
-Route::get('profile', 'AdmissionsController@profile')->name('profile');
+Route::get('profile/{patient}', 'AdmissionsController@profile');
 });
 
 //Doctor

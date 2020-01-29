@@ -2317,6 +2317,7 @@ pre code {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  overflow-x: inherit;
 }
 
 .table-responsive > .table-bordered {
