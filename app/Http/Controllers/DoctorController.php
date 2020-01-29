@@ -21,25 +21,24 @@ class DoctorController extends Controller
         $order = new Order();    
     
         $patient_id = $request->input('patient');   
-        $order->patient_id = $patient_id;             
-        $order->progress_notes = request('progress_notes'); 
-        $order->order = request('order');        
+        $order->patient_id = $patient_id;                 
+        $order->order = request('order');
         
+                
     //flash('Order Successfully Created!')->success();
     //put success alert dialog box message here
 
-    return redirect()->route('home');
+    return redirect()->route('doctors.orderList');
     }
 
-    public function createTransfer()
+    public function showOrders($patient_id)
     {
-        return view('doctors.transfer');
-    }
+        // $user = DB::table('users')->where('name', 'John')->first();
+        $doctor_orders = DB::table('orders')->where('patient_id' , $patient_id)->get();
 
-    public function storeTransfer()
-    {
-        
+        return view('doctors.orderList', ['doctor_orders' => $doctor_orders]);
     }
+    
 
     public function edit()
     {
@@ -47,7 +46,10 @@ class DoctorController extends Controller
     }
 
     public function show()
-    {
-        return view('doctors.list');
+    {             
+        $id = Auth::id();        
+        $patients =  DB::table('admissions')->where('user_id', $id)->get();
+
+        return view('doctors.patientList')->with('patients', $patients);            
     }
 }

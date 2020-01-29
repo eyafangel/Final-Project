@@ -52,7 +52,12 @@ Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
+<<<<<<< HEAD
 Route::get('profile/{patient}', 'AdmissionsController@profile');
+=======
+Route::get('profile', 'AdmissionsController@profile')->name('profile');
+
+>>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
 });
 
 //Doctor
@@ -60,7 +65,7 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::get('schedule', 'DoctorController@edit');
     Route::get('list', 'DoctorController@show')->name('list');
     Route::get('doctor/home', 'DoctorController@home')->name('doctorHome');
-    Route::get('order', 'DoctorController@createOrder')->name('order.create');
-    Route::post('order', 'DoctorController@storeOrder')->name('order.store');    
-    Route::get('transfer', 'DoctorController@createTransfer')->name('transfer.create');   
+    Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
+    Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
+    
 });
