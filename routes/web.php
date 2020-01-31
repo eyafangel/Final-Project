@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function(){
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
 Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+Route::get('/inputChart', 'NurseController@create')->name('inputChart');
 });
 
 //HeadNurse
@@ -52,12 +53,12 @@ Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
-<<<<<<< HEAD
-Route::get('profile/{patient}', 'AdmissionsController@profile');
-=======
+// <<<<<<< HEAD
+//Route::get('profile/{patient}', 'AdmissionsController@profile');
+//    =======
 Route::get('profile', 'AdmissionsController@profile')->name('profile');
 
->>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
+// >>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
 });
 
 //Doctor
