@@ -55,8 +55,8 @@
 </div>
 <div class="form-group">
     {!! Form::label('sex', 'Sex') !!}    
-    {{!! Form::radio('sex', 'female' , true) !!}}
-    {{!! Form::radio('sex', 'male' , false) !!}}
+    {!! Form::radio('sex', 'F' , true) !!} Female
+    {!! Form::radio('sex', 'M' , false) !!} Male
 
     {!! Form::label('birthday', 'Birthday') !!}
     {!! Form::date('birthday', date('D-m-y'), ['class' => 'form-control']) !!}
