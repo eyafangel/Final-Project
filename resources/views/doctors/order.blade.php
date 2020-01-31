@@ -1,22 +1,24 @@
-@extends('layouts.doctor')
+@extends('layouts.app')
 
-{!! Form::open(['route' => 'order.store', 'class' => 'form']) !!}
+@section('content')
+
+{!! Form::open(['route' => 'order.storeOrder', 'class' => 'form']) !!}
 
 <div class="form-group">
-    {!! Form::label('patient', 'Order for Patient') !!}
-    {!! Form::text('patient', null, ['class' => 'form-control']) !!}
+    Order for Patient: 
+    {!! Form::label('patient_id', $patient->id) !!}  
 </div>
 
 <div class="form-group">
-    {!! Form::label('receiver', 'Receiver') !!}
-    {!! Form::select('receiver', array('nurse_in_charge' => 'Nurse-in-Charge', 'head_nurse' => 'Head Nurse')) !!}
-    {{-- {!! Form::text('receiver', null, ['class' => 'form-control']) !!} --}}
-</div>
+    {!! Form::label('date_time', 'Date/Time') !!}  
+    {!! Form::label('date_time', $order->created_at) !!}      
 
-<div class="form-group">
+    {!! Form::label('order', 'Physician Order') !!}  
     {!! Form::textarea('order', null, ['class' => 'form-control']) !!}
 </div>
 
-{!! Form::submit('Create', ['class' => 'btn btn-info']) !!}
+    <button type="button" href="{{ route('showOrders') }}">
+{{-- {!! Form::submit('Create', ['class' => 'btn btn-info']) !!} --}}
 
 {!! Form::close() !!}
+@endsection

@@ -24,38 +24,44 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/user', 'UserController@userPage')->name('user');
 	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
 
-	// Route::group(['middleware' => ['admin']], function(){
-		Route::get('/admin', 'UserController@adminPage')->name('admin');
-		// });
+	Route::group(['middleware' => ['admin']], function(){
+		Route::get('/admin', 'AdminController@index')->name('admin');
+        Route::get('/listofusers', 'AdminController@list')->name('list');
+    });
 });
+
 
 //Patient
-Route::group(['middleware' => ['web']], function () {
-Route::resource('/patients', 'PatientController');
-});
+
+// Route::resource('/profile', 'PatientController');
+
 
 //Nurse
-Route::group(['middleware' => ['web']], function () {
-Route::resource('/nurse', 'NurseController');
+Route::group(['middleware' => ['nurse']], function () {
+Route::get('/nurse', 'NurseController@index')->name('nurseHome');
 });
 
 //HeadNurse
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['headNurse']], function () {
 Route::resource('/headnurse', 'HeadNurseController');
 });
 
 //Admissions
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['admission']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
+Route::get('profile', 'AdmissionsController@profile')->name('profile');
+
 });
 
 //Doctor
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['doctor']], function () {
     Route::get('schedule', 'DoctorController@edit');
     Route::get('list', 'DoctorController@show')->name('list');
     Route::get('doctor/home', 'DoctorController@home')->name('doctorHome');
-    Route::get('order', 'DoctorController@create')->name('order.create');
-    Route::post('order', 'DoctorController@store')->name('order.store');       
+    Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
+    Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
+    
 });

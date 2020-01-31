@@ -4,8 +4,28 @@
 	Create Patient
 @endsection
 
+<?php 
+    $status=['new'=> 'New', 'old' => 'Old', 'returning' => 'Returning']; 
+    
+?>
+
 @section('content')
-{!! Form::open(['route' => 'create.patient', 'class' => 'form']) !!}
+{!! Form::open(['route' => 'store.patient', 'class' => 'form']) !!}
+
+<div class="room-info">
+
+    {!! Form::label('room', 'Room Number: ') !!}
+    {!! Form::text('room', null, ['class' => 'room-info']) !!}
+
+    {!! Form::label('category', 'Category: ') !!}
+    {!! Form::text('category', null, ['class' => 'room-info']) !!}
+
+    {!! Form::label('status', 'Status: ') !!}
+    {!! Form::select('status', $status, ['class' => 'room-info']) !!}
+
+    {!! Form::label('admission_date', 'Admission Date: ') !!}
+    {!! Form::text('admission_date', date("y-m-d"), ['class' => 'room-info'], ['read-only']) !!}
+</div>
 
 <div class="form-group">
     {!! Form::label('last_name', 'Last Name') !!}
@@ -78,8 +98,14 @@
     {!! Form::label('guardian_contact_number', 'Contact Number') !!}
     {!! Form::text('guardian_contact_number', null, ['class' => 'guardian-form']) !!}
 </div>
-
+{{-- @if(Session::has('flash_message'))
+    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
+@endif --}}
 {!! Form::submit('Create', ['class' => 'btn btn-info']) !!}
 
+{{-- @if(session('message')) <div data-expires="5000"> {{session('message')}} </div> @endif --}}
+
 {!! Form::close() !!}
+@if(session('message')) <div data-expires="5000"> {{session('message')}} </div> @endif
+
 @endsection

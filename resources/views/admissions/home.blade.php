@@ -1,9 +1,10 @@
-@extends('layouts.doctor')
+@extends('layouts.app')
 
-@section('title', 'Home')
+{{-- @section('title', 'Home') --}}
 
-@section('home')
+@section('content')
     
-    <li><a href="/create">Create Patient</a></li>
+    <a href="/create" class="btn btn-primary btn-lg">Create Patient</a><br>
+    <a href="/patientlist" class="btn btn-primary btn-lg">Patient List</a>
 
 @endsection

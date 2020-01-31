@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use App\Role;
+// use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,32 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = '/login';
+
+    protected function redirectTo( ) {
+    if (Auth::check() && Auth::user()->role == 'doctor') {
+        return('doctor/home');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'nurse') {
+        return('nurse');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'admission') {
+        return('admissions');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'headNurse') {
+        return('headnurse/index');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'admin') {
+        return('admin');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'medRecords') {
+        return('medrecords');
+    }
+    else {
+        return('/home');
+    }
+}
+    
 
     /**
      * Create a new controller instance.

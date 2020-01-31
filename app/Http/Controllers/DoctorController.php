@@ -11,24 +11,34 @@ class DoctorController extends Controller
         return view('doctors.home');
     }
 
-    public function create()
+    public function createOrder()
     {
         return view('doctors.order');
     }
 
-    public function store(Request $request)
-    {
-        $order = [];
+    public function storeOrder(Request $request)
+    {         
+        $order = new Order();    
+    
+        $patient_id = $request->input('patient');   
+        $order->patient_id = $patient_id;                 
+        $order->order = request('order');
+        
+                
+    //flash('Order Successfully Created!')->success();
+    //put success alert dialog box message here
 
-        $order['patient'] = $request->get('patient');
-        $order['receiver'] = $request->get('receiver');
-        $order['order'] = $request->get('order');
-
-
-    flash('Order Successfully Created!')->success();
-
-    return redirect()->route('home');
+    return redirect()->route('doctors.orderList');
     }
+
+    public function showOrders($patient_id)
+    {
+        // $user = DB::table('users')->where('name', 'John')->first();
+        $doctor_orders = DB::table('orders')->where('patient_id' , $patient_id)->get();
+
+        return view('doctors.orderList', ['doctor_orders' => $doctor_orders]);
+    }
+    
 
     public function edit()
     {
@@ -36,7 +46,10 @@ class DoctorController extends Controller
     }
 
     public function show()
-    {
-        return view('doctors.list');
+    {             
+        $id = Auth::id();        
+        $patients =  DB::table('admissions')->where('user_id', $id)->get();
+
+        return view('doctors.patientList')->with('patients', $patients);            
     }
 }

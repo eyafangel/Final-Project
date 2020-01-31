@@ -70,6 +70,7 @@
                                     <option value="admission">Admission</option>
                                     <option value="nurse">Nurse</option>
                                     <option value="headNurse">Head Nurse</option>
+                                    <option value="medRecords">Medical Records</option>
                                 </select> 
                             </div>
                         </div>
