@@ -30,7 +30,31 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/login';
+    // protected $redirectTo = '/login';
+
+    protected function redirectTo( ) {
+    if (Auth::check() && Auth::user()->role == 'doctor') {
+        return('doctor/home');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'nurse') {
+        return('nurse');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'admission') {
+        return('admissions');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'headNurse') {
+        return('headnurse/index');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'admin') {
+        return('admin');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'medRecords') {
+        return('medrecords');
+    }
+    else {
+        return('/home');
+    }
+}
     
 
     /**

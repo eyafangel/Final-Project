@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropAdmissionChart extends Migration
+class AddAdmissionIdToOrders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class DropAdmissionChart extends Migration
      */
     public function up()
     {
-        Schema::table('patients', function (Blueprint $table)
+        Schema::table('orders', function (Blueprint $table) 
         {
-        $table->dropColumn('admission_id');
-        $table->dropColumn('chart_id');
+            $table->bigInteger('admission_id')->unsigned();
         });
     }
-    
 
     /**
      * Reverse the migrations.
@@ -28,12 +26,9 @@ class DropAdmissionChart extends Migration
      */
     public function down()
     {
-        Schema::table('patients', function (Blueprint $table)
+        Schema::table('orders', function (Blueprint $table) 
         {
-        $table->bigInteger('chart_id')->unsigned();
-        $table->bigInteger('admission_id')->unsigned();
-        });      
-        
-
+            $table->dropColumn('admission_id');
+        });
     }
 }

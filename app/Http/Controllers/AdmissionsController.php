@@ -7,19 +7,21 @@ use App\Patient;
 use App\Residence;
 use App\Admission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdmissionsController extends Controller
 {
-    public function index()
-    {
-        $patients = Patient::all();
- 
-        return view('admissions.list',compact('patients'));
-    }
     
     public function home()
     {
         return view('admissions.home');
+    }
+    public function patientlist()
+    {
+        $patients = Patient::all();
+ 
+        return view('admissions.list',compact('patients'));
     }
     public function create()
     {
@@ -33,9 +35,13 @@ class AdmissionsController extends Controller
         $guardian = new Guardian();
         $admission = new Admission();
 
+        $id = Auth::id();
+
         $admission->room = request('room');
         $admission->category = request('category');
         $admission->status = request('status');
+        $admission->admission_date = request('admission_date');
+        $admission->users_id = $id;
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
@@ -63,11 +69,27 @@ class AdmissionsController extends Controller
         $guardian->guardian_contact_number=request('guardian_contact_number');
         $guardian->relationship_to_patient=request('relationship_to_patient');
         
+        $admission->save();
         $residence->save();
         $patient->save();
         $guardian->save();
 
-        return redirect('admissions');
+        // Session::flash('alert-success', 'User was successful added!');
+        return redirect('admissions')->with('message','Success');
     }
+
+    // public function profile(){
+    //     $user = Patient::where('username', '=' , $user);
+
+    // if($user->count()) {
+    //     $user = $user->first();
+
+    //     return View::make('profile.user')
+    //         ->with('user', $user);
+    // }
+
+    // return App::abort(404);
+    // }
+    // }
     
 }
