@@ -20,5 +20,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         //payment-get away url--session expired
+        'search'
     ];
 }
