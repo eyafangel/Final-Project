@@ -7,20 +7,38 @@ use App\Patient;
 use App\Residence;
 use App\Admission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdmissionsController extends Controller
 {
-    public function index()
-    {
-        $patients = Patient::all();
- 
-        return view('admissions.list',compact('patients'));
-    }
     
     public function home()
     {
         return view('admissions.home');
     }
+    public function patientlist()
+    {
+        $patients = Patient::all();
+ 
+        return view('admissions.list',compact('patients'));
+        // return view('admissions.list');
+    }
+    // public function get_custom_patient(){
+    //     $patientQuery = Patient::query();
+
+    //     $start_date = (!empty($_GET["start_date"]))?($_GET["start_date"]):('');
+    //     $end_date = (!empty($_GET["end_date"]))?($_GET["end_date"]):('');
+
+    //     if($start_date && $end_date){
+    //         $start_date = date('Y-m-d', strtotime($start_date));
+    //         $end_date = date('Y-m-d', strtotime($end_date));
+
+    //         $patientQuery->whereRaw("date(patients.created_at) >= '".$start_date."'AND date(patients.created_at)<='".$end_date."'");
+    //     }
+    //     $patient = $patientQuery->select('*');
+    //     return datatable()->of($patients)->make(true);
+    // }
     public function create()
     {
         return view('admissions.create_patient');
@@ -33,9 +51,15 @@ class AdmissionsController extends Controller
         $guardian = new Guardian();
         $admission = new Admission();
 
+
+        $id = Auth::id();        
+
         $admission->room = request('room');
         $admission->category = request('category');
         $admission->status = request('status');
+        $admission->admission_date = request('admission_date');
+        $admission->users_id = $id;
+
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
@@ -53,6 +77,7 @@ class AdmissionsController extends Controller
         $residence->postal_code=request('postal_code');
         $residence->province=request('province');
         $residence->country=request('country');
+        
 
         // $patient->residence()->associate($residence);
         // $patient->guardian()->associate($guardian);        
@@ -63,11 +88,28 @@ class AdmissionsController extends Controller
         $guardian->guardian_contact_number=request('guardian_contact_number');
         $guardian->relationship_to_patient=request('relationship_to_patient');
         
+        
         $residence->save();
         $patient->save();
         $guardian->save();
+                
 
-        return redirect('admissions');
+        $patient_id = $patient->id;
+        $admission->patient_id = $patient_id;
+        $patient->residence_id = $patient_id;
+        $patient->guardian_id = $patient_id;
+        $patient->save();
+        $admission->save();
+
+     
+
+
+        // Session::flash('alert-success', 'User was successful added!');
+        return redirect('admissions')->with('message','Success');
+    }
+
+    public function profile(Patient $profile){
+        return view('admissions.profile', compact('profile'));
     }
     
 }

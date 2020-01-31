@@ -1,4 +1,6 @@
-@extends('layouts.doctor')
+@extends('layouts.app')
+
+@section('content')
 
 {!! Form::open(['route' => 'order.storeOrder', 'class' => 'form']) !!}
 
@@ -9,15 +11,14 @@
 
 <div class="form-group">
     {!! Form::label('date_time', 'Date/Time') !!}  
-    {!! Form::label('date_time', $order->created_at) !!}  
-
-    {!! Form::label('progress_notes', 'Progress Notes') !!}  
-    {!! Form::textarea('progress_notes', null, ['class' => 'form-control']) !!}
+    {!! Form::label('date_time', $order->created_at) !!}      
 
     {!! Form::label('order', 'Physician Order') !!}  
     {!! Form::textarea('order', null, ['class' => 'form-control']) !!}
 </div>
 
-{!! Form::submit('Create', ['class' => 'btn btn-info']) !!}
+    <button type="button" href="{{ route('showOrders') }}">
+{{-- {!! Form::submit('Create', ['class' => 'btn btn-info']) !!} --}}
 
 {!! Form::close() !!}
+@endsection
