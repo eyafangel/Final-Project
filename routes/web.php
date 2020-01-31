@@ -37,7 +37,8 @@ Route::group(['middleware' => ['auth']], function(){
 
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
-Route::resource('/nurse', 'NurseController');
+Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+Route::get('/inputChart', 'NurseController@create')->name('inputChart');
 });
 
 //HeadNurse
