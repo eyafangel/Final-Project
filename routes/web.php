@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 //Patient
-// Route::resource('/profile', 'PatientController');
+Route::resource('/profile', 'PatientController');
 
 
 //Nurse
@@ -56,7 +56,7 @@ Route::post('create', 'AdmissionsController@store')->name('store.patient');
 // <<<<<<< HEAD
 //Route::get('profile/{patient}', 'AdmissionsController@profile');
 //    =======
-Route::get('profile', 'AdmissionsController@profile')->name('profile');
+//Route::get('profile', 'AdmissionsController@profile')->name('profile');
 
 // >>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
 });

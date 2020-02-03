@@ -1,38 +1,27 @@
 @extends('layouts.app')
 
 @section('content')
-	<h1>assign nurses to patient ug unsaon na nimo hahahahhuhuhuhu hilak na</h1>
+	{{-- <h1>assign nurses to patient ug unsaon na nimo hahahahhuhuhuhu hilak na</h1> --}}
+	<div class="form-group" style="padding: 10px">
+		{!! Form::Label('item', 'Please choose a nurse...')!!}
+		{!! Form::select('id', $nurse, null, ['class' => 'form-control'])!!}
+		<br><br>
 
-	<div class="column">
+		<div class="form-group">
+			<h5>Patient List</h5>
+			<div class="card col-lg-4">
+		@foreach($patients as $patient)
+			<div class="checkbox">
+				<label>
+					{!! Form::checkbox("patients[]", $patient)!!}{{$patient->last_name}}, {{$patient->first_name}} {{$patient->middle_name}} {{$patient->room}}
+				</label>
+			</div>
+		@endforeach
+			</div>
 
-	<select name="nurse" class="form-control" >
-		<option value="">------</option>
-		<option value="name">
-			@foreach($user as $users)
-                <td>{{ $users->name }}</td>
-            @endforeach    
-        </option>
-	</select>
-
-	<select name="patients" class="form-control">
-		<option value="">
-			
-		</option>
-	</select>
-
-	</div>
-
-	<div class="table">
-		<table>
-			<tr>
-				<td>Name Of Patient</td>
-				<td>Room of Patient</td>
-			</tr>
-
-			<tr>
-				<td>Name Of Patient</td>
-				<td>Room of Patient</td>
-			</tr>
-		</table>
+			<div class="card col-lg-4">
+				
+			</div>
+		</div>
 	</div>
 @endsection

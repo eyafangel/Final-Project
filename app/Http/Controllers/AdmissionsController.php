@@ -22,23 +22,8 @@ class AdmissionsController extends Controller
         $patients = Patient::all();
  
         return view('admissions.list',compact('patients'));
-        // return view('admissions.list');
     }
-    // public function get_custom_patient(){
-    //     $patientQuery = Patient::query();
-
-    //     $start_date = (!empty($_GET["start_date"]))?($_GET["start_date"]):('');
-    //     $end_date = (!empty($_GET["end_date"]))?($_GET["end_date"]):('');
-
-    //     if($start_date && $end_date){
-    //         $start_date = date('Y-m-d', strtotime($start_date));
-    //         $end_date = date('Y-m-d', strtotime($end_date));
-
-    //         $patientQuery->whereRaw("date(patients.created_at) >= '".$start_date."'AND date(patients.created_at)<='".$end_date."'");
-    //     }
-    //     $patient = $patientQuery->select('*');
-    //     return datatable()->of($patients)->make(true);
-    // }
+    
     public function create()
     {
         return view('admissions.create_patient');

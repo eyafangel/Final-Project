@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Patient;
+use App\Admission;
 use DB;
 
 class HeadNurseController extends Controller
@@ -14,8 +17,9 @@ class HeadNurseController extends Controller
 
     public function create()
     {
-        $users = DB::select('select * from users where role="nurse"');
-    	return view('headnurse.assignnurse', ['user'=>$users]);
+        $nurse = User::where('role', 'nurse', true)->orderBy('name')->pluck('name');
+        $patients = Patient::all();
+    	return view('headnurse.assignnurse', compact('nurse', 'patients'));
     }
     
     public function store()
