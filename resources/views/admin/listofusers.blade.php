@@ -3,33 +3,59 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">List Of Users</div>
 
                 <div class="card-body">
                     
-                    <table>
-                        <tr>
-                            {{-- <td>ID</td> --}}
+                    <table class="table table-bordered" id="usersTable">
+                        <thead>
+                            <tr>
+                            <td>ID</td>
                             <td>Name</td>
                             <td>Email</td>
                             <td>Role</td>
-                            <td>Action</td>
+                            <td>Created at</td>
+                            <td>Updated at</td>
                         </tr>
-                        @foreach($user as $users)
-                        <tr>
-                            {{-- <td>{{ $user->id }}</td> --}}
-                            <td>{{ $users->name }}</td>
-                            <td>{{ $users->email }}</td>
-                            <td>{{ $users->role }}</td>
-                            <td></td>
-                        </tr>
-                        @endforeach
+                        </thead>
                     </table>
+@stop
+
+@push('scripts')
+<script>
+    $( function () {
+        $('#usersTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{!! route('get.users')!!}',
+            columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'role', name: 'role' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' }
+            ],
+            initComplete: function () {
+            this.api().columns().every(function () {
+                var column = this;
+                var input = document.createElement("input");
+                $(input).appendTo($(column.footer()).empty())
+                .on('change', function () {
+                    column.search($(this).val(), true, true, true).draw();
+                });
+            });
+        }
+    });
+</script>
+@endpush
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+
+{{-- @endsection
+ --}}

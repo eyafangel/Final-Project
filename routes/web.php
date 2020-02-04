@@ -26,7 +26,8 @@ Route::group(['middleware' => ['auth']], function(){
 
 	Route::group(['middleware' => ['admin']], function(){
 		Route::get('/admin', 'AdminController@index')->name('admin');
-        Route::get('/listofusers', 'AdminController@list')->name('list');
+        Route::get('/listofusers', 'AdminController@list')->name('listofusers');
+        Route::get('users', 'AdminController@getUsers')->name('get.users');
     });
 });
 
