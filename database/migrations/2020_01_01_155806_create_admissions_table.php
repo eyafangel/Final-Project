@@ -21,6 +21,7 @@ class CreateAdmissionsTable extends Migration
             $table->string('room');
             $table->string('category');
             $table->string('status');
+            $table->string('mode_of_arrival');
             $table->timestamps();
         });
     }

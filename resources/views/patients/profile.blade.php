@@ -8,7 +8,10 @@
 	</div>
 	<div class = "profile">
     	{!! Form::label('age', 'Age: ') !!}
-    	{{ $patient->age}}  
+    	{{ $patient->age}}<br>
+
+        {!! Form::label('sex', 'Sex: ') !!}
+        {{ $patient->sex}}   
 	</div>
 
 	<div class = "profile">

@@ -5,34 +5,20 @@
 @endsection
 
 <?php 
-    $status=['new'=> 'New', 'old' => 'Old', 'returning' => 'Returning']; 
-    
+    $status=['new'=> 'New', 'old' => 'Old', 'returning' => 'Returning'];    
 ?>
 
 @section('content')
 
 {!! Form::open(['route' => 'store.patient', 'class' => 'form']) !!}
 
-<div class="room-info">
-
-    {!! Form::label('room', 'Room Number: ') !!}
-    {!! Form::text('room', null, ['class' => 'room-info']) !!}
-
-    {!! Form::label('category', 'Category: ') !!}
-    {!! Form::text('category', null, ['class' => 'room-info']) !!}
-
-    {!! Form::label('status', 'Status: ') !!}
-    {!! Form::select('status', $status, ['class' => 'room-info']) !!}
-
-    {!! Form::label('admission_date', 'Admission Date: ') !!}
-    {!! Form::text('admission_date', date("y-m-d"), ['class' => 'room-info'], ['read-only']) !!}
-</div>
-
-<div class="card">
+<div class="card" style="padding: 20px">
     <div class="card-title">
         <h1>Patient's Information</h1>
-    </div>
 
+        {!! Form::label('admission_date', 'Admission Date: ') !!}
+        {!! Form::text('admission_date', date("y-m-d"), ['class' => 'room-info'], ['read-only']) !!}
+    </div>
     <div class ="room-info">
     {!! Form::label('room', 'Room number') !!}
     {!! Form::text('room', null, ['class' => 'room-info']) !!}
@@ -41,7 +27,15 @@
     {!! Form::text('category', null, ['class' => 'room-info']) !!}
 
     {!! Form::Label('status', 'Status') !!}
-    {!! Form::select('status', $status, null, ['class' => 'room-info']) !!}
+    {!! Form::select('status', $status, null, ['class' => 'room-info']) !!}<br>
+
+    {!! Form::label('mode_of_arrival', 'Mode of Arrival: ') !!}
+    {!! Form::checkbox('modeOfArrival', 'ambulance') !!}Ambulance
+    {!! Form::checkbox('modeOfArrival', 'private_vehicle') !!}Private vehicle
+    {!! Form::checkbox('modeOfArrival', 'others') !!}Others
+    {!! Form::checkbox('modeOfArrival', 'ambulatory') !!}Ambulatory
+    {!! Form::checkbox('modeOfArrival', 'wheelchair') !!}Wheelchair
+    {!! Form::checkbox('modeOfArrival', 'stretcher') !!}Stretcher
     </div>
 
 <div class="form-group">
@@ -56,8 +50,8 @@
 </div>
 <div class="form-group">
     {!! Form::label('sex', 'Sex') !!}    
-    {!! Form::radio('sex', 'F' , true) !!} Female
-    {!! Form::radio('sex', 'M' , false) !!} Male
+    {!! Form::checkbox('sex', 'F' ) !!} Female
+    {!! Form::checkbox('sex', 'M' ) !!} Male<br>
 
     {!! Form::label('birthday', 'Birthday') !!}
     {!! Form::date('birthday', date('D-m-y'), ['class' => 'form-control']) !!}
