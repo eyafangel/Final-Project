@@ -52,14 +52,9 @@ Route::get('assign', 'HeadNurseController@create')->name('assign');
 Route::group(['middleware' => ['admission']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+// Route::get('pat', 'AdmissionsController@getPatients')->name('get.patients');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
-// <<<<<<< HEAD
-//Route::get('profile/{patient}', 'AdmissionsController@profile');
-//    =======
-//Route::get('profile', 'AdmissionsController@profile')->name('profile');
-
-// >>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
 });
 
 //Doctor

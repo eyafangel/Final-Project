@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">List Of Users</div>
+                <div class="card-header">Manage Users</div>
 
                 <div class="card-body">
                     
-                    <table class="table table-bordered" id="usersTable">
+                    <table class="table table-bordered" id="myTable">
                         <thead>
                             <tr>
                             <td>ID</td>
@@ -26,7 +26,7 @@
 @push('scripts')
 <script>
     $( function () {
-        $('#usersTable').DataTable({
+        $('#myTable').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! route('get.users')!!}',
@@ -44,10 +44,11 @@
                 var input = document.createElement("input");
                 $(input).appendTo($(column.footer()).empty())
                 .on('change', function () {
-                    column.search($(this).val(), true, true, true).draw();
+                    column.search($(this).val(), false, false,  true).draw();
                 });
             });
         }
+        });
     });
 </script>
 @endpush

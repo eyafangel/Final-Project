@@ -6,6 +6,7 @@ use App\Guardian;
 use App\Patient;
 use App\Residence;
 use App\Admission;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -17,13 +18,20 @@ class AdmissionsController extends Controller
     {
         return view('admissions.home');
     }
+    
     public function patientlist()
     {
         $patients = Patient::all();
  
-        return view('admissions.list',compact('patients'));
+        return view('admissions.list', compact('patients'));
     }
-    
+
+    // public function getPatients()
+    // {
+    //     $pat = Patient::select(['id', 'last_name', 'first_name', 'middle_name']);
+    //     return Datatables::of($pat)->make(true);
+    // }
+
     public function create()
     {
         return view('admissions.create_patient');
@@ -62,10 +70,7 @@ class AdmissionsController extends Controller
         $residence->postal_code=request('postal_code');
         $residence->province=request('province');
         $residence->country=request('country');
-        
-
-        // $patient->residence()->associate($residence);
-        // $patient->guardian()->associate($guardian);        
+              
                 
         $guardian->guardian_last_name=request('guardian_last_name');
         $guardian->guardian_first_name=request('guardian_first_name');
@@ -96,5 +101,7 @@ class AdmissionsController extends Controller
     public function profile(Patient $profile){
         return view('admissions.profile', compact('profile'));
     }
+
+    
     
 }

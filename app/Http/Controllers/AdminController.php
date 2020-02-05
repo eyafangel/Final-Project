@@ -17,7 +17,7 @@ class AdminController extends Controller
 		return view('admin/listofusers');
     }
     public function getUsers(){
-    	$users = User::select(['id', 'name', 'email', 'created_at', 'updated_at']);
+    	$users = User::select(['id', 'name', 'email', 'role', 'created_at', 'updated_at']);
 		return Datatables::of($users)->make(true);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Patient;
 use App\Admission;
+use App\Residence;
 use DB;
 
 class PatientController extends Controller
@@ -30,7 +31,8 @@ class PatientController extends Controller
         
         $patient = Patient::where('id', $id)->with(['admissions'])->first();
         $admissions = Admission::where('patient_id', $id)->first();
-        return view('patients.profile', ['patient'=>$patient, 'admissions'=>$admissions]);
+        $residence = Residence::where('id', $id)->first();
+        return view('patients.profile', ['patient'=>$patient, 'admissions'=>$admissions, 'residence' => $residence]);
 
     }
 }
