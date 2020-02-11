@@ -6,7 +6,8 @@ use App\Guardian;
 use App\Patient;
 use App\Residence;
 use App\Admission;
-use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -17,28 +18,20 @@ class AdmissionsController extends Controller
     {
         return view('admissions.home');
     }
+    
     public function patientlist()
     {
         $patients = Patient::all();
  
-        return view('admissions.list',compact('patients'));
-        // return view('admissions.list');
+        return view('admissions.list', compact('patients'));
     }
-    // public function get_custom_patient(){
-    //     $patientQuery = Patient::query();
 
-    //     $start_date = (!empty($_GET["start_date"]))?($_GET["start_date"]):('');
-    //     $end_date = (!empty($_GET["end_date"]))?($_GET["end_date"]):('');
-
-    //     if($start_date && $end_date){
-    //         $start_date = date('Y-m-d', strtotime($start_date));
-    //         $end_date = date('Y-m-d', strtotime($end_date));
-
-    //         $patientQuery->whereRaw("date(patients.created_at) >= '".$start_date."'AND date(patients.created_at)<='".$end_date."'");
-    //     }
-    //     $patient = $patientQuery->select('*');
-    //     return datatable()->of($patients)->make(true);
+    // public function getPatients()
+    // {
+    //     $pat = Patient::select(['id', 'last_name', 'first_name', 'middle_name']);
+    //     return Datatables::of($pat)->make(true);
     // }
+
     public function create()
     {
         return view('admissions.create_patient');
@@ -58,6 +51,7 @@ class AdmissionsController extends Controller
         $admission->status = request('status');
         $admission->admission_date = request('admission_date');
         $admission->users_id = $id;
+        $admission->mode_of_arrival = request('modeOfArrival');
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
@@ -75,10 +69,7 @@ class AdmissionsController extends Controller
         $residence->postal_code=request('postal_code');
         $residence->province=request('province');
         $residence->country=request('country');
-        
-
-        // $patient->residence()->associate($residence);
-        // $patient->guardian()->associate($guardian);        
+              
                 
         $guardian->guardian_last_name=request('guardian_last_name');
         $guardian->guardian_first_name=request('guardian_first_name');
@@ -109,5 +100,7 @@ class AdmissionsController extends Controller
     public function profile(Patient $profile){
         return view('admissions.profile', compact('profile'));
     }
+
+    
     
 }

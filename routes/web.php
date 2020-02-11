@@ -26,19 +26,20 @@ Route::group(['middleware' => ['auth']], function(){
 
 	Route::group(['middleware' => ['admin']], function(){
 		Route::get('/admin', 'AdminController@index')->name('admin');
-        Route::get('/listofusers', 'AdminController@list')->name('list');
+        Route::get('/listofusers', 'AdminController@list')->name('listofusers');
+        Route::get('users', 'AdminController@getUsers')->name('get.users');
     });
 });
 
 
 //Patient
-// Route::resource('/profile', 'PatientController');
+Route::resource('/profile', 'PatientController');
 
 
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
 Route::get('/nurse', 'NurseController@index')->name('nurseHome');
-Route::get('/inputchart', 'NurseController@create')->name('inputchart');
+Route::get('/inputChart', 'NurseController@create')->name('inputChart');
 });
 
 //HeadNurse
@@ -51,14 +52,9 @@ Route::get('assign', 'HeadNurseController@create')->name('assign');
 Route::group(['middleware' => ['admission']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+// Route::get('pat', 'AdmissionsController@getPatients')->name('get.patients');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
-// <<<<<<< HEAD
-// Route::get('profile/{patient}', 'AdmissionsController@profile');
-// =======
-Route::get('profile', 'AdmissionsController@profile')->name('profile');
-
-// >>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
 });
 
 //Doctor
