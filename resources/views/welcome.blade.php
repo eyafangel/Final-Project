@@ -24,28 +24,26 @@
                 height: 100vh;
             }
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
             .position-ref {
-                position: relative;
+                position: absolute;
             }
 
             .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
+                position: relative;
+                margin-left: 1290px;
+                margin-top: 18px;
             }
 
             .content {
                 text-align: center;
-            }
+                margin-top: 180px;
+            } 
 
             .title {
                 font-size: 84px;
+                text-align: left;
+                margin-left: 150px;
+                padding-bottom: 150px;
             }
 
             .links > a {
@@ -87,7 +85,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    LifeLine
+                LifeLine 
                 </div>
 
                 <div class="links">
