@@ -10,6 +10,7 @@
 ?>
 
 @section('content')
+
 {!! Form::open(['route' => 'store.patient', 'class' => 'form']) !!}
 
 <div class="room-info">
@@ -114,15 +115,15 @@
     {!! Form::label('guardian_contact_number', 'Contact Number') !!}
     {!! Form::text('guardian_contact_number', null, ['class' => 'guardian-form']) !!}
 </div>
-<<<<<<< HEAD
+
 
 </div>
 
-=======
+
 {{-- @if(Session::has('flash_message'))
     <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
 @endif --}}
->>>>>>> c124ee22bcebb3caed1956b9c9040884a975d811
+
 {!! Form::submit('Create', ['class' => 'btn btn-info']) !!}
 
 {{-- @if(session('message')) <div data-expires="5000"> {{session('message')}} </div> @endif --}}

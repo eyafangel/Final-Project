@@ -51,6 +51,7 @@ class AdmissionsController extends Controller
         $guardian = new Guardian();
         $admission = new Admission();
 
+
         $id = Auth::id();        
 
         $admission->room = request('room');
@@ -58,6 +59,7 @@ class AdmissionsController extends Controller
         $admission->status = request('status');
         $admission->admission_date = request('admission_date');
         $admission->users_id = $id;
+
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
