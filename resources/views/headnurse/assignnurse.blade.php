@@ -9,7 +9,7 @@
 
 		<div class="form-group">
 			<h5>Patient List</h5>
-			<div class="card col-lg-4">
+			{{-- <div class="card col-lg-4">
 		@foreach($patients as $patient)
 			<div class="checkbox">
 				<label>
@@ -17,6 +17,33 @@
 				</label>
 			</div>
 		@endforeach
+			</div> --}}
+			<div class="tab">
+				<table id="patientlist" border="1">
+					<tr>
+						<th>Last Name</th>
+						<th>First Name</th>
+						<th>Middle Name</th>
+						<th>Room Number</th>
+						<th>Select</th>
+					</tr>
+
+					<tr>
+						@foreach($patients as $patient)
+						<td>{{ $patient->last_name }}</td>
+						<td>{{ $patient->first_name }}</td>
+						<td>{{ $patient->middle_name }}</td>
+							{{-- @foreach($admissions as $admission) --}}
+							<td>{{ $admissions->room }}</td>
+							{{-- @endforeach --}}
+						<td><input type="checkbox" name="check-pat"></td>
+						@endforeach
+					</tr>
+				</table>
+			</div>
+
+			<div class="button btn-lg-4">
+				
 			</div>
 
 			<div class="card col-lg-4">

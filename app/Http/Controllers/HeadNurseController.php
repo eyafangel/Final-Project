@@ -19,7 +19,9 @@ class HeadNurseController extends Controller
     {
         $nurse = User::where('role', 'nurse', true)->orderBy('name')->pluck('name');
         $patients = Patient::all();
-    	return view('headnurse.assignnurse', compact('nurse', 'patients'));
+        $id = DB::table('patients')->pluck('id');
+        $admissions = Admission::where('patient_id', $id, true);
+    	return view('headnurse.assignnurse', compact('nurse', 'patients', 'admissions'));
     }
     
     public function store()

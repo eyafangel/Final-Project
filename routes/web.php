@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function(){
 
 //Patient
 Route::resource('/profile', 'PatientController');
+Route::get('rqcode', function(){
+    return QrCode::size(300)->generate('qr code testing!');
+});
 
 
 //Nurse
