@@ -49,6 +49,7 @@ Route::get('/inputChart', 'NurseController@create')->name('inputChart');
 Route::group(['middleware' => ['headNurse']], function () {
 Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
 Route::get('assign', 'HeadNurseController@create')->name('assign');
+Route::post('assign', 'HeadNurseController@store')->name('store.assign');
 });
 
 //Admissions

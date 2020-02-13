@@ -17,16 +17,27 @@ class HeadNurseController extends Controller
 
     public function create()
     {
-        $nurse = User::where('role', 'nurse', true)->orderBy('name')->pluck('name');
-        $patients = Patient::all();
-        $id = DB::table('patients')->pluck('id');
-        $admissions = Admission::where('patient_id', $id, true);
-    	return view('headnurse.assignnurse', compact('nurse', 'patients', 'admissions'));
+        $nurse = User::where('role', 'nurse', true)->orderBy('name')->pluck('name', 'id');
+        // $pat = Patient::all();
+        $patients = DB::table('patients')
+                    ->join('admissions', 'patients.id', '=', 'admissions.patient_id')
+                    ->select('patients.*', 'admissions.room')
+                    ->get();
+        return view('headnurse.assignnurse', compact('nurse', 'patients'));
     }
     
     public function store()
     {
-    	//stores registered patients
+    	//stores nurse's id into patient table
+        $patient = new Patient;
+        $nurse_id = request('id');
+        
+        $patient->user_id = $nurse_id;
+
+        $patient->save();
+
+        return redirect('headnurse.assignnurse');
+
     }
     
 }

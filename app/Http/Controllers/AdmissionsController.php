@@ -70,8 +70,7 @@ class AdmissionsController extends Controller
         $residence->postal_code=request('postal_code');
         $residence->province=request('province');
         $residence->country=request('country');
-              
-                
+                              
         $guardian->guardian_last_name=request('guardian_last_name');
         $guardian->guardian_first_name=request('guardian_first_name');
         $guardian->guardian_middle_name=request('guardian_middle_name');
