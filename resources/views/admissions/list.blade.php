@@ -7,7 +7,7 @@
 
  <div class="container-fluid">
  	<div class="table-responsive">
- 		<table id="patientlist" class="table" cellspacing="0" width="100%">
+ 		<table id="pat" class="table" cellspacing="0" width="100%">
  			<thead>
  				<tr>
 	 			<td>Last Name</td>
@@ -28,26 +28,7 @@
 		 		@endforeach
  			</tbody>
  		</table>
- 		
-{{-- @stop
-
-@push('scripts')
-<script>
-    $( function () {
-        $('#patientlist').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: '{!! route('get.patients')!!}',
-            columns: [
-            { data: 'id', name: 'id' },
-            { data: 'last_name', name: 'last_name' },
-            { data: 'first_name', name: 'first_name' },
-            { data: 'middle_name', name: 'middle_name' }
-            ]
-        });
-    });
-</script>
-@endpush --}}
 	</div>
+	<a href="javascript:history.back()" class="btn btn-primary">Back</a>
 </div>
 @endsection

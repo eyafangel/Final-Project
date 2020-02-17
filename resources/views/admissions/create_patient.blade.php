@@ -21,10 +21,10 @@
     </div>
     <div class ="room-info">
     {!! Form::label('room', 'Room number') !!}
-    {!! Form::text('room', null, ['class' => 'room-info']) !!}
+    {!! Form::text('room', null, ['class' => 'room-info'], 'required') !!}
 
     {!! Form::label('category', 'Category') !!}
-    {!! Form::text('category', null, ['class' => 'room-info']) !!}
+    {!! Form::text('category', null, ['class' => 'room-info'], 'required') !!}
 
     {!! Form::Label('status', 'Status') !!}
     {!! Form::select('status', $status, null, ['class' => 'room-info']) !!}<br>
@@ -40,13 +40,13 @@
 
 <div class="form-group">
     {!! Form::label('last_name', 'Last Name') !!}
-    {!! Form::text('last_name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('last_name', null, ['class' => 'form-control'], 'required') !!}
 
     {!! Form::label('first_name', 'First Name') !!}
-    {!! Form::text('first_name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('first_name', null, ['class' => 'form-control'], 'required') !!}
 
     {!! Form::label('middle_name', 'Middle Name') !!}
-    {!! Form::text('middle_name', null, ['class' => 'form-control']) !!}
+    {!! Form::text('middle_name', null, ['class' => 'form-control'], 'required') !!}
 </div>
 <div class="form-group">
     {!! Form::label('sex', 'Sex') !!}    
@@ -54,20 +54,20 @@
     {!! Form::checkbox('sex', 'M' ) !!} Male<br>
 
     {!! Form::label('birthday', 'Birthday') !!}
-    {!! Form::date('birthday', date('D-m-y'), ['class' => 'form-control']) !!}
+    {!! Form::date('birthday', date('Y-m-d'), ['class' => 'form-control']) !!}
 
     {!! Form::label('contact_number', 'Contact Number') !!}
-    {!! Form::text('contact_number', null, ['class' => 'form-control']) !!}
+    {!! Form::text('contact_number', null, ['class' => 'form-control'], 'required') !!}
 </div>
 <div class="form-group">
     {!! Form::label('age', 'Age') !!}
-    {!! Form::text('age', null, ['class' => 'form-control']) !!}
+    {!! Form::text('age', null, ['class' => 'form-control'], 'required') !!}
 
     {!! Form::label('marital_status', 'Marital Status') !!}
-    {!! Form::text('marital_status', null, ['class' => 'form-control']) !!}
+    {!! Form::text('marital_status', null, ['class' => 'form-control'], 'required') !!}
 
     {!! Form::label('nationality', 'Nationality') !!}
-    {!! Form::text('nationality', null, ['class' => 'form-control']) !!}
+    {!! Form::text('nationality', null, ['class' => 'form-control'], 'required') !!}
 </div>
 <div class ="residence-form">
    <h5>Residence:</h5>
@@ -78,18 +78,18 @@
     {!! Form::text('street', null, ['class' => 'form-control']) !!}
 
     {!! Form::label('city', 'City') !!}
-    {!! Form::text('city', null, ['class' => 'form-control']) !!}
+    {!! Form::text('city', null, ['class' => 'form-control'], 'required') !!}
 
 </div>
 <div class ="residence-form"><br>
 {!! Form::label('postal_code', 'Postal Code') !!}
-    {!! Form::text('postal_code', null, ['class' => 'residence-form']) !!}
+    {!! Form::text('postal_code', null, ['class' => 'residence-form'], 'required') !!}
 
     {!! Form::label('province', 'Province') !!}
-    {!! Form::text('province', null, ['class' => 'residence-form']) !!}
+    {!! Form::text('province', null, ['class' => 'residence-form'], 'required') !!}
 
     {!! Form::label('country', 'Country') !!}
-    {!! Form::text('country', null, ['class' => 'residence-form']) !!}
+    {!! Form::text('country', null, ['class' => 'residence-form'], 'required') !!}
 </div>
 <div class ="guardian-form"><br><br>
     <h5>Guardian's Information</h5>

@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-	{{-- <h1>assign nurses to patient ug unsaon na nimo hahahahhuhuhuhu hilak na</h1> --}}
+
+	{!! Form::open(['route' => 'store.assign', 'class' => 'form-group']) !!}
+
 	<div class="form-group" style="padding: 10px">
-		{!! Form::Label('item', 'Please choose a nurse...')!!}
-		{!! Form::select('id', $nurse, $nurse->pluck('id'), ['class' => 'form-control'])!!}
+		<select name="nurse">
+			<option value = "">Choose a nurse</option>
+			@foreach($nurses as $nurse)
+				<option value="{{ $nurse->id }}">{{ $nurse->name }}</option>
+			@endforeach	
+		</select>
+
 		<br><br>
 
 		<div class="form-group">
@@ -21,23 +28,20 @@
 						<th>Select</th>
 					</tr>
 
-					<tr>
+					<tbody>
 						@foreach($patients as $patient)
+						<tr>
 						<td>{{ $patient->last_name }}</td>
 						<td>{{ $patient->first_name }}</td>
 						<td>{{ $patient->middle_name }}</td>
 						<td>{{ $patient->room }}</td>
-						<td><input type="checkbox" id="checkbox"></td>
+						<td><input type="checkbox" id="pat" name="pat[]" value="{{$patient->id}}"></td>
+						</tr>
 						@endforeach
-					</tr>
+					</tbody>
 				</table>
 			</div>
 
-			{{-- <div class="tab tab-btn" style="float: left; margin: 50px">
-				<button style="display: block; margin-bottom: 20px" onclick="tab1_to_tab2()">>>>></button>
-				<button><<<<</button>
-			</div>
- --}}
 			<div class="tab" style="float: left; padding: 20px">
 				<h6>Selected patients</h6>
 				<table id="two">
@@ -52,34 +56,18 @@
 		</div>	
 	</div>
 
-	<div style="float: right">
-		<input type="button" class="button btn btn-primary" value="ASSIGN"></input>
+	<div style="float: right; position: right;">
+		{!! Form::submit('Assign', ['class' => 'btn btn-info']) !!}
+		<a href="javascript:history.back()" class="btn btn-primary" >Back</a>
 	</div>
+
+	{!! Form::close() !!}
+
+	
 
 @push('scripts')
 	<script type="text/javascript">
-		// function tab1_to_tab2()
-		// {
-		// 	var table1 = document.getElementById('patientlist'),
-		// 		table2 = document.getElementById('patientlist1'),
-		// 		checkboxes = document.getElementById("check-pat");
-		// 	for (var i = 0; i < checkboxes.length; i++) {
-		// 		if (checkboxes[i].checked)
-		// 		{
-					// var newRow = table2.insertRow(table2.length),
-					// 	cell1 =newRow.insertCell(0),
-					// 	cell2 =newRow.insertCell(1),
-					// 	cell3 =newRow.insertCell(2),
-					// 	cell4 =newRow.insertCell(3);
-					// cell1.innerHTML = table1.rows[i].cells[0].innerHTML;
-					// cell2.innerHTML = table1.rows[i].cells[1].innerHTML;
-					// cell3.innerHTML = table1.rows[i].cells[2].innerHTML;
-					// cell4.innerHTML = "<input type='checkbox' name='check-pat'>";
-		// 			console.log("yes");
-		// 		}
-		// 	}
-		// }
-
+		
 		$.when($.ready).then(function() {
   			$('input:checkbox').on('change', function(e) {
     			if (this.checked) {

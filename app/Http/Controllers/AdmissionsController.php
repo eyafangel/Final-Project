@@ -58,7 +58,7 @@ class AdmissionsController extends Controller
         $patient->first_name = request('first_name');
         $patient->middle_name = request('middle_name');
         $patient->sex = request('sex');
-        $patient->birthday = date('Y-m-d', strtotime($patient['birthday']));        
+        $patient->birthday = date('Y-m-d', strtotime(request('birthday')));        
         $patient->age = request('age');
         $patient->contact_number = request('contact_number');
         $patient->marital_status = request('marital_status');
@@ -101,6 +101,11 @@ class AdmissionsController extends Controller
         return view('admissions.profile', compact('profile'));
     }
 
-    
+    // protected function validatePatient(){
+    //     'last_name' => 'required',
+    //     'middle_name' => 'required',
+    //     'first_name' => 'required',
+    //     'last_name' => 'required',
+    // }
     
 }
