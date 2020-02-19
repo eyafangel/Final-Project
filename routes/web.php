@@ -26,39 +26,43 @@ Route::group(['middleware' => ['auth']], function(){
 
 	Route::group(['middleware' => ['admin']], function(){
 		Route::get('/admin', 'AdminController@index')->name('admin');
-        Route::get('/listofusers', 'AdminController@list')->name('list');
+        Route::get('/listofusers', 'AdminController@list')->name('listofusers');
+        Route::get('users', 'AdminController@getUsers')->name('get.users');
     });
 });
 
 
 //Patient
 Route::resource('/profile', 'PatientController');
+Route::get('rqcode', function(){
+    return QrCode::size(300)->generate('qr code testing!');
+});
 
 
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
 Route::get('/nurse', 'NurseController@index')->name('nurseHome');
-Route::get('/inputChart', 'NurseController@create')->name('inputChart');
+Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
+Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeouttake');
+Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
+Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
+Route::post('/input', 'NurseController@store')->name('store.chart');
 });
 
 //HeadNurse
 Route::group(['middleware' => ['headNurse']], function () {
 Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
 Route::get('assign', 'HeadNurseController@create')->name('assign');
+Route::post('assign', 'HeadNurseController@store')->name('store.assign');
 });
 
 //Admissions
 Route::group(['middleware' => ['admission']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+// Route::get('pat', 'AdmissionsController@getPatients')->name('get.patients');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
-// <<<<<<< HEAD
-//Route::get('profile/{patient}', 'AdmissionsController@profile');
-//    =======
-//Route::get('profile', 'AdmissionsController@profile')->name('profile');
-
-// >>>>>>> a3aceda09ff64f81f8de1912d820b3d99cf24af8
 });
 
 //Doctor

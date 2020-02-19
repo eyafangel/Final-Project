@@ -18,7 +18,7 @@ class CreatePatientsTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->string('middle_name');
-            $table->boolean('sex');
+            $table->string('sex');
             $table->date('birthday');
             $table->integer('age');
             $table->string('contact_number')->nullable();
