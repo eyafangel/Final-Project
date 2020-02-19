@@ -6,7 +6,8 @@ use App\Guardian;
 use App\Patient;
 use App\Residence;
 use App\Admission;
-use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -17,12 +18,20 @@ class AdmissionsController extends Controller
     {
         return view('admissions.home');
     }
+    
     public function patientlist()
     {
         $patients = Patient::all();
  
-        return view('admissions.list',compact('patients'));
+        return view('admissions.list', compact('patients'));
     }
+
+    // public function getPatients()
+    // {
+    //     $pat = Patient::select(['id', 'last_name', 'first_name', 'middle_name']);
+    //     return Datatables::of($pat)->make(true);
+    // }
+
     public function create()
     {
         return view('admissions.create_patient');
@@ -35,19 +44,21 @@ class AdmissionsController extends Controller
         $guardian = new Guardian();
         $admission = new Admission();
 
-        $id = Auth::id();
+
+        $id = Auth::id();        
 
         $admission->room = request('room');
         $admission->category = request('category');
         $admission->status = request('status');
         $admission->admission_date = request('admission_date');
         $admission->users_id = $id;
+        $admission->mode_of_arrival = request('modeOfArrival');
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
         $patient->middle_name = request('middle_name');
         $patient->sex = request('sex');
-        $patient->birthday = date('Y-m-d', strtotime($patient['birthday']));        
+        $patient->birthday = date('Y-m-d', strtotime(request('birthday')));        
         $patient->age = request('age');
         $patient->contact_number = request('contact_number');
         $patient->marital_status = request('marital_status');
@@ -59,37 +70,42 @@ class AdmissionsController extends Controller
         $residence->postal_code=request('postal_code');
         $residence->province=request('province');
         $residence->country=request('country');
-
-        // $patient->residence()->associate($residence);
-        // $patient->guardian()->associate($guardian);        
-                
+                              
         $guardian->guardian_last_name=request('guardian_last_name');
         $guardian->guardian_first_name=request('guardian_first_name');
         $guardian->guardian_middle_name=request('guardian_middle_name');
         $guardian->guardian_contact_number=request('guardian_contact_number');
         $guardian->relationship_to_patient=request('relationship_to_patient');
         
-        $admission->save();
+        
         $residence->save();
         $patient->save();
         $guardian->save();
+                
+
+        $patient_id = $patient->id;
+        $admission->patient_id = $patient_id;
+        $patient->residence_id = $patient_id;
+        $patient->guardian_id = $patient_id;
+        $patient->save();
+        $admission->save();
+
+     
+
 
         // Session::flash('alert-success', 'User was successful added!');
         return redirect('admissions')->with('message','Success');
     }
 
-    // public function profile(){
-    //     $user = Patient::where('username', '=' , $user);
+    public function profile(Patient $profile){
+        return view('admissions.profile', compact('profile'));
+    }
 
-    // if($user->count()) {
-    //     $user = $user->first();
-
-    //     return View::make('profile.user')
-    //         ->with('user', $user);
-    // }
-
-    // return App::abort(404);
-    // }
+    // protected function validatePatient(){
+    //     'last_name' => 'required',
+    //     'middle_name' => 'required',
+    //     'first_name' => 'required',
+    //     'last_name' => 'required',
     // }
     
 }
