@@ -16,8 +16,14 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('patient_id')->unsigned();
-            $table->text('description');
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('title');
+            $table->text('description')->nullable();            
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->string('color');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

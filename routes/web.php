@@ -52,14 +52,31 @@ Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patient', 'AdmissionsController@index');
 Route::get('/create', 'AdmissionsController@create')->name('create.patient');
 Route::post('/create', 'AdmissionsController@store')->name('store.patient');
+
 });
 
 //Doctor
 Route::group(['middleware' => ['doctor']], function () {
-    Route::get('schedule', 'DoctorController@edit');
-    Route::get('list', 'DoctorController@show')->name('list');
+    // Route::get('schedule', 'DoctorController@edit');
+    Route::post('/doctor/list', 'DoctorController@show')->name('list');
     Route::get('doctor/home', 'DoctorController@home')->name('doctorHome');
     Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
     Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
     
 });
+
+//fullcalendar
+Route::get('fullcalendar','FullCalendarController@index')->name('index');
+
+Route::get('load-events', 'EventController@loadEvents')->name('routeLoadEvents');
+Route::put('update-event', 'EventController@update')->name('routeUpdateEvent');
+Route::get('store-event', 'EventController@store')->name('routeStoreEvent');
+Route::delete('destroy-event', 'EventController@destroy')->name('routeDestroyEvent');
+
+Route::delete('/fast-event-destroy', 'FastEventController@destroy')->name('routeFastEventDelete');
+
+Route::put('/fast-event-update', 'FastEventController@update')->name('routeFastEventUpdate');
+
+Route::post('/fast-event-store', 'FastEventController@store')->name('routeFastEventStore');
+
+

@@ -1,4 +1,4 @@
-@extends('layouts.doctor')
+@extends('layouts.app')
 
 @section('content')
 <div class = "profile"> 
