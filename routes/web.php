@@ -42,7 +42,11 @@ Route::get('rqcode', function(){
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
 Route::get('/nurse', 'NurseController@index')->name('nurseHome');
-Route::get('/inputChart', 'NurseController@create')->name('inputChart');
+Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
+Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeouttake');
+Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
+Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
+Route::post('/input', 'NurseController@store')->name('store.chart');
 });
 
 //HeadNurse

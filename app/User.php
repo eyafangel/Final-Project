@@ -55,7 +55,7 @@ class User extends Authenticatable
 
     public function patient()
     {
-        return $this->belongsToMany('App\Patient');
+        return $this->belongsToMany('App\Patient', 'patient_user')->withTimestamps();
     }
     public function department()
     {
