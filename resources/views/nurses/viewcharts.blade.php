@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 	<div class="container-fluid">
 		<div class="col-md-6">
             <div class="container">
@@ -12,27 +13,40 @@
                 <strong>{{ $pat->age }}</strong>
                 <label>Sex:</label>
                 <strong>{{ $pat->sex }}</strong><br>
-                <label>Room:</label>
-                <strong>{{ $admissions->room }}</strong>
                 <label>Attending Physician:</label>
+                <label>Room:</label>
+                <strong>{{ $admissions->room }}</strong><br>
 
             </div>
 
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
                 <div id="myDropdown" class="dropdown-menu">
-                    <a href="#">
+                    <a href="{{ route('input.intakeoutput', $pat->id)}}">
                         Intake and Output Records</a><br>
-                    <a href="#">
+                    <a href="{{ route('input.ivf', $pat->id)}}">
                         Intravenous Fluids Record</a><br>
-                    <a href="#">
+                    <a href="{{ route('input.vitalsigns', $pat->id)}}">
                         Vital Signs Monitoring</a>
                 </div>
             </div>
 
+            {{-- <div class="card">
+                <div class="card-header">Doctor's Notes</div>
+                {{ $patcharts->doctors_notes }}
+            </div> --}}
+
             <div class="table">
-                
+                <table class="table-responsive" id="patchart">
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
+
+            @yield('chart_content')
 
 
             <div style="float: right; position: right;">
@@ -40,6 +54,7 @@
             </div>
         </div>
 	</div>
+
 
     @push('scripts')
     <script type="text/javascript">

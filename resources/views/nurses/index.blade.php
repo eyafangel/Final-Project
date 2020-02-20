@@ -30,7 +30,7 @@
 		 				</tr>
 
 		 				@empty
-	 						<font color="darkviolet">No patients to show.</font>
+	 						<font color="darkviolet">There are no patients to show.</font>
 		 				@endforelse
  					</tbody>
 				</table>

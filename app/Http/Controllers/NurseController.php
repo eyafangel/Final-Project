@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\IntakeOutput;
 use App\NurseNotes;
 use App\VitalSign;
-use App\Admission;
 use App\Patient;
 use App\Chart;
 use App\User;
@@ -18,7 +17,7 @@ class NurseController extends Controller
 {
     public function index()
     {
-         $id = Auth::id();
+        $id = Auth::id();
 
     	return view('nurses.index', [
             'nurse' => User::find($id)
@@ -27,30 +26,71 @@ class NurseController extends Controller
 
     public function show(Patient $pat)
     {
+
         $patid = $pat->id;
-        $admissions = Admission::where('patient_id', $patid)->first();
-        $patcharts = Chart::where('patient_id', $patid)->first();
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();   
+
     	return view('nurses.viewcharts', compact('pat','admissions', 'patcharts'));
     }
 
-    public function inputIntakeOutput()
+    public function inputIntakeOutput(Patient $pat)
     {
-        return view('nurses.intakeoutput');
+        $id = Auth::id();
+        $nurse = User::find($id);
+
+        $patid = $pat->id;
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+
+
+        return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'nurse'));
     }
 
-    public function inputIvf()
+    public function inputIvf(Patient $pat)
     {
-        return view('nurses.ivf');
+        $id = Auth::id();
+        $nurse = User::find($id);
+
+        $patid = $pat->id;
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+        return view('nurses.ivf', compact('pat','admissions', 'patcharts'));
     }
 
-    public function inputVitalSigns()
+    public function inputVitalSigns(Patient $pat)
     {
-        return view('nurses.vitalsigns');
+        $id = Auth::id();
+        $nurse = User::find($id);
+
+        $patid = $pat->id;
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')
+            ->where('patient_id', $patid)
+            ->first();
+        $vitals = DB::table('vital_signs')
+            ->join('patients', 'vital_signs.patient_id', '=', 'patients.id')
+            ->select('vital_signs.*', 'patients.last_name');
+
+        return view('nurses.vitalsigns', compact('pat','admissions', 'patcharts', 'nurse'));
     }
     
 
-    public function store()
+    public function storeIntakeOutput()
     {
-    	//stores charts
+    	//stores intake output
+    }
+
+    public function storeIvf()
+    {
+        //stores ivf
+    }
+
+    public function storeVitalSigns()
+    {
+        //stores vital signs
     }
 }

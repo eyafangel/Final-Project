@@ -42,11 +42,17 @@ Route::get('rqcode', function(){
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
 Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+
 Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
-Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeouttake');
+
+Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
 Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
 Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
-Route::post('/input', 'NurseController@store')->name('store.chart');
+
+Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+Route::post('/inputIvf/{pat}', 'NurseController@storeIvf')->name('store.ivf');
+Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
+
 });
 
 //HeadNurse

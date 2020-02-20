@@ -1,47 +1,33 @@
-@extends('layouts.app')
+@extends('nurses.viewcharts')
 
-@section('content')
+@section('chart_content')
+    {!! Form::open(['route' => 'store.chart', 'class' => 'form-group']) !!}
+    <div class="container-fluid">
+        <div class="form-group">
+            <label>Date:</label>
+            <input type="text" name="date"><br>
 
-	<div class="container-fluid">
-		<div class="col-md-6">
-            <div class="dropdown">
-                <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
-                <div id="myDropdown" class="dropdown-menu">
-                    <a href="{{ route('input.intakeouttake')}}">Intake and Output Records</a><br>
-                    <a href="{{ route('input.ivf')}}">Intravenous Fluids Record</a><br>
-                    <a href="{{ route('input.input.vitalsigns')}}">Vital Signs Monitoring</a>
-                </div>
-            </div>
+            <label>Time:</label>
+            <input type="text" name="time"><br>
 
+            <label>Temperature:</label>
+            <input type="text" name="temperature"><br>
 
+            <label>Pulse Rate:</label>
+            <input type="text" name="pulse_rate"><br>
 
-            <div style="float: right; position: right;">
-                <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
-            </div>
+            <label>Respiratory Rate:</label>
+            <input type="text" name="respiratory_rate"><br>
+
+            <label>Blood Pressure:</label>
+            <input type="text" name="blood_pressure"><br>
+
+            <label>O2 Saturation:</label>
+            <input type="text" name="o2_saturation"><br>
+
+            <label>Remarks:</label>
+            <input type="text" name="remarks"><br>
         </div>
-	</div>
-
-    @push('scripts')
-    <script type="text/javascript">
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-    // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script>
-    @endpush
+    </div>
+    {!! Form::close() !!} 
 @endsection
