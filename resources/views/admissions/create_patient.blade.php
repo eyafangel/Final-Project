@@ -69,6 +69,7 @@
     {!! Form::label('nationality', 'Nationality') !!}
     {!! Form::text('nationality', null, ['class' => 'form-control'], 'required') !!}
 </div>
+
 <div class ="residence-form">
    <h5>Residence:</h5>
     {!! Form::label('lot', 'Lot') !!}
@@ -79,8 +80,8 @@
 
     {!! Form::label('city', 'City') !!}
     {!! Form::text('city', null, ['class' => 'form-control'], 'required') !!}
-
 </div>
+
 <div class ="residence-form"><br>
 {!! Form::label('postal_code', 'Postal Code') !!}
     {!! Form::text('postal_code', null, ['class' => 'residence-form'], 'required') !!}
@@ -91,6 +92,7 @@
     {!! Form::label('country', 'Country') !!}
     {!! Form::text('country', null, ['class' => 'residence-form'], 'required') !!}
 </div>
+
 <div class ="guardian-form"><br><br>
     <h5>Guardian's Information</h5>
     {!! Form::label('guardian_last_name', 'Last Name') !!}
