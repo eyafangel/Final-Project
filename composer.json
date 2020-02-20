@@ -14,10 +14,11 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.0",
-        "simplesoftwareio/simple-qrcode": "^2.0",
-        "yajra/laravel-datatables": "^1.0",
-        "yajra/laravel-datatables-oracle": "^9.8"
-    },
+        "phpoffice/phpword": "v0.13.*",
+        "simplesoftwareio/simple-qrcode": "^2.0",        
+        "yajra/laravel-datatables": "1.5",
+        "yajra/laravel-datatables-oracle": "^9.8"    },
+  
     "require-dev": {
         "facade/ignition": "^1.4",
         "fzaninotto/faker": "^1.4",

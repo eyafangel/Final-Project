@@ -47,6 +47,7 @@ Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('inp
 Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
 Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
 Route::post('/input', 'NurseController@store')->name('store.chart');
+Route::get('/patProfile', 'NurseController@showProfile');
 });
 
 //HeadNurse
@@ -63,6 +64,8 @@ Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist
 // Route::get('pat', 'AdmissionsController@getPatients')->name('get.patients');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
+Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
+Route::get('showQR', 'AdmissionsController@showQRCode')->name('showQR');
 });
 
 //Doctor

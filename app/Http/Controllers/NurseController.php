@@ -33,6 +33,11 @@ class NurseController extends Controller
     	return view('nurses.viewcharts', compact('pat','admissions', 'patcharts'));
     }
 
+    public function showProfile()
+    {
+        return view('admissions.printQR');
+    }
+
     public function inputIntakeOutput()
     {
         return view('nurses.intakeoutput');
