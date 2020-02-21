@@ -49,19 +49,19 @@ $(function(){
 
         let id = $("#modalFastEvent input[name='id']").val();
 
-        let title = $("#modalFastEvent input[name='title']").val();        
+        let s_title = $("#modalFastEvent input[name='title']").val();        
 
-        let start = $("#modalFastEvent input[name='start']").val();
+        let s_start = $("#modalFastEvent input[name='start']").val();
 
-        let end = $("#modalFastEvent input[name='end']").val();
+        let s_end = $("#modalFastEvent input[name='end']").val();
 
-        let color = $("#modalFastEvent input[name='color']").val();
+        let s_color = $("#modalFastEvent input[name='color']").val();
 
         let Event = {
-            title: title,           
-            start: start,
-            end: end,
-            color: color,
+            title: s_title,           
+            start: s_start,
+            end: s_end,
+            color: s_color,
         };
 
         let route;
