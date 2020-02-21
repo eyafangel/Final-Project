@@ -86,3 +86,6 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
     
 });
+
+//calendar
+Route::get('calendar', 'EventCalendarController@index');
