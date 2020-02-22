@@ -6,10 +6,12 @@ use App\Guardian;
 use App\Patient;
 use App\Residence;
 use App\Admission;
+use Exception;
 use Yajra\Datatables\Datatables;
 use Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AdmissionsController extends Controller
 {
@@ -37,8 +39,39 @@ class AdmissionsController extends Controller
         return view('admissions.create_patient');
     }
 
-    public function store()
+    public function showQRCode()
     {
+        return view('admissions.qrcode');
+    }
+
+    public function createQRDocx($id)
+    {
+        $patient = Patient::where('id', $id)->first();
+
+        $wordTest = new \PhpOffice\PhpWord\PhpWord();
+
+        $newSection = $wordTest->addSection();
+
+        QrCode::size(500)
+                ->format('png')
+                ->generate($patient->qr_code, base_path().$patient->patient_id.'.png');
+        
+        $newSection->addImage(base_path().$patient->patient_id.'.png');
+        
+        $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($wordTest, 'Word2007');
+        try
+            {
+                $objectWriter->save(storage_path('QRCode.docx'));
+            }
+        catch (Exception $e)
+            {
+            }
+
+        return response()->download(storage_path('QRCode.docx'));
+    }
+
+    public function store()
+    {        
         $patient = new Patient();
         $residence = new Residence();
         $guardian = new Guardian();
@@ -51,12 +84,13 @@ class AdmissionsController extends Controller
         $admission->status = request('status');
         $admission->admission_date = request('admission_date');
         $admission->users_id = $id;
+        $admission->mode_of_arrival = request('modeOfArrival');        
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
         $patient->middle_name = request('middle_name');
         $patient->sex = request('sex');
-        $patient->birthday = date('Y-m-d', strtotime($patient['birthday']));        
+        $patient->birthday = date('Y-m-d', strtotime(request('birthday')));        
         $patient->age = request('age');
         $patient->contact_number = request('contact_number');
         $patient->marital_status = request('marital_status');
@@ -68,8 +102,7 @@ class AdmissionsController extends Controller
         $residence->postal_code=request('postal_code');
         $residence->province=request('province');
         $residence->country=request('country');
-              
-                
+                              
         $guardian->guardian_last_name=request('guardian_last_name');
         $guardian->guardian_first_name=request('guardian_first_name');
         $guardian->guardian_middle_name=request('guardian_middle_name');
@@ -83,13 +116,12 @@ class AdmissionsController extends Controller
                 
 
         $patient_id = $patient->id;
+        $patient->qr_code = "http://127.0.0.1:8000/profile/{$patient_id}";        
         $admission->patient_id = $patient_id;
         $patient->residence_id = $patient_id;
         $patient->guardian_id = $patient_id;
         $patient->save();
-        $admission->save();
-
-     
+        $admission->save();     
 
 
         // Session::flash('alert-success', 'User was successful added!');
@@ -100,6 +132,11 @@ class AdmissionsController extends Controller
         return view('admissions.profile', compact('profile'));
     }
 
-    
+    // protected function validatePatient(){
+    //     'last_name' => 'required',
+    //     'middle_name' => 'required',
+    //     'first_name' => 'required',
+    //     'last_name' => 'required',
+    // }
     
 }
