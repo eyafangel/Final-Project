@@ -34,9 +34,6 @@ Route::group(['middleware' => ['auth']], function(){
 
 //Patient
 Route::resource('/profile', 'PatientController');
-Route::get('rqcode', function(){
-    return QrCode::size(300)->generate('qr code testing!');
-});
 
 
 //Nurse
@@ -50,9 +47,9 @@ Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
 Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
 
 
-Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
-Route::post('/inputIvf/{pat}', 'NurseController@storeIvf')->name('store.ivf');
-Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
+Route::post('/inputIntake', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+Route::post('/inputIvf', 'NurseController@storeIvf')->name('store.ivf');
+Route::post('/inputVitalsigns', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
 Route::post('/input', 'NurseController@store')->name('store.chart');
 Route::get('/patProfile', 'NurseController@showProfile');
@@ -70,11 +67,10 @@ Route::post('assign', 'HeadNurseController@store')->name('store.assign');
 Route::group(['middleware' => ['admission']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
-// Route::get('pat', 'AdmissionsController@getPatients')->name('get.patients');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
 Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
-Route::get('showQR', 'AdmissionsController@showQRCode')->name('showQR');
+
 });
 
 //Doctor

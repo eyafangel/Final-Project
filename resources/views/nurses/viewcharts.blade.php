@@ -20,7 +20,7 @@
             </div>
 
             <div class="dropdown">
-                <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
+                <button onclick="myFunction()" class="dropdown-toggle">Input Charts</button>
                 <div id="myDropdown" class="dropdown-menu">
                     <a href="{{ route('input.intakeoutput', $pat->id)}}">
                         Intake and Output Records</a><br>
@@ -30,21 +30,27 @@
                         Vital Signs Monitoring</a>
                 </div>
             </div>
+        </div>
+        <br><br>
 
-            {{-- <div class="card">
-                <div class="card-header">Doctor's Notes</div>
-                {{ $patcharts->doctors_notes }}
-            </div> --}}
-
-            <div class="table">
-                <table class="table-responsive" id="patchart">
-                    <thead>
-                        <tr>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+        {{-- <div class="col-lg-12">
+            <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>IVF</th>
+                        <th>Volume Infused</th>
+                        <th>Oral</th>
+                        <th>Urine</th>
+                        <th>Drainage Volume</th>
+                        <th>Stools Volume Description</th>
+                        <th>Total Intake</th>
+                        <th>Hour 24 Urine</th>
+                        <th>Total Output</th>
+                    </tr>
+                </thead>
+            </table>
+        </div> --}}
 
             @yield('chart_content')
 
@@ -53,8 +59,6 @@
                 <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
             </div>
         </div>
-	</div>
-
 
     @push('scripts')
     <script type="text/javascript">

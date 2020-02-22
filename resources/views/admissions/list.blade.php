@@ -2,10 +2,9 @@
 
 @section('content')
 
- 
-<h1>List of Patients</h1>
+  <div class="container-fluid">
+	<h1>List of Patients</h1>
 
- <div class="container-fluid">
  	<div class="table-responsive">
  		<table id="pat" class="table" cellspacing="0" width="100%">
  			<thead>
@@ -18,17 +17,19 @@
  			</thead>
 
  			<tbody>
- 				@foreach ($patients  as $patient)
+ 				@forelse ($patients  as $patient)
 		 		<tr>
  				<td>{{ $patient->last_name }}</td>
 	 			<td>{{ $patient->first_name }}</td>
 	 			<td>{{ $patient->middle_name }}</td>
  				<td><a href="/profile/{{$patient->id}}" class="btn btn-primary">Profile</a></td>
  				</tr>
-		 		@endforeach
+ 				@empty
+ 				<p style="color: darkviolet;">No patients to show.</p>
+		 		@endforelse
  			</tbody>
  		</table>
 	</div>
-	<a href="javascript:history.back()" class="btn btn-primary">Back</a>
+	<a href="javascript:history.back()" class="btn btn-danger">Back</a>
 </div>
 @endsection
