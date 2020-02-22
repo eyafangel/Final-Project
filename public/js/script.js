@@ -1,4 +1,4 @@
-// import { diffDay } from "fullcalendar";
+//import { diffDay } from "fullcalendar";
 
 $(function(){
 
@@ -11,91 +11,91 @@ $(function(){
         }
     });
 
-    // $("#newFastEvent").click(function () {
+    $("#newFastEvent").click(function () {
 
-    //     clearMessages('.message');
-    //     resetForm("#formFastEvent");
-    //     $("#modalFastEvent input[name='id']").val('');
+        clearMessages('.message');
+        resetForm("#formFastEvent");
+        $("#modalFastEvent input[name='id']").val('');
 
-    //     showModalCreateFastEvent = true;
+        showModalCreateFastEvent = true;
 
-    //     $('#modalFastEvent').modal('show');
-    //     $("#modalFastEvent #titleModal").text('Create Quick Event');
-    //     $("#modalFastEvent button.deleteFastEvent").css("display","none");
-    // });
+        $('#modalFastEvent').modal('show');
+        $("#modalFastEvent #titleModal").text('Create Quick Event');
+        $("#modalFastEvent button.deleteFastEvent").css("display","none");
+    });
 
-    // $(document).on('click','.event', function () {
+    $(document).on('click','.event', function () {
 
-    //     clearMessages('.message');
-    //     resetForm("#formFastEvent");
+        clearMessages('.message');
+        resetForm("#formFastEvent");
 
-    //     showModalUpdateFastEvent = true;
+        showModalUpdateFastEvent = true;
 
-    //     let Event = JSON.parse($(this).attr('data-event'));
+        let Event = JSON.parse($(this).attr('data-event'));
 
-    //     $('#modalFastEvent').modal('show');
-    //     $("#modalFastEvent #titleModal").text('Change Fast Event');
-    //     $("#modalFastEvent button.deleteFastEvent").css("display","flex");
+        $('#modalFastEvent').modal('show');
+        $("#modalFastEvent #titleModal").text('Change Fast Event');
+        $("#modalFastEvent button.deleteFastEvent").css("display","flex");
 
-    //     $("#modalFastEvent input[name='id']").val(Event.id);
-    //     $("#modalFastEvent input[name='title']").val(Event.title);        
-    //     $("#modalFastEvent input[name='start']").val(Event.start);
-    //     $("#modalFastEvent input[name='end']").val(Event.end);
-    //     $("#modalFastEvent input[name='color']").val(Event.color);
+        $("#modalFastEvent input[name='id']").val(Event.id);
+        $("#modalFastEvent input[name='title']").val(Event.title);        
+        $("#modalFastEvent input[name='start']").val(Event.start);
+        $("#modalFastEvent input[name='end']").val(Event.end);
+        $("#modalFastEvent input[name='color']").val(Event.color);
 
-    // });
+    });
 
-    // $(".saveFastEvent").click(function () {
+    $(".saveFastEvent").click(function () {
 
-    //     let id = $("#modalFastEvent input[name='id']").val();
+        let id = $("#modalFastEvent input[name='id']").val();
 
-    //     let s_title = $("#modalFastEvent input[name='title']").val();        
+        let s_title = $("#modalFastEvent input[name='title']").val();        
 
-    //     let s_start = $("#modalFastEvent input[name='start']").val();
+        let s_start = $("#modalFastEvent input[name='start']").val();
 
-    //     let s_end = $("#modalFastEvent input[name='end']").val();
+        let s_end = $("#modalFastEvent input[name='end']").val();
 
-    //     let s_color = $("#modalFastEvent input[name='color']").val();
+        let s_color = $("#modalFastEvent input[name='color']").val();
 
-    //     let Event = {
-    //         title: s_title,           
-    //         start: s_start,
-    //         end: s_end,
-    //         color: s_color,
-    //     };
+        let Event = {
+            title: s_title,           
+            start: s_start,
+            end: s_end,
+            color: s_color,
+        };
 
-    //     let route;
+        let route;
 
-    //     if(id == ''){
-    //         route = routeEvents('routeFastEventStore');
-    //     }else{
-    //         route = routeEvents('routeFastEventUpdate');
-    //         Event.id = id;
-    //         Event._method = 'PUT';
-    //     }
+        if(id == ''){
+            route = routeEvents('routeFastEventStore');
+        }else{
+            route = routeEvents('routeFastEventUpdate');
+            Event.id = id;
+            Event._method = 'PUT';
+        }
 
-    //     sendEvent(route,Event);
+        sendEvent(route,Event);
 
-    // });
+    });
 
 
-    // $(".deleteFastEvent").click(function () {
+    $(".deleteFastEvent").click(function () {
 
-    //     let id = $("#modalFastEvent input[name='id']").val();
+        let id = $("#modalFastEvent input[name='id']").val();
 
-    //     let Event = {
-    //         id: id,
-    //         _method: 'DELETE'
-    //     };
+        let Event = {
+            id: id,
+            _method: 'DELETE'
+        };
 
-    //     let route = routeEvents('routeFastEventDelete');
+        let route = routeEvents('routeFastEventDelete');
 
-    //     showModalUpdateFastEvent = true;
-    //     sendEvent(route,Event);
+        showModalUpdateFastEvent = true;
+        sendEvent(route,Event);
 
-    //     $(`#boxFastEvent${id}`).remove();
+        $(`#boxFastEvent${id}`).remove();
 
-    // });
+    });
 
     $(".deleteEvent").click(function(){
         let id = $("#modalCalendar input[name='id']").val();
@@ -167,34 +167,34 @@ function sendEvent(route, data_) {
                 $("#modalCalendar").modal('hide');
             }
 
-        //     if(showModalUpdateFastEvent === true){
-        //         showModalUpdateFastEvent = false;
-        //         $("#modalFastEvent").modal('hide');
+            if(showModalUpdateFastEvent === true){
+                showModalUpdateFastEvent = false;
+                $("#modalFastEvent").modal('hide');
 
-        //         let stringJson = `{"id":"${data_.id}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}", "date":"${data_.date}"}`;
+                let stringJson = `{"id":"${data_.id}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}", "date":"${data_.date}"}`;
 
-        //         $(`#boxFastEvent${data_.id}`).attr('data-event', stringJson);
-        //         $(`#boxFastEvent${data_.id}`).text(data_.title);
-        //         $(`#boxFastEvent${data_.id}`).css({
-        //             "backgroundColor": `${data_.color}`,
-        //             "border": `1px solid ${data_.color}`});
+                $(`#boxFastEvent${data_.id}`).attr('data-event', stringJson);
+                $(`#boxFastEvent${data_.id}`).text(data_.title);
+                $(`#boxFastEvent${data_.id}`).css({
+                    "backgroundColor": `${data_.color}`,
+                    "border": `1px solid ${data_.color}`});
 
-        // }
-        // if(showModalCreateFastEvent === true){
-        //     showModalCreateFastEvent = false;
-        //     $("#modalFastEvent").modal('hide');
+        }
+        if(showModalCreateFastEvent === true){
+            showModalCreateFastEvent = false;
+            $("#modalFastEvent").modal('hide');
 
-        //     let stringJson = `{"id":"${json.created}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}"}`;
+            let stringJson = `{"id":"${json.created}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}"}`;
 
-        //     let newEvent = `<div id="boxFastEvent${json.created}"
-        //             style="padding: 4px; border: 1px solid ${data_.color}; background-color: ${data_.color}"
-        //             class='fc-event event text-center'
-        //             data-event='${stringJson}'>
-        //             ${data_.title}
-        //         </div>`;
-        //     $('#external-events-list').append(newEvent);
+            let newEvent = `<div id="boxFastEvent${json.created}"
+                    style="padding: 4px; border: 1px solid ${data_.color}; background-color: ${data_.color}"
+                    class='fc-event event text-center'
+                    data-event='${stringJson}'>
+                    ${data_.title}
+                </div>`;
+            $('#external-events-list').append(newEvent);
 
-        // }
+        }
     },
 
     error:function (json) {

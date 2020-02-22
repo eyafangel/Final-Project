@@ -4,7 +4,7 @@
     @include('fullcalendar.modals.modal-events')
     @include('fullcalendar.modals.modal-fastEvents')
 
-    {{-- <div id='external-events'>
+    <div id='external-events'>
         <h4>Fast Event</h4>
 
         <div id='external-events-list'>
@@ -29,11 +29,10 @@
             <label for='drop-remove'>Remove after dragging.</label>
             <button class="btn btn-sm btn-success" id="newFastEvent" style="font-size: 1em; width: 100%;">Create New Event</button>
         </p>
-    </div> --}}
+    </div>
 
 
-    <div
-        id='calendar'
+    <div id='calendar'
         data-route-load-events="{{ route('routeLoadEvents') }}"
         data-route-event-update="{{ route('routeUpdateEvent') }}"
         data-route-event-store="{{ route('routeStoreEvent') }}"

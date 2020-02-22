@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     /* initialize the external events
     -----------------------------------------------------------------*/
 
-    // var containerEl = document.getElementById('external-events-list');
-    // new Draggable(containerEl, {
-    //     itemSelector: '.fc-event',
-    // });
+    var containerEl = document.getElementById('external-events-list');
+    new Draggable(containerEl, {
+        itemSelector: '.fc-event',
+    });
 
     //// the individual way to do it
     // var containerEl = document.getElementById('external-events-list');
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     error:function (json) {
 
-        let responseJSON = json.responseJSON.msg;
+        let responseJSON = json.responseJSON.errors;
 
         $("#message").html(loadErrors(responseJSON));
 

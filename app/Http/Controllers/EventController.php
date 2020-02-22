@@ -12,7 +12,6 @@ class EventController extends Controller
     {
         $returnedColumns = ['id', 'title',  'start', 'end', 'color', 'description'];
 
-        
         $start = (!empty($request->start)) ? ($request->start) : ('');
         $end = (!empty($request->end)) ? ($request->end) : ('');
 

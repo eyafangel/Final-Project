@@ -30,10 +30,7 @@
 <script src='{{asset('assets/packages/timegrid/main.js')}}'></script>
 <script src='{{asset('assets/packages/list/main.js')}}'></script>
 
-{{-- <script src='{{asset('js/jqueryMask.js')}}'></script>
-<script src='{{asset('js/bootstrap.js')}}'></script>
-<script src='{{asset('js/moment.js')}}'></script>
-<script src='{{asset('js/popper.js')}}'></script> --}}
+
 
 <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
