@@ -54,6 +54,7 @@
 @endpush
                 </div>
             </div>
+            <a href="javascript:history.back()" class="btn btn-primary">Back</a>
         </div>
     </div>
 </div>

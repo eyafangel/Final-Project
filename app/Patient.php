@@ -37,4 +37,9 @@ class Patient extends Model
     {
         return $this->hasMany('App\Orders');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User')->withTimestamps();
+    }
 }
