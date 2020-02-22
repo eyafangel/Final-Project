@@ -40,7 +40,19 @@ Route::resource('/profile', 'PatientController');
 Route::group(['middleware' => ['nurse']], function () {
 Route::get('/nurse', 'NurseController@index')->name('nurseHome');
 
-Route::get('/inputchart', 'NurseController@create')->name('inputChart');
+Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
+
+Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
+Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
+Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
+
+
+Route::post('/inputIntake', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+Route::post('/inputIvf', 'NurseController@storeIvf')->name('store.ivf');
+Route::post('/inputVitalsigns', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
+
+Route::post('/input', 'NurseController@store')->name('store.chart');
+Route::get('/patProfile', 'NurseController@showProfile');
 
 });
 
@@ -48,19 +60,16 @@ Route::get('/inputchart', 'NurseController@create')->name('inputChart');
 Route::group(['middleware' => ['headNurse']], function () {
 Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
 Route::get('assign', 'HeadNurseController@create')->name('assign');
+Route::post('assign', 'HeadNurseController@store')->name('store.assign');
 });
 
 //Admissions
 Route::group(['middleware' => ['admission']], function () {
 Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
 Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
-// Route::get('pat', 'AdmissionsController@getPatients')->name('get.patients');
 Route::get('create', 'AdmissionsController@create')->name('create.patient');
 Route::post('create', 'AdmissionsController@store')->name('store.patient');
-
-//Route::get('profile/{patient}', 'AdmissionsController@profile');
-
-Route::get('profile', 'AdmissionsController@profile')->name('profile');
+Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
 
 });
 
