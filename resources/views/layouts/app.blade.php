@@ -26,6 +26,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        html, body{
+            background: #fff;
+        }
+    </style>
+
 
 </head>
 <body>

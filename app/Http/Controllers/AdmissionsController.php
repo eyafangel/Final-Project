@@ -51,7 +51,6 @@ class AdmissionsController extends Controller
         $admission->status = request('status');
         $admission->admission_date = request('admission_date');
         $admission->users_id = $id;
-        $admission->mode_of_arrival = request('modeOfArrival');
  
         $patient->last_name = request('last_name');
         $patient->first_name = request('first_name');
