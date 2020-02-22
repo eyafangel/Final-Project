@@ -73,10 +73,10 @@ Route::put('update-event', 'EventController@update')->name('routeUpdateEvent');
 Route::get('store-event', 'EventController@store')->name('routeStoreEvent');
 Route::delete('destroy-event', 'EventController@destroy')->name('routeDestroyEvent');
 
-Route::delete('/fast-event-destroy', 'FastEventController@destroy')->name('routeFastEventDelete');
+// Route::delete('/fast-event-destroy', 'FastEventController@destroy')->name('routeFastEventDelete');
 
-Route::put('/fast-event-update', 'FastEventController@update')->name('routeFastEventUpdate');
+// Route::put('/fast-event-update', 'FastEventController@update')->name('routeFastEventUpdate');
 
-Route::post('/fast-event-store', 'FastEventController@store')->name('routeFastEventStore');
+// Route::post('/fast-event-store', 'FastEventController@store')->name('routeFastEventStore');
 
 
