@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['register' => false]);
+//Route::get('/home', 'HomeController@index')->name('home');
 
 //users
 Route::group(['middleware' => ['auth']], function(){
@@ -25,9 +25,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
 
 	Route::group(['middleware' => ['admin']], function(){
-		Route::get('/admin', 'AdminController@index')->name('admin');
-        Route::get('/listofusers', 'AdminController@list')->name('listofusers');
-        Route::get('users', 'AdminController@getUsers')->name('get.users');
+        Route::resource('/admin/user', 'AdminController');
     });
 });
 
