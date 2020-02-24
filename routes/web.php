@@ -57,6 +57,9 @@ Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('
 Route::post('/input', 'NurseController@store')->name('store.chart');
 Route::get('/patProfile', 'NurseController@showProfile');
 
+Route::get('scan', 'NurseController@showScanner')->name('scan');
+Route::get('scanned', 'NurseController@showScanned')->name('scanned');
+
 });
 
 //HeadNurse
