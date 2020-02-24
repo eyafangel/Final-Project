@@ -137,7 +137,8 @@ $(function(){
             let route;
 
             if(id==''){
-                route = routeEvents('routeStoreEvent');                               
+                // @sayop naming
+                route = routeEvents('routeEventStore');                               
             }
             else {
                 route = routeEvents('routeUpdateEvent');
@@ -198,7 +199,7 @@ function sendEvent(route, data_) {
     },
 
     error:function (json) {
-
+        console.log(json)
         let responseJSON = json.responseJSON.errors;
 
         $("#message").html(loadErrors(responseJSON));

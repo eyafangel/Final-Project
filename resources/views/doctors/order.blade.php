@@ -17,7 +17,7 @@
     {!! Form::textarea('order', null, ['class' => 'form-control']) !!}
 </div>
 
-    <button type="button" href="{{ route('showOrders') }}">
+    <button type="button" href="{{ route('order.store') }}">Create</button>
 {{-- {!! Form::submit('Create', ['class' => 'btn btn-info']) !!} --}}
 
 {!! Form::close() !!}
