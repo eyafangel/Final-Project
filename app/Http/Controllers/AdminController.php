@@ -27,6 +27,7 @@ class AdminController extends Controller
             'role' => 'required'
         ]);
         
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
