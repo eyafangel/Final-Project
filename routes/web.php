@@ -52,6 +52,9 @@ Route::post('/inputVitalsigns', 'NurseController@storeVitalSigns')->name('store.
 Route::post('/input', 'NurseController@store')->name('store.chart');
 Route::get('/patProfile', 'NurseController@showProfile');
 
+Route::get('scan', 'NurseController@showScanner')->name('scan');
+Route::get('scanned', 'NurseController@showScanned')->name('scanned');
+
 });
 
 //HeadNurse
@@ -80,3 +83,9 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
     
 });
+<<<<<<< HEAD
+
+//calendar
+Route::get('calendar', 'EventCalendarController@index');
+=======
+>>>>>>> 38c287427a9d682c7e0822049badeecefe2b5074

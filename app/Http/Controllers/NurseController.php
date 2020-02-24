@@ -118,4 +118,14 @@ class NurseController extends Controller
     {
         //stores vital signs
     }
+
+    public function showScanner()
+    {
+        return view('nurses.qrscanner');
+    }
+
+    public function showScanned()
+    {
+        return view('nurses.scanned');
+    }
 }
