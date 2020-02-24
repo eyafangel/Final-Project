@@ -20,7 +20,7 @@ class Nurse
             return $next($request);
         }
         elseif(Auth::check() && Auth::user()->role == 'doctor'){
-            return redirect('doctor/home');
+            return redirect('doctor');
         }
         elseif(Auth::check() && Auth::user()->role == 'headNurse'){
             return redirect('headnurse');

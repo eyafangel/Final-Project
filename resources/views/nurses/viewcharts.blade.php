@@ -20,7 +20,7 @@
             </div>
 
             <div class="dropdown">
-                <button onclick="myFunction()" class="dropdown-toggle">Input Charts</button>
+                <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
                 <div id="myDropdown" class="dropdown-menu">
                     <a href="{{ route('input.intakeoutput', $pat->id)}}">
                         Intake and Output Records</a><br>
@@ -33,24 +33,6 @@
         </div>
         <br><br>
 
-        {{-- <div class="col-lg-12">
-            <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>IVF</th>
-                        <th>Volume Infused</th>
-                        <th>Oral</th>
-                        <th>Urine</th>
-                        <th>Drainage Volume</th>
-                        <th>Stools Volume Description</th>
-                        <th>Total Intake</th>
-                        <th>Hour 24 Urine</th>
-                        <th>Total Output</th>
-                    </tr>
-                </thead>
-            </table>
-        </div> --}}
 
             @yield('chart_content')
 
