@@ -1,8 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <style>
+
+    </style>
+</head>
+
+<body>
 <nav class="navbar navbar-expand-md navbar-inverse bg-black shadow-sm">
      <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <p class="navbar-brand">
             {{ config('app.name', 'Laravel') }}
-                </a>
+                </p>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
                 </button>
@@ -48,3 +58,5 @@
                 </div>
             </div>
         </nav>
+</body>
+</html>

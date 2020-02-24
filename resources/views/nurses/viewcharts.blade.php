@@ -30,21 +30,9 @@
                         Vital Signs Monitoring</a>
                 </div>
             </div>
+        </div>
+        <br><br>
 
-            {{-- <div class="card">
-                <div class="card-header">Doctor's Notes</div>
-                {{ $patcharts->doctors_notes }}
-            </div> --}}
-
-            <div class="table">
-                <table class="table-responsive" id="patchart">
-                    <thead>
-                        <tr>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
 
             @yield('chart_content')
 
@@ -53,8 +41,6 @@
                 <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
             </div>
         </div>
-	</div>
-
 
     @push('scripts')
     <script type="text/javascript">
@@ -63,7 +49,6 @@
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
-
     // Close the dropdown menu if the user clicks outside of it
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {

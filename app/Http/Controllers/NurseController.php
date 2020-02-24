@@ -47,6 +47,7 @@ class NurseController extends Controller
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
 
 
+
         return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'nurse'));
     }
 
@@ -79,9 +80,30 @@ class NurseController extends Controller
     }
     
 
-    public function storeIntakeOutput()
+    public function storeIntakeOutput(Patient $pat)
     {
     	//stores intake output
+        
+        $patid = $pat->id;
+        $id = Auth::id();
+
+        $intakeout = new IntakeOutput();
+
+        $intakeout->patient_id = $patid;
+        $intakeout->user_id = $id;
+        $intakeout->ivf = request('ivf');
+        $intakeout->volume_infused = request('volume_infused');
+        $intakeout->oral = request('oral');
+        $intakeout->urine = request('urine');
+        $intakeout->drainage_volume = request('drainage_volume');
+        $intakeout->stools_volume_description = request('stools_volume_description');
+        $intakeout->total_intake = request('total_intake');
+        $intakeout->hour24_urine = request('hour24_urine');
+        $intakeout->total_output = request('total_output');
+
+        $intakeout->save();
+
+        return redirect('nurse.viewcharts/{pat}');
     }
 
     public function storeIvf()

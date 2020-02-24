@@ -28,12 +28,6 @@ class AdmissionsController extends Controller
         return view('admissions.list', compact('patients'));
     }
 
-    // public function getPatients()
-    // {
-    //     $pat = Patient::select(['id', 'last_name', 'first_name', 'middle_name']);
-    //     return Datatables::of($pat)->make(true);
-    // }
-
     public function create()
     {
         return view('admissions.create_patient');

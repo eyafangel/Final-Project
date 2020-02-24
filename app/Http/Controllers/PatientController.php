@@ -32,6 +32,7 @@ class PatientController extends Controller
         $patient = Patient::where('id', $id)->with(['admissions'])->first();
         $admissions = Admission::where('patient_id', $id)->first();
         $residence = Residence::where('id', $id)->first();
+        
         return view('patients.profile', ['patient'=>$patient, 'admissions'=>$admissions, 'residence' => $residence]);
 
     }

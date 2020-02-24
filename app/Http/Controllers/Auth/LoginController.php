@@ -42,7 +42,7 @@ class LoginController extends Controller
         return('headnurse');
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return('admin');
+        return('admin/user');
     }
     elseif (Auth::check() && Auth::user()->role == 'medRecords') {
         return('medrecords');

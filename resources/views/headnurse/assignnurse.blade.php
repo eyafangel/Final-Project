@@ -58,7 +58,7 @@
 
 	<div style="float: right; position: right;">
 		{!! Form::submit('Assign', ['class' => 'btn btn-info']) !!}
-		<a href="javascript:history.back()" class="btn btn-primary" >Back</a>
+		<a href="/headnurse" class="btn btn-danger" >Back</a>
 	</div>
 
 	{!! Form::close() !!}
