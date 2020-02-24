@@ -29,6 +29,7 @@
  
         <div class="form-group">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route('user.index') }}" class="btn btn-danger" >Cancel</a>
         </div>
                     </div>
                     

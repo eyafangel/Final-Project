@@ -41,12 +41,12 @@ Route::get('/nurse', 'NurseController@index')->name('nurseHome');
 Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
 Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
-Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
-Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
-
-
 Route::post('/inputIntake', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+
+Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
 Route::post('/inputIvf', 'NurseController@storeIvf')->name('store.ivf');
+
+Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
 Route::post('/inputVitalsigns', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
 Route::post('/input', 'NurseController@store')->name('store.chart');
