@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 	<div class="container-fluid">
 		<div class="col-md-6">
             <div class="container">
@@ -12,34 +13,34 @@
                 <strong>{{ $pat->age }}</strong>
                 <label>Sex:</label>
                 <strong>{{ $pat->sex }}</strong><br>
-                <label>Room:</label>
-                <strong>{{ $admissions->room }}</strong>
                 <label>Attending Physician:</label>
+                <label>Room:</label>
+                <strong>{{ $admissions->room }}</strong><br>
 
             </div>
 
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
                 <div id="myDropdown" class="dropdown-menu">
-                    <a href="#">
+                    <a href="{{ route('input.intakeoutput', $pat->id)}}">
                         Intake and Output Records</a><br>
-                    <a href="#">
+                    <a href="{{ route('input.ivf', $pat->id)}}">
                         Intravenous Fluids Record</a><br>
-                    <a href="#">
+                    <a href="{{ route('input.vitalsigns', $pat->id)}}">
                         Vital Signs Monitoring</a>
                 </div>
             </div>
+        </div>
+        <br><br>
 
-            <div class="table">
-                
-            </div>
+
+            @yield('chart_content')
 
 
             <div style="float: right; position: right;">
                 <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
             </div>
         </div>
-	</div>
 
     @push('scripts')
     <script type="text/javascript">
@@ -48,7 +49,6 @@
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
-
     // Close the dropdown menu if the user clicks outside of it
         window.onclick = function(event) {
             if (!event.target.matches('.dropbtn')) {

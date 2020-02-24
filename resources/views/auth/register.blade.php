@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Register') }}</div>X
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('store.user') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -66,7 +66,7 @@
 
                             <div class="col-md-6">
                                 <select name="role" class="form-control" >
-                                    <option value="">-----</option>
+                                    <option value="">Choose a role</option>
                                     <option value="doctor">Doctor</option>
                                     <option value="admission">Admission</option>
                                     <option value="nurse">Nurse</option>
@@ -79,7 +79,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Create') }}
                                 </button>
                             </div>
                         </div>

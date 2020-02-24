@@ -26,11 +26,11 @@
  							<td>{{ $patients->last_name }}</td>
 	 						<td>{{ $patients->first_name }}</td>
 	 						<td>{{ $patients->middle_name }}</td>
- 							<td><a href="{{ route('show.chart', $patients->id)}}" class="btn btn-primary">View Chart</a></td>
+ 							<td><a href="{{ route('show.chart', $patients->id)}}" class="btn btn-primary">Profile</a></td>
 		 				</tr>
 
 		 				@empty
-	 						<font color="darkviolet">No patients to show.</font>
+	 						<font color="darkviolet">There are no patients to show.</font>
 		 				@endforelse
  					</tbody>
 				</table>
