@@ -26,12 +26,10 @@ class NurseController extends Controller
 
     public function show(Patient $pat)
     {
-
-        $patid = $pat->id;
+        $patid = $pat->id;        
 
         $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
-
 
     	return view('nurses.viewcharts', compact('pat','admissions', 'patcharts'));
     }

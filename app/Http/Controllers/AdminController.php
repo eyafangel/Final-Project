@@ -15,10 +15,6 @@ class AdminController extends Controller
         return view('admin.listofusers', ['users' => $users]);
     }
 
-    public function create(){
-        return view('admin.create_user');
-    }
-
     public function store(Request $request){
         $this->validate(request(), [
             'name' => 'required',
@@ -27,15 +23,17 @@ class AdminController extends Controller
             'role' => 'required'
         ]);
         
+        
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => bcrypt($request->password),
             'start_date' => $request->start_date
         ]);
         
         
-        return redirect('admin/user');    
+        return redirect('admin');    
     }
 
     public function edit(User $user){

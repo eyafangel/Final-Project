@@ -30,7 +30,9 @@ class DoctorController extends Controller
     //flash('Order Successfully Created!')->success();
     //put success alert dialog box message here
 
-    return redirect()->route('doctors.orderList');
+    // return redirect()->route('doctors.orderList');
+
+    return view('doctors.home');
     }
 
     public function showOrders($patient_id)
