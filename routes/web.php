@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
 
 	Route::group(['middleware' => ['admin']], function(){
-        Route::resource('/admin/user', 'AdminController');
+    Route::resource('/admin/user', 'AdminController');
     });
 });
 
@@ -41,12 +41,12 @@ Route::get('/nurse', 'NurseController@index')->name('nurseHome');
 Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
 Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
-Route::post('/inputIntake', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
-
 Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
-Route::post('/inputIvf', 'NurseController@storeIvf')->name('store.ivf');
-
 Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
+
+
+Route::post('/inputIntake', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+Route::post('/inputIvf', 'NurseController@storeIvf')->name('store.ivf');
 Route::post('/inputVitalsigns', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
 Route::post('/input', 'NurseController@store')->name('store.chart');
@@ -78,12 +78,9 @@ Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('
 Route::group(['middleware' => ['doctor']], function () {
     Route::get('schedule', 'DoctorController@edit');
     Route::get('list', 'DoctorController@show')->name('list');
-    Route::get('doctor/home', 'DoctorController@home')->name('doctorHome');
+    Route::get('/doctor', 'DoctorController@home')->name('doctor');
     Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
+    
     Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
     
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> f8e0b85b0ba010f4187030978a8e3b6022c0fea2
