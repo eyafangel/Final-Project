@@ -47,9 +47,11 @@
 		}
 
     }
-    </style>
+	</style>
+	
         <script type = "text/javascript" src='{{asset('js/llqrcode.js')}}'></script> 
-        <script type = "text/javascript" src='{{asset('js/main.js')}}'></script>
+		<script type = "text/javascript" src='{{asset('js/main.js')}}'></script>
+		 
              
 
         <div style="display:none" id="result"></div>
@@ -58,10 +60,9 @@
 			<center id="mainbody"><div id="outdiv"></div></center>
 				<canvas id="qr-canvas" width="800" height="600"></canvas>
 
-
- <script type = "text/javascript" src='{{asset('js/jquery.min.js')}}'></script>      
-
-
+      
+				<script type="text/javascript">load();</script>
+				<script type = "text/javascript" src='{{asset('js/jquery.min.js')}}'></script>
     </body>
     
      </html>
