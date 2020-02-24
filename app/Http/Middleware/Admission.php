@@ -20,13 +20,13 @@ class Admission
             return $next($request);
         }
         elseif(Auth::check() && Auth::user()->role == 'doctor'){
-            return redirect('doctor/home');
+            return redirect('doctor');
         }
         elseif(Auth::check() && Auth::user()->role == 'nurse'){
             return redirect('nurses/index');
         }
         elseif(Auth::check() && Auth::user()->role == 'headNurse'){
-            return redirect('headnurse/index');
+            return redirect('headnurse');
         }
         elseif(Auth::check() && Auth::user()->role == 'admin'){
             return redirect('admin');

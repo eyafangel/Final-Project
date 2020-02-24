@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role'
+         'id', 'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -53,6 +53,10 @@ class User extends Authenticatable
     //     return false;
     // }
 
+    public function patient()
+    {
+        return $this->belongsToMany('App\Patient', 'patient_user')->withTimestamps();
+    }
     public function department()
     {
         return $this->hasOne('App\Department');
@@ -73,8 +77,4 @@ class User extends Authenticatable
         return $this->hasMany('App\Admission');
     }
 
-    public function appointments()
-    {
-        return $this->hasMany('App\Appointment');
-    }
 }

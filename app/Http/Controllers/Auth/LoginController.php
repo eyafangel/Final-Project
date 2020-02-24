@@ -33,16 +33,16 @@ class LoginController extends Controller
         return('doctor/home');
     }
     elseif (Auth::check() && Auth::user()->role == 'nurse') {
-        return('nurses/index');
+        return('nurse');
     }
     elseif (Auth::check() && Auth::user()->role == 'admission') {
         return('admissions');
     }
     elseif (Auth::check() && Auth::user()->role == 'headNurse') {
-        return('headnurse/index');
+        return('headnurse');
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return('admin');
+        return('admin/user');
     }
     elseif (Auth::check() && Auth::user()->role == 'medRecords') {
         return('medrecords');

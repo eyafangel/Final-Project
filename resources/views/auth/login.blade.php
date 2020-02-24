@@ -1,13 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<head>
+    <style>
+    html, body {
+        background: #fff;
+    }
+
+    img {
+        width: 50%;
+        height: auto;
+        position: absolute;
+        margin-top: 120px;
+    }
+
+    .container-color {
+        background: #fff;
+    }
+
+    .card-edit {
+        margin-left: 400px;
+        margin-top: 150px;
+        position: relative;
+    }
+
+    .header-edit {
+        width: 500px;
+    }
+
+    .body-edit {
+        width: 500px;
+    }
+    </style>
+</head>
+
+<body>
+<img src="images\login.png" />
+
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+<div class="container container-color">
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+            <div class="card-edit">
+                <div class="card-header header-edit">{{ __('Login') }}</div>
 
-                <div class="card-body">
+                <div class="card-body body-edit">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
@@ -70,4 +111,7 @@
         </div>
     </div>
 </div>
+
 @endsection
+</body>
+</html>
