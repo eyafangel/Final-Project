@@ -60,60 +60,61 @@
         				</button>
       				</div>
 
-      				<div class="modal-body">
-      					<form method="POST" action="{{ route('store.intakeoutput')}}">
+      				<form method="POST" action="{{ route('store.intakeoutput', $pat->id) }}">
+      				<div class="modal-body">     					
+      						{{ csrf_field() }}
       						<div class="form-group">
       							<label for="ivf">IVF:</label>
-        						<input type="text" name="ivf" id="ivd"><br>
+        						<input type="text" name="ivf" id="ivf" required><br>
       						</div>
         				
       						<div class="form-group">
       							<label for="volume_infused">Volume Infused:</label>
-        						<input type="text" name="volume_infused" id="volume_infused"><br>
+        						<input type="text" name="volume_infused" id="volume_infused" required><br>
       						</div>
 
       						<div class="form-group">
       							<label for="oral">Oral:</label>
-        						<input type="text" name="oral" id="oral"><br>
+        						<input type="text" name="oral" id="oral" required><br>
       						</div>
 
       						<div class="form-group">
       							<label for="urine">Urine:</label>
-        						<input type="text" name="urine" id="urine"><br>
+        						<input type="text" name="urine" id="urine" required><br>
       						</div>
 
       						<div class="form-group">
       							<label for="drainage_volume">Drainage Volume:</label>
-        						<input type="text" name="drainage_volume" id="drainage_volume"><br>
+        						<input type="text" name="drainage_volume" id="drainage_volume" required><br>
       						</div>
 
       						<div class="form-group">
       							<label for="stools_volume_description">Stools Volume Description:</label>
-        						<input type="text" name="stools_volume_description" id="stools_volume_description"><br>
+        						<input type="text" name="stools_volume_description" id="stools_volume_description" required><br>
       						</div>
 
       						<div class="form-group">
       							<label for="total_intake">Total Intake:</label>
-        						<input type="text" name="total_intake" id="total_intake"><br>
+        						<input type="text" name="total_intake" id="total_intake" required><br>
       						</div>
         				
       						<div class="form-group">
       							<label for="hour24_urine">Hour 24 Urine:</label>
-        						<input type="text" name="hour24_urine" id="hour24_urine"><br>
+        						<input type="text" name="hour24_urine" id="hour24_urine"required><br>
       						</div> 				
         					
         					<div class="form-group">
         						<label for="total_output">Total Output:</label>
-        						<input type="text" name="total_output" id="total_output"><br>
+        						<input type="text" name="total_output" id="total_output" required><br>
         					</div>
-        					
+
     				</div>
 
       				<div class="modal-footer">
 				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        				<button type="submit" class="btn btn-primary">Save changes</button>
+        				<button type="submit" class="btn btn-primary">Save</button>
     				</div>
-    			</div>
+    			</form>
 			</div>
 		</div>
 
