@@ -15,6 +15,10 @@ class AdminController extends Controller
         return view('admin.listofusers', ['users' => $users]);
     }
 
+    public function create(){
+        return view('admin.create_user');
+    }
+
     public function store(Request $request){
         $this->validate(request(), [
             'name' => 'required',
@@ -31,7 +35,7 @@ class AdminController extends Controller
         ]);
         
         
-        return redirect('admin');    
+        return redirect('admin/user');    
     }
 
     public function edit(User $user){
