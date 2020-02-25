@@ -31,7 +31,7 @@ class EventController extends Controller
     {
         $event = Event::where('id', $request->id)->first();
 
-        $event->fill($request->all);
+        $event->fill(array('id' => $request->id, 'patient_id' => '1', 'user_id' => '1', 'title' => $request->title, 'description' => $request->description, 'start' => $request->start, 'end' => $request->end));
 
         $event->save();
 
@@ -41,7 +41,6 @@ class EventController extends Controller
     public function destroy(Request $request)
     {
         Event::where('id', $request->id)->delete();
-
         return response()->json(true);
     }
 }
