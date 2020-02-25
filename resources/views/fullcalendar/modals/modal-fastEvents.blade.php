@@ -12,6 +12,14 @@
                 <div class="message"></div>
 
                 <form id="formFastEvent">
+
+                    <div class="form-group row">
+                        <label for="patient_name" class="col-sm-4 col-form-label">Patient</label>
+                        <div class="col-sm-8">
+                            <input type="text" name="patient_name" class="form-control" id="patient_name">                            
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <label for="title" class="col-sm-4 col-form-label">Titulo</label>
                         <div class="col-sm-8">

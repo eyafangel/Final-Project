@@ -50,16 +50,8 @@ Route::group(['middleware' => ['nurse']], function () {
     Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
     Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
-<<<<<<< HEAD
 Route::get('scan', 'NurseController@showScanner')->name('scan');
-=======
 
-    // Route::post('/input', 'NurseController@store')->name('store.chart');
-    Route::get('/patProfile', 'NurseController@showProfile');
-
-    Route::get('scan', 'NurseController@showScanner')->name('scan');
-    Route::get('scanned', 'NurseController@showScanned')->name('scanned');
->>>>>>> 5da3f1751328b25601a618f390319c35085424a8
 
 });
 
@@ -87,11 +79,13 @@ Route::group(['middleware' => ['doctor']], function () {
 
     Route::get('schedule', 'DoctorController@edit');
     Route::get('list', 'DoctorController@show')->name('list');
-    Route::get('/doctor', 'DoctorController@home')->name('doctor');
+    Route::get('doctor', 'DoctorController@home')->name('doctor');
 
-    Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
-    
-    Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
+    Route::post('/order/{pat}', 'DoctorController@createOrder')->name('order.create');    
+    Route::post('order', 'DoctorController@storeOrder')->name('order.store');
+    Route::post('/orders/{pat}', 'DoctorController@showOrders')->name('order.show');
+    Route::get('add-patient', 'DoctorController@createPatient')->name('patient.add');
+    Route::post('store-patient', 'DoctorController@storePatient')->name('patient.store');
     
 });
 

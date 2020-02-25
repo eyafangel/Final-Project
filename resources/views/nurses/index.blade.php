@@ -4,6 +4,7 @@
 
 	<div class="container-fluid">
 		{{-- <h5>Hi nurse!</h5> --}}
+		
 		<div class="card">
 			<div class="card-header">
 				<h1>List of patients</h1>
@@ -20,8 +21,7 @@
  					</thead>
 
 	 				<tbody>
- 						@forelse ($nurse->patient  as $patients)
- 					
+ 						@forelse ($nurse->patient  as $patients) 					
 				 		<tr>
  							<td>{{ $patients->last_name }}</td>
 	 						<td>{{ $patients->first_name }}</td>

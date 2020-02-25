@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       eventDrop: function(element){
          
+        
           let start = moment(element.event.start).format("YYYY-MM-DD HH:mm:ss");
           let end = moment(element.event.end).format("YYYY-MM-DD HH:mm:ss");
 
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $("#modalCalendar #titleModal").text('Alter Appointment');
             $("#modalCalendar button.deleteEvent").css("display", "flex");
 
+
             let id = element.event.id;
             $("#modalCalendar input[name='id']").val(id);
 
@@ -101,8 +103,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let start = moment(element.event.start).format("DD/MM/YYYY HH:mm:ss");
             $("#modalCalendar input[name='start']").val(start);
+            // $("#modalCalendar input[name='start']").val(start);
+            // let start = element.event.start;
+            
 
-            let end = moment(element.event.end).format("DD/MM/YYYY HH:mm:ss");
+            let end = moment(element.event.end).format("DD/MM/YYYY HH:mm:ss");         
             $("#modalCalendar input[name='end']").val(end);
 
             let color = element.event.backgroundColor;
@@ -135,7 +140,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
             $("#modalCalendar").modal('show');
             $("#modalCalendar #titleModal").text('Add Appointment');
-            $("#modalCalendar button.deleteEvent").css("display", "none");            
+            $("#modalCalendar button.deleteEvent").css("display", "none");  
+            
+            // let date = moment(element.start).format("YYYY-MM-DD"); 
+            // $("#modalCalendar input[name='date']").val(date);
+            
+            // let start = moment(element.start).format("HH:mm:ss");
+            // $("#modalCalendar input[name='start']").val(start);
+
+            // let end = moment(element.end).format("HH:mm:ss");
+            // $("#modalCalendar input[name='end']").val(end);
 
             let start = moment(element.start).format("DD/MM/YYYY HH:mm:ss");
             $("#modalCalendar input[name='start']").val(start);
@@ -233,6 +247,8 @@ function clearMessages(element){
 function resetForm(form) {
   $(form)[0].reset();
 }
+
+
 
     objCalendar = calendar;
     calendar.render();

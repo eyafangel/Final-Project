@@ -30,7 +30,7 @@ class LoginController extends Controller
 
     protected function redirectTo( ) {
     if (Auth::check() && Auth::user()->role == 'doctor') {
-        return('doctor/home');
+        return('doctor');
     }
     elseif (Auth::check() && Auth::user()->role == 'nurse') {
         return('nurse');

@@ -17,7 +17,8 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('patient_id')->unsigned();
             $table->bigInteger('users_id')->unsigned();
-            $table->text('order');
+            $table->text('message');
+            $table->dateTime('orderDate');
             $table->string('status');
             $table->timestamps();
         });
