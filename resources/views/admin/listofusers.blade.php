@@ -4,14 +4,26 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
+
+            <div class="col-md-4 justify-content-center">
+                <form action="/search" method="POST" role="search">
+                    {{ csrf_field() }}
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" placeholder="Search users...">
+                        <span class="form-group-btn">
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
                     
-            <div class="card">
-
-            <div class="card-header">Manage Users</div>
-
-                <div class="card-body">
+            <h5>Manage Users</h5>
                     <a class="button-default button" href="{{ route('user.create') }}" style="float:right">Create User</a>
+                    {{ csrf_field() }}
                     
+                   {{--  @if(isset($users)) --}}
                     <table class="table table-bordered" id="myTable">
                         <thead>
                             <tr>
@@ -48,6 +60,10 @@
                         </tbody>
                     </table>
 
+                    {!! $users->links() !!}
+                    {{-- @else
+                    {{ $message }}
+                    @endif --}}
 {{-- @push('scripts')
 <script>
     $( function () {
@@ -77,8 +93,6 @@
     });
 </script>
 @endpush --}}
-                </div>
-            </div>
         </div>
     </div>
 </div>

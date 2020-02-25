@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use Yajra\Datatables\Datatables;
 use App\User;
 use DB;
@@ -10,7 +10,7 @@ use DB;
 class AdminController extends Controller
 {
     public function index(){
-        $users = User::all();
+        $users = User::paginate(10);
 
         return view('admin.listofusers', ['users' => $users]);
     }
@@ -62,6 +62,19 @@ class AdminController extends Controller
 
     }
 
+    public function search(Request $request){
+        // dd(request::get('$request'));
+
+        $search = Request::get('search');
+        $users = DB::table('users')
+                    ->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('role', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->paginate(5);
+        return view('admin.listofusers', ['users' => $users]);
+        
+    }
+
    
 //using datatables
   //   public function getUsers(){
@@ -69,3 +82,4 @@ class AdminController extends Controller
 		// return Datatables::of($users)->make(true);
   //   }
 }
+

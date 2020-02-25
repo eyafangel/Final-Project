@@ -23,7 +23,7 @@ class AdmissionsController extends Controller
     
     public function patientlist()
     {
-        $patients = Patient::all();
+        $patients = Patient::paginate(10);
  
         return view('admissions.list', compact('patients'));
     }
@@ -47,7 +47,7 @@ class AdmissionsController extends Controller
         $newSection = $wordTest->addSection();
 
         QrCode::size(500)
-                ->format('png')
+                ->format('jpeg')
                 ->generate($patient->qr_code, base_path().$patient->patient_id.'.png');
         
         $newSection->addImage(base_path().$patient->patient_id.'.png');
@@ -110,7 +110,7 @@ class AdmissionsController extends Controller
                 
 
         $patient_id = $patient->id;
-        $patient->qr_code = "http://127.0.0.1:8000/profile/{$patient_id}";        
+        $patient->qr_code = "http://127.0.0.1:8000/showChart/{$patient_id}";        
         $admission->patient_id = $patient_id;
         $patient->residence_id = $patient_id;
         $patient->guardian_id = $patient_id;

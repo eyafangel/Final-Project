@@ -25,6 +25,7 @@ class HeadNurseController extends Controller
             'patients' => DB::table('patients')
                     ->join('admissions', 'patients.id', '=', 'admissions.patient_id')
                     ->select('patients.*', 'admissions.room')
+                    ->paginate(10)
                     ->get()
         ]);
     }

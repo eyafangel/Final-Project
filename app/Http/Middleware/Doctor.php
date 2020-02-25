@@ -35,7 +35,7 @@ class Doctor
             return redirect('medRecords/home');
         }
         else {
-        return redirect('/');
+        return redirect('/permission-denied');
         }
     }
 }

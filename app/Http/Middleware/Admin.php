@@ -33,7 +33,7 @@ class Admin
             return redirect('admissions/home');
         }
         else {
-        return redirect('/');
+        return redirect('/permission-denied');
         }
     }
 

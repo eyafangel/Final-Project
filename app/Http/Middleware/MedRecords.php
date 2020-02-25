@@ -35,7 +35,7 @@ class MedRecords
             return redirect('admin');
         }
         else {
-            return redirect('/');
+            return redirect('/permission-denied');
         }
     }
 }

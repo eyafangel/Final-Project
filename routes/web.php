@@ -20,12 +20,12 @@ Auth::routes(['register' => false]);
 
 //users
 Route::group(['middleware' => ['auth']], function(){
-    
-	Route::get('/user', 'UserController@userPage')->name('user');
+	
 	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
 
 	Route::group(['middleware' => ['admin']], function(){
     Route::resource('/admin/user', 'AdminController');
+    Route::any('/search', 'AdminController@search')->name('search');
     });
 });
 

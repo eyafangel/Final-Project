@@ -3,7 +3,10 @@
 @section('content')
 
 	<div class="container-fluid">
-		{{-- <h5>Hi nurse!</h5> --}}
+		<h5>Hi nurse!</h5>
+		<div class="col-lg-12 col-md-6 col-sm-4">
+			<a href="{{route('scan')}}">Scan QR Code</a>
+		</div>
 		<div class="card">
 			<div class="card-header">
 				<h1>List of patients</h1>
@@ -15,6 +18,7 @@
 	 					<td>Last Name</td>
  						<td>First Name</td>
  						<td>Middle Name</td>
+ 						<td>Doctor's Order</td>
  						<td>Action</td>
 		 				</tr>
  					</thead>
@@ -34,6 +38,7 @@
 		 				@endforelse
  					</tbody>
 				</table>
+				
 			</div>
 		</div>
 	</div>
