@@ -16,14 +16,14 @@
                    
               <button type="submit" class="btn btn-primary">Save</button>
           
-      </form>
+      {{-- </form> --}}
               {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
               {{-- <a href="{{ route('order.store')}}" class="btn btn-primary">Create Order</a> --}}
               {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">
                 Create Order
             </button>              --}}
         
-      </form>
+      {{-- </form> --}}
 
 </div>
 </div>
