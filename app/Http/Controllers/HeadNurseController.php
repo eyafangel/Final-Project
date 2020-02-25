@@ -12,7 +12,7 @@ class HeadNurseController extends Controller
 {
     public function index()
     {
-    	return view('headnurse.index');
+        return view('headnurse.index');
     }
 
     public function create()
@@ -25,7 +25,7 @@ class HeadNurseController extends Controller
             'patients' => DB::table('patients')
                     ->join('admissions', 'patients.id', '=', 'admissions.patient_id')
                     ->select('patients.*', 'admissions.room')
-                    ->get()
+                    ->paginate(10)
         ]);
     }
     

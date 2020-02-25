@@ -32,10 +32,11 @@
     </div>
 
     <div id='calendar'
+
         data-route-load-events="{{ route('routeLoadEvents') }}"
-        data-route-event-update="{{ route('routeUpdateEvent') }}"
-        data-route-event-store="{{ route('routeStoreEvent') }}"
-        data-route-event-delete="{{ route('routeDestroyEvent') }}"
+        data-route-event-update="{{ route('routeEventUpdate') }}"
+        data-route-event-store="{{ route('routeEventStore') }}"
+        data-route-event-delete="{{ route('routeEventDelete') }}"
 
         data-route-fast-event-delete="{{ route('routeFastEventDelete') }}"
         data-route-fast-event-update="{{ route('routeFastEventUpdate') }}"
