@@ -10,6 +10,7 @@ use App\Patient;
 use App\Chart;
 use App\User;
 use App\IVF;
+// use App\Order;
 use Auth;
 use DB;
 
@@ -20,7 +21,7 @@ class NurseController extends Controller
         $id = Auth::id();
 
     	return view('nurses.index', [
-            'nurse' => User::find($id)
+            'nurse' => User::find($id),
         ]);
     }
 
@@ -45,8 +46,8 @@ class NurseController extends Controller
 
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
 
-        $intake_outputs = IntakeOutput::where('patient_id', $patid);
-        // dd($intake_outputs);
+        $intake_outputs = IntakeOutput::where('patient_id', $patid)->get();
+        //dd($intake_outputs);
 
         return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'nurse', 'intake_outputs'));
     }
@@ -57,9 +58,14 @@ class NurseController extends Controller
         $nurse = User::find($id);
 
         $patid = $pat->id;
+        
         $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
-        return view('nurses.ivf', compact('pat','admissions', 'patcharts'));
+        
+        $ivfs = IVF::where('patient_id', $patid)->get();
+
+        return view('nurses.ivf', compact('pat','admissions', 'patcharts', 'ivfs'));
     }
 
     public function inputVitalSigns(Patient $pat)
@@ -72,49 +78,86 @@ class NurseController extends Controller
         $patcharts = DB::table('charts')
             ->where('patient_id', $patid)
             ->first();
-        $vitals = DB::table('vital_signs')
-            ->join('patients', 'vital_signs.patient_id', '=', 'patients.id')
-            ->select('vital_signs.*', 'patients.last_name');
+        $vitals = VitalSign::where('patient_id', $patid)->get();
 
-        return view('nurses.vitalsigns', compact('pat','admissions', 'patcharts', 'nurse'));
+        return view('nurses.vitalsigns', compact('pat','admissions', 'patcharts', 'nurse', 'vitals'));
     }
     
 
-    public function storeIntakeOutput(Patient $pat)
+    public function storeIntakeOutput(Request $request, Patient $pat)
     {
     	//stores intake output
-        
+        // dd($pat);
         $patid = $pat->id;
+
         $id = Auth::id();
 
         $intakeout = new IntakeOutput();
 
         $intakeout->patient_id = $patid;
         $intakeout->user_id = $id;
-        $intakeout->ivf = request('ivf');
-        $intakeout->volume_infused = request('volume_infused');
-        $intakeout->oral = request('oral');
-        $intakeout->urine = request('urine');
-        $intakeout->drainage_volume = request('drainage_volume');
-        $intakeout->stools_volume_description = request('stools_volume_description');
-        $intakeout->total_intake = request('total_intake');
-        $intakeout->hour24_urine = request('hour24_urine');
-        $intakeout->total_output = request('total_output');
+        $intakeout->ivf = $request->input('ivf');
+        $intakeout->volume_infused = $request->input('volume_infused');
+        $intakeout->oral = $request->input('oral');
+        $intakeout->urine = $request->input('urine');
+        $intakeout->drainage_volume = $request->input('drainage_volume');
+        $intakeout->stools_volume_description = $request->input('stools_volume_description');
+        $intakeout->total_intake = $request->input('total_intake');
+        $intakeout->hour24_urine = $request->input('hour24_urine');
+        $intakeout->total_output = $request->input('total_output');
 
         $intakeout->save();
-        dd($intakeout);
+        
 
-        return redirect()->route('input.intakeoutput');
+        return redirect()->route('input.intakeoutput', $pat->id);
     }
 
-    public function storeIvf()
+    public function storeIvf(Request $request, Patient $pat)
     {
         //stores ivf
+        $patid = $pat->id;
+
+        $id = Auth::id();
+
+        $ivf = new IVF();
+
+        $ivf->patient_id = $patid;
+        $ivf->user_id = $id;
+        $ivf->ivf_volume = $request->input('ivf_volume');
+        $ivf->bottle_number = $request->input('bottle_number');
+        $ivf->medication = $request->input('medication');
+        $ivf->regulation = $request->input('regulation');
+        $ivf->level = $request->input('level');
+        $ivf->time_started = $request->input('time_started');
+        $ivf->time_consumed = $request->input('time_consumed');
+        $ivf->notes = $request->input('notes');
+
+        $ivf->save();  
+
+        return redirect()->route('input.ivf', $pat->id);
     }
 
-    public function storeVitalSigns()
+    public function storeVitalSigns(Request $request, Patient $pat)
     {
         //stores vital signs
+
+        $patid = $pat->id;
+
+        $id = Auth::id();
+
+        $vital = new VitalSign();
+
+        $vital->patient_id = $patid;
+        $vital->users_id = $id;
+        $vital->temperature = $request->input('temperature');
+        $vital->pulse_rate = $request->input('pulse_rate');
+        $vital->respiratory_rate = $request->input('respiratory_rate');
+        $vital->o2_saturation = $request->input('o2_saturation');
+        $vital->remarks = $request->input('remarks');
+
+        $vital->save();  
+
+        return redirect()->route('input.vitalsigns', $pat->id);
     }
 
     public function showScanner()
