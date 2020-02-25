@@ -23,73 +23,73 @@ Route::group(['middleware' => ['auth']], function(){
 	
 	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
 
+    //Patient
+    Route::resource('/profile', 'PatientController');
+
+
 	Route::group(['middleware' => ['admin']], function(){
-    Route::resource('/admin/user', 'AdminController');
-    Route::any('/search', 'AdminController@search')->name('search');
+        Route::resource('/admin/user', 'AdminController');
+        Route::any('/search', 'AdminController@search')->name('search');
     });
-});
+
+    //Nurse
+    Route::group(['middleware' => ['nurse']], function () {
+        Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+
+        Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
 
-//Patient
-Route::resource('/profile', 'PatientController');
+        Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
+        Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+
+        Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
+        Route::post('/inputIvf/{pat}', 'NurseController@storeIvf')->name('store.ivf');
+
+        Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
+        Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
 
-//Nurse
-Route::group(['middleware' => ['nurse']], function () {
-    Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+        // Route::post('/input', 'NurseController@store')->name('store.chart');
+        Route::get('/patProfile', 'NurseController@showProfile');
 
-    Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
+        Route::get('scan', 'NurseController@showScanner')->name('scan');
+        Route::get('scanned', 'NurseController@showScanned')->name('scanned');
+    });
 
+    //HeadNurse
+    Route::group(['middleware' => ['headNurse']], function () {
+        Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
+        Route::get('assign', 'HeadNurseController@create')->name('assign');
+        Route::post('assign', 'HeadNurseController@store')->name('store.assign');
+    });
 
-    Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
-    Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
-
-    Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
-    Route::post('/inputIvf/{pat}', 'NurseController@storeIvf')->name('store.ivf');
-
-    Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
-    Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
-
-
-    // Route::post('/input', 'NurseController@store')->name('store.chart');
-    Route::get('/patProfile', 'NurseController@showProfile');
-
-    Route::get('scan', 'NurseController@showScanner')->name('scan');
-    Route::get('scanned', 'NurseController@showScanned')->name('scanned');
-
-});
-
-//HeadNurse
-Route::group(['middleware' => ['headNurse']], function () {
-    Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
-    Route::get('assign', 'HeadNurseController@create')->name('assign');
-    Route::post('assign', 'HeadNurseController@store')->name('store.assign');
-});
-
-//Admissions
-Route::group(['middleware' => ['admission']], function () {
+    //Admissions
+    Route::group(['middleware' => ['admission']], function () {
     
-    Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
-    Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
-    Route::get('create', 'AdmissionsController@create')->name('create.patient');
-    Route::post('create', 'AdmissionsController@store')->name('store.patient');
-    Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
+        Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+        Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+        Route::get('create', 'AdmissionsController@create')->name('create.patient');
+        Route::post('create', 'AdmissionsController@store')->name('store.patient');
+        Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
 
+
+    });
+
+    //Doctor
+    Route::group(['middleware' => ['doctor']], function () {
+
+        Route::get('schedule', 'DoctorController@edit');
+        Route::get('list', 'DoctorController@show')->name('list');
+        Route::get('/doctor', 'DoctorController@home')->name('doctor');
+
+        Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
+    
+        Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
+    
+    });
 
 });
 
-//Doctor
-Route::group(['middleware' => ['doctor']], function () {
-
-    Route::get('schedule', 'DoctorController@edit');
-    Route::get('list', 'DoctorController@show')->name('list');
-    Route::get('/doctor', 'DoctorController@home')->name('doctor');
-
-    Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
-    
-    Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
-    
-});
 
 
 //fullcalendar

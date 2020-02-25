@@ -26,6 +26,18 @@ class PatientController extends Controller
     	//stores registered patients
     // }
 
+    public function search(){
+        $search = Request::get('search');
+        $patients = DB::table('patients')
+                    ->where('last_name', 'like', '%'.$search.'%')
+                    ->orWhere('first_name', 'like', '%'.$search.'%')
+                    ->orWhere('middle_name', 'like', '%'.$search.'%')
+                    ->orWhere('middle_name', 'like', '%'.$search.'%')
+                    ->paginate(5);
+        $role = Auth::id()->get('role');
+        if($)
+    }
+
     public function show($id)
     {
         
