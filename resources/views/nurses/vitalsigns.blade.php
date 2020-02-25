@@ -22,7 +22,7 @@
                 <tbody>
                     @forelse($vitals as $vital)
                         <tr>
-                            <th>{{ $vital->created_at }}</th>
+                            <th>{{ $vital->created_at->toDateString() }}</th>
                             <th>{{ $vital->temperature }}</th>
                             <th>{{ $vital->pulse_rate }}</th>
                             <th>{{ $vital->respiratory_rate }}</th>

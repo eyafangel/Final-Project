@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+// use Request;
+use Illuminate\Http\Request;
 use App\IntakeOutput;
 use App\NurseNotes;
 use App\VitalSign;
@@ -18,10 +19,26 @@ class NurseController extends Controller
     public function index()
     {
         $id = Auth::id();
+        $nurse = User::find($id);
+        $patid = $nurse->patient;
+        // dd($patid);
+        $orders = DB::table('orders')
+                    ->join('patients', 'patients.id', '=', 'orders.patient_id')
+                    ->select('orders.*', 'patients.*')
+                    ->paginate(10);
+        // dd($order);   
+        return view('nurses.index', ['orders' => $orders]);
+    }
 
-    	return view('nurses.index', [
-            'nurse' => User::find($id),
-        ]);
+    public function nurselist(){
+        $id = Auth::id();
+        $nurse = User::find($id);
+
+        return view('nurses.patientlist', ['nurse' => $nurse]);
+    }
+
+    public function storeorders(){
+
     }
 
 
@@ -38,6 +55,7 @@ class NurseController extends Controller
         
     //     return view('nurses.index', ['nurse' => $patients]);
     // }
+
 
     public function show(Patient $pat)
     {
@@ -135,6 +153,9 @@ class NurseController extends Controller
 
         $ivf = new IVF();
 
+        // Carbon::createFromFormat('h : i : A', '06 : 00 : PM');
+        // Carbon::createFromFormat('h : i : A', Input::get("start_time".$array[$x]));
+
         $ivf->patient_id = $patid;
         $ivf->user_id = $id;
         $ivf->ivf_volume = $request->input('ivf_volume');
@@ -142,6 +163,7 @@ class NurseController extends Controller
         $ivf->medication = $request->input('medication');
         $ivf->regulation = $request->input('regulation');
         $ivf->level = $request->input('level');
+        // $timestarted =$request->input('time_started');
         $ivf->time_started = $request->input('time_started');
         $ivf->time_consumed = $request->input('time_consumed');
         $ivf->notes = $request->input('notes');

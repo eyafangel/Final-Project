@@ -51,7 +51,7 @@ class PatientController extends Controller
     //     }
 
         
-    }
+    //}
 
     public function show($id)
     {

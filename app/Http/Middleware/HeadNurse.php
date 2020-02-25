@@ -23,7 +23,7 @@ class HeadNurse
             return redirect('doctor');
         }
         elseif(Auth::check() && Auth::user()->role == 'nurse'){
-            return redirect('nurses/index');
+            return redirect('nurses');
         }
         elseif(Auth::check() && Auth::user()->role == 'admin'){
             return redirect('admin');

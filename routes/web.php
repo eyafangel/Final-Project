@@ -28,17 +28,23 @@ Route::group(['middleware' => ['auth']], function(){
 
 
 	Route::group(['middleware' => ['admin']], function(){
+        Route::get('/admin', 'AdminController@home')->name('admin.home');
         Route::resource('/admin/user', 'AdminController');
         Route::any('/search', 'AdminController@search')->name('search');
     });
 
     //Nurse
     Route::group(['middleware' => ['nurse']], function () {
-        Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+        Route::get('/nurse', 'NurseController@index')->name('nurse.home');
+
+        Route::get('/nurselist', 'NurseController@nurselist')->name('nurse.list');
 
         Route::any('/patientsearch', 'NurseController@search')->name('patient.search');
 
         Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
+
+        // Route::get('/nurseorders', 'NurseController@nurseorders')->name('show.orders');
+        Route::post('/nurseorders', 'NurseController@storeorders')->name('store.orders');
 
         Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
         Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
@@ -50,7 +56,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
         Route::get('scan', 'NurseController@showScanner')->name('scan');
-        Route::get('scanned', 'NurseController@showScanned')->name('scanned');
+        // Route::get('scanned', 'NurseController@showScanned')->name('scanned');
     });
 
     //HeadNurse

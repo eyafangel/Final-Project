@@ -6,7 +6,6 @@
 	<div class = "profile"> 
     	{!! Form::label('name', 'Name: ') !!}
 		{{ $patient->last_name}}, {{$patient->first_name}} {{$patient->middle_name}}
-		{!! QrCode::generate($patient->qr_code); !!}
 	</div>
 	<div class = "profile">
     	{!! Form::label('age', 'Age: ') !!}

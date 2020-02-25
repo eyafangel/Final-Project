@@ -9,9 +9,13 @@ use DB;
 class AdminController extends Controller
 {
     public function index(){
-        $users = User::paginate(10);
+       $users = User::paginate(10);
 
         return view('admin.listofusers', ['users' => $users]);
+    }
+
+    public function home(){
+         //home
     }
 
     public function search(Request $request){

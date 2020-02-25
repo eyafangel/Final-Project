@@ -23,8 +23,8 @@ class CreateIVFSTable extends Migration
             $table->string('regulation');
             
             $table->string('level');
-            $table->dateTime('time_started');
-            $table->dateTime('time_consumed');
+            $table->time('time_started')->format('h:i:a');
+            $table->time('time_consumed')->format('h:i:a');
             $table->string('notes');
             $table->timestamps();
         });
