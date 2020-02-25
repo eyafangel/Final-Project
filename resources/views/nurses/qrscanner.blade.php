@@ -1,68 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-        <style>
-            #qr-canvas{
-		display:none;
-	}
-
-	#outdiv{
-		width:240px;
-		height:240px;
-	}
-
-	#v{
-		width:240px;
-		height:240px;
-	}
-
-	@media screen and (max-width: 480px){
-		
-		#outdiv{
-			width:190px;
-			height:190px;
-		}
-		
-	    #v{
-			width:190px;
-			height:190px;
-		}
-		
-		@media screen and (max-device-width: 480px) 
-	              and (orientation:portrait){
-	  
-			#outdiv{
-				width:270px;
-				height:270px;
-
-			}
-			
-		    #v{
-				width:270px;
-				height:270px;
-			}
-		
-		}
-
-    }
-	</style>
-	
-        <script type = "text/javascript" src='{{asset('js/llqrcode.js')}}'></script> 
-		<script type = "text/javascript" src='{{asset('js/main.js')}}'></script>
-		 
-             
-
-        <div style="display:none" id="result"></div>
-	    <div class="selector" id="webcamimg" onclick="setwebcam()" align="left"></div>
-		<div class="selector" id="qrimg" onclick="setimg()" align="right" ></div>
-			<center id="mainbody"><div id="outdiv"></div></center>
-				<canvas id="qr-canvas" width="800" height="600"></canvas>
-
-      
-				<script type="text/javascript">load();</script>
-				<script type = "text/javascript" src='{{asset('js/jquery.min.js')}}'></script>
-    </body>
+<head>
+	<title>Scan</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+</head>
+<body>
+  
+    <h1>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</h1>
     
-     </html>
+    <video id="preview"></video>
+    <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+		window.location.replace(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
+   
+</body>
+</html>

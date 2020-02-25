@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
          delete Event.id;
          delete Event._method;
 
-         sendEvent(routeEvents('routeStoreEvent'), Event);
+         sendEvent(routeEvents('routeEventStore'), Event);
 
       },
 
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             end: end
           };
 
-          sendEvent(routeEvents('routeUpdateEvent'), newEvent, calendar);          
+          sendEvent(routeEvents('routeEventUpdate'), newEvent, calendar);          
       },     
 
       eventClick: function(element){
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             end: end
           };
 
-          sendEvent(routeEvents('routeUpdateEvent'), newEvent);
+          sendEvent(routeEvents('routeEventUpdate'), newEvent);
       },
 
       select: function(element){

@@ -1,4 +1,7 @@
 //import { diffDay } from "fullcalendar";
+let objCalendar;
+let showModalUpdateFastEvent = false;
+let showModalCreateFastEvent = false;
 
 $(function(){
 
@@ -97,6 +100,8 @@ $(function(){
 
     });
 
+
+
     $(".deleteEvent").click(function(){
         let id = $("#modalCalendar input[name='id']").val();
 
@@ -105,10 +110,21 @@ $(function(){
             _method: 'DELETE'
         };
 
-        let route = routeEvents('routeDeleteEvent');
+        let route = routeEvents('routeEventDelete');
 
-        sendEvent(route,Event);
+        $.ajax({
+            url:route,
+            data:Event,
+            method:'DELETE',
+            dataType: 'json',
+            success:function (json){
+                if(json){
+                    objCalendar.refetchEvents();
+                    $("#modalCalendar").modal('hide');
+                }
 
+            }
+        });
     });
 
     $(".saveEvent").click(function(){
@@ -138,21 +154,46 @@ $(function(){
 
             if(id==''){
                 // @sayop naming
-                route = routeEvents('routeEventStore');                               
+                route = routeEvents('routeEventStore'); 
+                $.ajax({
+                    url:route,
+                    data:Event,
+                    method:'GET',
+                    dataType: 'json',
+                    success:function (json){
+                        if(json){
+                            objCalendar.refetchEvents();
+                            $("#modalCalendar").modal('hide');
+                        }
+                    } 
+                    });
+                                           
             }
             else {
-                route = routeEvents('routeUpdateEvent');
+                route = routeEvents('routeEventUpdate');
                 Event.id = id;
-                Event._method = 'PUT';
+                
+                $.ajax({
+                    url:route,
+                    data:Event,
+                    method:'PUT',
+                    dataType: 'json',
+                    success:function (json){
+                        
+                        if(json){
+                            objCalendar.refetchEvents();
+                            $("#modalCalendar").modal('hide');
+                        }
+                    } 
+                    });
+                
             }      
             
-           sendEvent(route, Event);            
+            // sendEvent(route,Event);      
     });
 });
 
-let objCalendar;
-let showModalUpdateFastEvent = false;
-let showModalCreateFastEvent = false;
+
 
 
 function sendEvent(route, data_) {

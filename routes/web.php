@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 
 Auth::routes(['register' => false]);
-//Route::get('/home', 'HomeController@index')->name('home');
 
 //users
 Route::group(['middleware' => ['auth']], function(){
@@ -38,7 +37,6 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
-
         Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
         Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
 
@@ -47,10 +45,6 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
         Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
-
-
-        // Route::post('/input', 'NurseController@store')->name('store.chart');
-        Route::get('/patProfile', 'NurseController@showProfile');
 
         Route::get('scan', 'NurseController@showScanner')->name('scan');
         Route::get('scanned', 'NurseController@showScanned')->name('scanned');
@@ -96,9 +90,9 @@ Route::group(['middleware' => ['auth']], function(){
 Route::get('fullcalendar','FullCalendarController@index')->name('index');
 
 Route::get('load-events', 'EventController@loadEvents')->name('routeLoadEvents');
-Route::put('update-event', 'EventController@update')->name('routeUpdateEvent');
-Route::get('store-event', 'EventController@store')->name('routeStoreEvent');
-Route::delete('destroy-event', 'EventController@destroy')->name('routeDestroyEvent');
+Route::put('event-update', 'EventController@update')->name('routeEventUpdate');
+Route::get('event-store', 'EventController@store')->name('routeEventStore');
+Route::delete('event-delete', 'EventController@destroy')->name('routeEventDelete');
 
 Route::delete('/fast-event-destroy', 'FastEventController@destroy')->name('routeFastEventDelete');
 
