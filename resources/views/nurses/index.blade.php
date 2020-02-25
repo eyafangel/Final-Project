@@ -7,7 +7,23 @@
 		<div class="col-lg-12 col-md-6 col-sm-4">
 			<a href="{{route('scan')}}">Scan QR Code</a>
 		</div>
+		{{-- <div class="col-md-6">
+            <form action="{{ route('patient.search')}}" method="POST" role="patientsearch">
+            {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="patientsearch" placeholder="Search patients...">
+                        <span class="form-group-btn">
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+                        </span>
+                </div>
+            </form>
+        </div>
+ --}}
 		<div class="card">
+			
+
 			<div class="card-header">
 				<h1>List of patients</h1>
 			</div>
@@ -38,7 +54,7 @@
 		 				@endforelse
  					</tbody>
 				</table>
-				
+			{{-- {!! $nurse->links() !!}	 --}}
 			</div>
 		</div>
 	</div>

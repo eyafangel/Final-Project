@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Guardian;
+use DB;
+use Request;
+use Exception;
 use App\Patient;
+use App\Guardian;
 use App\Residence;
 use App\Admission;
-use Exception;
-use Yajra\Datatables\Datatables;
-use Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -26,6 +26,19 @@ class AdmissionsController extends Controller
         $patients = Patient::paginate(10);
  
         return view('admissions.list', compact('patients'));
+    }
+    public function search(Request $request){
+        // dd($request);
+        $search = Request::get('search');
+
+        $patients = DB::table('patients')
+                    ->where('last_name', 'like', '%'.$search.'%')
+                    ->orWhere('first_name', 'like', '%'.$search.'%')
+                    ->orWhere('middle_name', 'like', '%'.$search.'%')
+                    ->orWhere('middle_name', 'like', '%'.$search.'%')
+                    ->paginate(5);
+       
+        return view('admissions.list', ['patients' => $patients]);
     }
 
     public function create()

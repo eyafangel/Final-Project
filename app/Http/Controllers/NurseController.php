@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\IntakeOutput;
 use App\NurseNotes;
 use App\VitalSign;
@@ -10,7 +10,6 @@ use App\Patient;
 use App\Chart;
 use App\User;
 use App\IVF;
-// use App\Order;
 use Auth;
 use DB;
 
@@ -24,6 +23,21 @@ class NurseController extends Controller
             'nurse' => User::find($id),
         ]);
     }
+
+
+    // public function search(Request $request){
+    //     // dd($request);
+    //     $search = Request::get('patientsearch');
+
+    //     $patients = DB::table('patients')
+    //                 ->where('last_name', 'like', '%'.$search.'%')
+    //                 ->orWhere('first_name', 'like', '%'.$search.'%')
+    //                 ->orWhere('middle_name', 'like', '%'.$search.'%')
+    //                 ->orWhere('middle_name', 'like', '%'.$search.'%')
+    //                 ->paginate(5);
+        
+    //     return view('nurses.index', ['nurse' => $patients]);
+    // }
 
     public function show(Patient $pat)
     {

@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     //Patient
     Route::resource('/profile', 'PatientController');
+    // Route::any('/patientsearch', 'PatientController@search')->name('patient.search');
 
 
 	Route::group(['middleware' => ['admin']], function(){
@@ -34,6 +35,8 @@ Route::group(['middleware' => ['auth']], function(){
     //Nurse
     Route::group(['middleware' => ['nurse']], function () {
         Route::get('/nurse', 'NurseController@index')->name('nurseHome');
+
+        Route::any('/patientsearch', 'NurseController@search')->name('patient.search');
 
         Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
@@ -53,18 +56,28 @@ Route::group(['middleware' => ['auth']], function(){
     //HeadNurse
     Route::group(['middleware' => ['headNurse']], function () {
         Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
+
         Route::get('assign', 'HeadNurseController@create')->name('assign');
         Route::post('assign', 'HeadNurseController@store')->name('store.assign');
+
+        Route::any('/searchpatient', 'HeadNurseController@search')->name('search.patient');
+
     });
 
     //Admissions
     Route::group(['middleware' => ['admission']], function () {
     
         Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+
         Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+
         Route::get('create', 'AdmissionsController@create')->name('create.patient');
         Route::post('create', 'AdmissionsController@store')->name('store.patient');
+
         Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
+
+        Route::any('/patsearch', 'AdmissionsController@search')->name('pat.search');
+
 
 
     });

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Request;
-use Yajra\Datatables\Datatables;
 use App\User;
 use DB;
 
@@ -13,6 +12,19 @@ class AdminController extends Controller
         $users = User::paginate(10);
 
         return view('admin.listofusers', ['users' => $users]);
+    }
+
+    public function search(Request $request){
+        // dd(request::get('$request'));
+
+        $search = Request::get('search');
+        $users = DB::table('users')
+                    ->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('role', 'like', '%'.$search.'%')
+                    ->orWhere('email', 'like', '%'.$search.'%')
+                    ->paginate(5);
+        return view('admin.listofusers', ['users' => $users]);
+        
     }
 
     public function create(){
@@ -62,24 +74,6 @@ class AdminController extends Controller
 
     }
 
-    public function search(Request $request){
-        // dd(request::get('$request'));
-
-        $search = Request::get('search');
-        $users = DB::table('users')
-                    ->where('name', 'like', '%'.$search.'%')
-                    ->orWhere('role', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%')
-                    ->paginate(5);
-        return view('admin.listofusers', ['users' => $users]);
-        
-    }
-
-   
-//using datatables
-  //   public function getUsers(){
-  //   	$users = User::select(['id', 'name', 'email', 'role', 'created_at', 'updated_at']);
-		// return Datatables::of($users)->make(true);
-  //   }
+    
 }
 

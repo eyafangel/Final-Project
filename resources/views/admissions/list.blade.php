@@ -3,24 +3,24 @@
 @section('content')
 
   <div class="container-fluid">
-	<h1>List of Patients</h1>
 
 	<div class="col-md-4 justify-content-center">
-                <form action="/searchpatient" method="POST" role="search">
-                    {{ csrf_field() }}
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Search users...">
-                        <span class="form-group-btn">
-                            <button type="submit" class="btn btn-primary">
+        <form action="{{ route('pat.search')}}" method="POST" role="search">
+            {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search" placeholder="Search patients...">
+      	            <span class="form-group-btn">
+                        <button type="submit" class="btn btn-primary">
                                 Search
-                            </button>
-                        </span>
-                    </div>
-                </form>
-            </div>
+                        </button>
+                    </span>
+                </div>
+        </form>
+    </div>
 
+    <h1>List of Patients</h1>
  	<div class="table-responsive">
- 		<table id="pat" class="table" cellspacing="0" width="100%">
+ 		<table id="pat" class="table">
  			<thead>
  				<tr>
 	 			<td>Last Name</td>
@@ -41,8 +41,11 @@
  				@empty
  				<p style="color: darkviolet;">No patients to show.</p>
 		 		@endforelse
+		 		{!! $patients->links() !!}
  			</tbody>
+
  		</table>
+ 		
 	</div>
 	<a href="javascript:history.back()" class="btn btn-danger">Back</a>
 </div>
