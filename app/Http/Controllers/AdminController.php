@@ -37,7 +37,7 @@ class AdminController extends Controller
         ]);
         
         
-        return redirect('admin');    
+        return redirect('admin/user');    
     }
 
     public function edit(User $user){

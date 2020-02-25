@@ -19,24 +19,25 @@
 			
 			<div class="tab" style="float: left; padding: 20px">
 				<h6>Check checkbox to select patients.</h6>
-				<table id="one">
-					<tr>
-						<th>Last Name</th>
-						<th>First Name</th>
-						<th>Middle Name</th>
-						<th>Room Number</th>
-						<th>Select</th>
-					</tr>
-
-					<tbody>
-						@foreach($patients as $patient)
+				<table >
+					<thead>
 						<tr>
-						<td>{{ $patient->last_name }}</td>
-						<td>{{ $patient->first_name }}</td>
-						<td>{{ $patient->middle_name }}</td>
-						<td>{{ $patient->room }}</td>
-						<td><input type="checkbox" id="pat" name="pat[]" value="{{$patient->id}}"></td>
+							<th>Last Name</th>
+							<th>First Name</th>
+							<th>Middle Name</th>
+							<th>Room Number</th>
+							<th>Select</th>
 						</tr>
+					</thead>
+					<tbody id="one">
+						@foreach($patients as $patient)
+							<tr>
+								<td>{{ $patient->last_name }}</td>
+								<td>{{ $patient->first_name }}</td>
+								<td>{{ $patient->middle_name }}</td>
+								<td>{{ $patient->room }}</td>
+								<td><input type="checkbox" id="pat" name="pat[]" value="{{$patient->id}}"></td>
+							</tr>
 						@endforeach
 					</tbody>
 				</table>
@@ -44,14 +45,20 @@
 
 			<div class="tab" style="float: left; padding: 20px">
 				<h6>Selected patients</h6>
-				<table id="two">
-					<tr>
-						<th>Last Name</th>
-						<th>First Name</th>
-						<th>Middle Name</th>
-						<th>Room Number</th>
-						<th>Select</th>
-					</tr>
+				<table >
+					<thead>
+						<tr>
+							<th>Last Name</th>
+							<th>First Name</th>
+							<th>Middle Name</th>
+							<th>Room Number</th>
+							<th>Select</th>
+						</tr>
+					</thead>
+					<tbody id="two">
+
+					</tbody>
+				</table>
 			</div>
 		</div>	
 	</div>
@@ -69,11 +76,12 @@
 	<script type="text/javascript">
 		
 		$.when($.ready).then(function() {
-  			$('input:checkbox').on('change', function(e) {
-    			if (this.checked) {
-      				$('table#two tbody').append($(this).closest('tr'));
+  			$('input[type=checkbox]').on('change', function(e) {
+				e.preventDefault()
+    			if (e.target.checked) {
+					$('#two').append($(this).closest('tr'))
     			} else {
-    				$('table#one tbody').append($(this).closest('tr'));
+    				$('#one').append($(this).closest('tr'))
     			}
   			});
 		});

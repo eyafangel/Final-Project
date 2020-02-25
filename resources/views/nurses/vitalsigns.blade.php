@@ -18,12 +18,27 @@
                         <th>Remarks</th>
                     </tr>
                 </thead>
+
+                <tbody>
+                    @forelse($vitals as $vital)
+                        <tr>
+                            <th>{{ $vital->created_at }}</th>
+                            <th>{{ $vital->temperature }}</th>
+                            <th>{{ $vital->pulse_rate }}</th>
+                            <th>{{ $vital->respiratory_rate }}</th>
+                            <th>{{ $vital->o2_saturation }}</th>
+                            <th>{{ $vital->remarks }}</th>
+                        </tr>
+                    @empty
+                        <tr colspan="6">No records to show.</tr>
+                    @endforelse
+                </tbody>
             </table>
         </div>
 
                 <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
+            Input Vital Sign Chart
         </button>
 
         <!-- Modal -->
@@ -31,22 +46,51 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Vital Signs</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
 
-                    <div class="modal-body">
-                        ...
+                    <form method="POST" action="{{ route('store.vitalsigns', $pat->id) }}">
+                    <div class="modal-body">                        
+                            {{ csrf_field() }}
+                        
+                            <div class="form-group">
+                                <label for="temperature">Temperature:</label>
+                                <input type="text" name="temperature" id="temperature" required><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="pulse_rate">Pulse Rate:</label>
+                                <input type="text" name="pulse_rate" id="pulse_rate" required><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="respiratory_rate">Respiratory Rate:</label>
+                                <input type="text" name="respiratory_rate" id="respiratory_rate" required><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="o2_saturation">O2 Saturation:</label>
+                                <input type="text" name="o2_saturation" id="o2_saturation" required><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="remarks">Remarks:</label>
+                                <input type="textarea" name="remarks" id="remarks" required><br>
+                            </div>
+
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
-                </div>
+                </form>
             </div>
+        </div>
+
         </div>
 
         </div>
