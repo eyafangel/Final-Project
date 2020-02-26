@@ -20,7 +20,7 @@ Auth::routes(['register' => false]);
 //users
 Route::group(['middleware' => ['auth']], function(){
 	
-	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
+	Route::get('/permission-denied', 'UserController@permissionDeniepd')->name('nopermission');
 
     //Patient
     Route::resource('/profile', 'PatientController');

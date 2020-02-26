@@ -12,6 +12,8 @@ class DoctorController extends Controller
 {
     public function home()
     {
+        $id = Auth::id();
+        
         return view('doctors.home');
     }
 

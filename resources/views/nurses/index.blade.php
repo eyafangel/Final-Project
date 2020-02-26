@@ -7,7 +7,7 @@
 	<a href="{{ route('nurse.list')}}">Patient list</a><br>
 	<a href="{{route('scan')}}">Scan QR Code</a>
 
-	<div>
+	{{-- <div>
 		<h5>Doctor's Orders</h5>
 
 		<table class="table">
@@ -33,7 +33,7 @@
 				
 			</tbody>
 		</table>
-	</div>
+	</div> --}}
 
 	
 </div>

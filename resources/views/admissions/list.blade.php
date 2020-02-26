@@ -4,13 +4,13 @@
 
   <div class="container-fluid">
 
-	<div class="col-md-4 justify-content-center">
+	<div class="col-md-4" style="float: right">
         <form action="{{ route('pat.search')}}" method="POST" role="search">
             {{ csrf_field() }}
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search patients...">
       	            <span class="form-group-btn">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn-sm btn-primary">
                                 Search
                         </button>
                     </span>
@@ -47,6 +47,6 @@
  		</table>
  		
 	</div>
-	<a href="javascript:history.back()" class="btn btn-danger">Back</a>
+	<a href="javascript:history.back()" class="btn btn-danger" style="float: right;">Back</a>
 </div>
 @endsection
