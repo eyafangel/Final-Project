@@ -1,17 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-	
-<div class="container-fluid">
-	
-	<a href="{{ route('nurse.list')}}">Patient list</a><br>
-	<a href="{{route('scan')}}">Scan QR Code</a>
 
-<<<<<<< HEAD
 	<div class="container-fluid">
-		{{-- <h5>Hi nurse!</h5> --}}
-		
+		<h5>Hi nurse!</h5>		
+		{{-- <div class="col-md-6">
+            <form action="{{ route('patient.search')}}" method="POST" role="patientsearch">
+            {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="patientsearch" placeholder="Search patients...">
+                        <span class="form-group-btn">
+                            <button type="submit" class="btn btn-primary">
+                                Search
+                            </button>
+                        </span>
+                </div>
+            </form>
+        </div>
+ --}}
 		<div class="card">
+			
+
 			<div class="card-header">
 				<h1>List of patients</h1>
 			</div>
@@ -27,7 +36,8 @@
  					</thead>
 
 	 				<tbody>
- 						@forelse ($nurse->patient  as $patients) 					
+ 						@forelse ($nurse->patient  as $patients)
+ 					
 				 		<tr>
  							<td>{{ $patients->last_name }}</td>
 	 						<td>{{ $patients->first_name }}</td>
@@ -42,37 +52,6 @@
 				</table>
 			</div>
 		</div>
-=======
-	<div>
-		<h5>Doctor's Orders</h5>
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th colspan="3"> Patient</th>
-					<th>Order</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-				@forelse($orders as $order)
-					<tr>
-						<td>{{ $order->last_name }}, </td>
-						<td>{{ $order->first_name }} </td>
-						<td>{{ $order->middle_name }} </td>
-						<td>{{ $order->order }} </td>
-						<td><input type="text" name="status"></td>
-					</tr>
-				@empty
-				<p>No data to show.</p>
-				@endforelse
-			<tbody>
-				
-			</tbody>
-		</table>
->>>>>>> 6ed0cb40444e5ba1e85ff0bdd0591f621c5e3181
 	</div>
-
-	
-</div>
 
 @endsection

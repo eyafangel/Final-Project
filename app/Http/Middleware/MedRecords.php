@@ -23,7 +23,7 @@ class MedRecords
             return redirect('doctor');
         }
         elseif(Auth::check() && Auth::user()->role == 'nurse'){
-            return redirect('nurses/index');
+            return redirect('nurses');
         }
         elseif(Auth::check() && Auth::user()->role == 'headNurse'){
             return redirect('headnurse');
@@ -35,7 +35,7 @@ class MedRecords
             return redirect('admin');
         }
         else {
-            return redirect('/');
+            return redirect('/permission-denied');
         }
     }
 }

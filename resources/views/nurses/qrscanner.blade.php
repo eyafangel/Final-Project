@@ -7,7 +7,6 @@
 </head>
 <body>
   
-    <h1>JQuery HTML5 QR Code Scanner using Instascan JS Example - ItSolutionStuff.com</h1>
     
     <video id="preview"></video>
     <script type="text/javascript">

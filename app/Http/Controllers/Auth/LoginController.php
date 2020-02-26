@@ -48,7 +48,7 @@ class LoginController extends Controller
         return('medrecords');
     }
     else {
-        return('/home');
+        return('/');
     }
 }
 
