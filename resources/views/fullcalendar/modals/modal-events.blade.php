@@ -19,11 +19,19 @@
                     <input type="text" name = "title" class="form-control" id="title">
                     <input type="hidden" name="id">
                     </div>
-                </div>                           
+                </div>
+                
+                {{-- <div class = "form-group row">
+                  <label for="date" class = "col-sm-4 col-form-label">Date</label>
+                      <div class = "col-sm-8">
+                      <input type="text" name = "date" class="form-control" id="date">                      
+                      </div>
+                  </div>    --}}
 
                 <div class = "form-group row">
                   <label for="start" class = "col-sm-4 col-form-label">Start Time</label>
                   <div class = "col-sm-8">
+                  {{-- <input type="time" id="startTime" name = "startTime" class="form-control date-time"> --}}
                   <input type="text" name = "start" class="form-control date-time" id="start">
                   </div>
               </div>
@@ -31,6 +39,7 @@
               <div class = "form-group row">
                   <label for="end" class = "col-sm-4 col-form-label">End Time</label>
                   <div class = "col-sm-8">
+                  {{-- <input type="time" id="end" name = "endTime" class="form-control date-time"> --}}
                   <input type="text" name = "end" class="form-control date-time" id="end">
                   </div>
               </div>

@@ -56,7 +56,15 @@
 						</tr>
 					</thead>
 					<tbody id="two">
-
+						@foreach($patients as $patient)
+							<tr>
+								<td>{{ $patient->last_name }}</td>
+								<td>{{ $patient->first_name }}</td>
+								<td>{{ $patient->middle_name }}</td>
+								<td>{{ $patient->room }}</td>
+								<td><input type="checkbox" id="pat" name="pat[]" value="{{$patient->id}}"></td>
+							</tr>
+						@endforeach
 					</tbody>
 				</table>
 			</div>

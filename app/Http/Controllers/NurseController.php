@@ -200,9 +200,5 @@ class NurseController extends Controller
     {
         return view('nurses.qrscanner');
     }
-
-    public function showScanned()
-    {
-        return view('nurses.scanned');
-    }
+    
 }

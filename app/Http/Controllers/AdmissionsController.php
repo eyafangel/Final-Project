@@ -84,13 +84,13 @@ class AdmissionsController extends Controller
         $guardian = new Guardian();
         $admission = new Admission();
 
-        $id = Auth::id();        
+        // $id = Auth::id();        
 
         $admission->room = request('room');
         $admission->category = request('category');
         $admission->status = request('status');
         $admission->admission_date = request('admission_date');
-        $admission->users_id = $id;
+        // $admission->users_id = $id;
         $admission->mode_of_arrival = request('modeOfArrival');        
  
         $patient->last_name = request('last_name');
