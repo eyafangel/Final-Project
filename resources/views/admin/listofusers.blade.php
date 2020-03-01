@@ -44,7 +44,7 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>
-                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-info">Edit</a>
+                            <a href="{{ route('user.edit', --$user->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <form method="POST" action="{{ route('user.destroy', $user->id) }}">
                                         @csrf
                                         {{ method_field('DELETE') }}
