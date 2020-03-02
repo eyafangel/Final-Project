@@ -43,8 +43,14 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
-        // Route::get('/nurseorders', 'NurseController@nurseorders')->name('show.orders');
-        Route::post('/nurseorders', 'NurseController@storeorders')->name('store.orders');
+        Route::get('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
+        Route::post('/nurseorders/{pat}', 'NurseController@storeorders')->name('store.orders');
+
+        Route::get('/rbsmonitoring/{pat}', 'NurseController@inputrbs')->name('input.rbs');
+        Route::post('/rbsmonitoring/{pat}', 'NurseController@storerbs')->name('store.rbs');
+
+        Route::get('/nursesNotes/{pat}', 'NurseController@inputNursesNotes')->name('input.nursesnotes');
+        Route::post('/nursesNotes/{pat}', 'NurseController@storeNurseNotes')->name('store.nursesnotes');
 
         Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
         Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
@@ -55,10 +61,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
         Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
-<<<<<<< HEAD
-Route::get('scan', 'NurseController@showScanner')->name('scan');
-
-=======
         Route::get('scan', 'NurseController@showScanner')->name('scan');
         // Route::get('scanned', 'NurseController@showScanned')->name('scanned');
     });
@@ -69,7 +71,6 @@ Route::get('scan', 'NurseController@showScanner')->name('scan');
 
         Route::get('assign', 'HeadNurseController@create')->name('assign');
         Route::post('assign', 'HeadNurseController@store')->name('store.assign');
->>>>>>> 6ed0cb40444e5ba1e85ff0bdd0591f621c5e3181
 
         Route::any('/searchpatient', 'HeadNurseController@search')->name('search.patient');
 
@@ -87,17 +88,6 @@ Route::get('scan', 'NurseController@showScanner')->name('scan');
 
         Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
 
-<<<<<<< HEAD
-    Route::get('schedule', 'DoctorController@edit');
-    Route::get('list', 'DoctorController@show')->name('list');
-    Route::get('doctor', 'DoctorController@home')->name('doctor');
-
-    Route::post('/order/{pat}', 'DoctorController@createOrder')->name('order.create');    
-    Route::post('order', 'DoctorController@storeOrder')->name('order.store');
-    Route::post('/orders/{pat}', 'DoctorController@showOrders')->name('order.show');
-    Route::get('add-patient', 'DoctorController@createPatient')->name('patient.add');
-    Route::post('store-patient', 'DoctorController@storePatient')->name('patient.store');
-=======
         Route::any('/patsearch', 'AdmissionsController@search')->name('pat.search');
 
 
@@ -114,7 +104,6 @@ Route::get('scan', 'NurseController@showScanner')->name('scan');
         Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
     
         Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
->>>>>>> 6ed0cb40444e5ba1e85ff0bdd0591f621c5e3181
     
     });
 

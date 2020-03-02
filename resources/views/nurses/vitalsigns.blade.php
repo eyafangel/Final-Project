@@ -14,6 +14,7 @@
                         <th>Temperature</th>
                         <th>Pulse Rate</th>
                         <th>Respiratory Rate</th>
+                        <th>Blood Pressure</th>
                         <th>O2 Saturation</th>
                         <th>Remarks</th>
                     </tr>
@@ -26,6 +27,7 @@
                             <th>{{ $vital->temperature }}</th>
                             <th>{{ $vital->pulse_rate }}</th>
                             <th>{{ $vital->respiratory_rate }}</th>
+                            <th>{{ $vital->blood_pressure }}</th>
                             <th>{{ $vital->o2_saturation }}</th>
                             <th>{{ $vital->remarks }}</th>
                         </tr>
@@ -69,6 +71,11 @@
                             <div class="form-group">
                                 <label for="respiratory_rate">Respiratory Rate:</label>
                                 <input type="text" name="respiratory_rate" id="respiratory_rate" required><br>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="blood_pressure">Blood Pressure:</label>
+                                <input type="text" name="blood_pressure" id="blood_pressure" required><br>
                             </div>
 
                             <div class="form-group">
