@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
 use App\User;
 use DB;
 
@@ -21,7 +21,7 @@ class AdminController extends Controller
     public function search(Request $request){
         // dd(request::get('$request'));
 
-        $search = Request::get('search');
+        $search = $request->get('search');
         $users = DB::table('users')
                     ->where('name', 'like', '%'.$search.'%')
                     ->orWhere('role', 'like', '%'.$search.'%')

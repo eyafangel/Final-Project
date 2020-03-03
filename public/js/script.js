@@ -132,10 +132,16 @@ $(function(){
 
             let id = $("#modalCalendar input[name='id']").val();
 
-            let title = $("#modalCalendar input[name='title']").val();    
+            let title = $("#modalCalendar input[name='title']").val();
             
-            let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");          
+            // let date = $("#modalCalendar input[name='date']").val();
 
+            
+            // let start = moment($("#modalCalendar input[name='start']").val(), "hh:mm a").format("HH:mm:ss");
+            // let end = moment($("#modalCalendar input[name='end']").val(), "hh:mm a").format("HH:mm:ss");
+            
+            
+            let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");            
             let end = moment($("#modalCalendar input[name='end']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");            
 
             let color =  $("#modalCalendar input[name='color']").val();           
@@ -192,9 +198,6 @@ $(function(){
             // sendEvent(route,Event);      
     });
 });
-
-
-
 
 function sendEvent(route, data_) {
 

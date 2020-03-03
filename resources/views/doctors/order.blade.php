@@ -1,24 +1,34 @@
 @extends('layouts.app')
 
-@section('content')
+@section('content')    
+<div class="container-fluid">              
+    <div class="col-lg-12">
+    <div class="table-responsive">
+   
+        <form method="POST" action="{{ route('order.store') }}">
+            					
+                    {{ csrf_field() }}  
+                    <div class="form-group">                          
+                      <input type="text" name="message" id="message" required><br>
+                      <input type="hidden" id="patid" value={{$pat}}>
+                      
+                    </div>                
+                   
+              <button type="submit" class="btn btn-primary">Save</button>
+          
+      {{-- </form> --}}
+              {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+              {{-- <a href="{{ route('order.store')}}" class="btn btn-primary">Create Order</a> --}}
+              {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal">
+                Create Order
+            </button>              --}}
+        
+      {{-- </form> --}}
 
-{!! Form::open(['route' => 'order.storeOrder', 'class' => 'form']) !!}
-
-<div class="form-group">
-    Order for Patient: 
-    {!! Form::label('patient_id', $patient->id) !!}  
+</div>
+</div>
 </div>
 
-<div class="form-group">
-    {!! Form::label('date_time', 'Date/Time') !!}  
-    {!! Form::label('date_time', $order->created_at) !!}      
 
-    {!! Form::label('order', 'Physician Order') !!}  
-    {!! Form::textarea('order', null, ['class' => 'form-control']) !!}
-</div>
 
-    <button type="button" href="{{ route('order.store') }}">Create</button>
-{{-- {!! Form::submit('Create', ['class' => 'btn btn-info']) !!} --}}
-
-{!! Form::close() !!}
 @endsection

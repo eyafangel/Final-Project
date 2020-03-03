@@ -20,7 +20,7 @@ Auth::routes(['register' => false]);
 //users
 Route::group(['middleware' => ['auth']], function(){
 	
-	Route::get('/permission-denied', 'UserController@permissionDenied')->name('nopermission');
+	Route::get('/permission-denied', 'UserController@permissionDeniepd')->name('nopermission');
 
     //Patient
     Route::resource('/profile', 'PatientController');
@@ -43,8 +43,14 @@ Route::group(['middleware' => ['auth']], function(){
 
         Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
-        // Route::get('/nurseorders', 'NurseController@nurseorders')->name('show.orders');
-        Route::post('/nurseorders', 'NurseController@storeorders')->name('store.orders');
+        Route::get('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
+        Route::post('/nurseorders/{pat}', 'NurseController@storeorders')->name('store.orders');
+
+        Route::get('/rbsmonitoring/{pat}', 'NurseController@inputrbs')->name('input.rbs');
+        Route::post('/rbsmonitoring/{pat}', 'NurseController@storerbs')->name('store.rbs');
+
+        Route::get('/nursesNotes/{pat}', 'NurseController@inputNursesNotes')->name('input.nursesnotes');
+        Route::post('/nursesNotes/{pat}', 'NurseController@storeNurseNotes')->name('store.nursesnotes');
 
         Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
         Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');

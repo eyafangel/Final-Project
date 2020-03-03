@@ -30,7 +30,7 @@ class Admin
             return redirect('headnurse');
         }
         elseif(Auth::check() && Auth::user()->role == 'admission'){
-            return redirect('admissions/home');
+            return redirect('admissions');
         }
         else {
         return redirect('/permission-denied');
