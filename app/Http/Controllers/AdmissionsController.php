@@ -59,7 +59,7 @@ class AdmissionsController extends Controller
 
         $newSection = $wordTest->addSection();
 
-        QrCode::size(1000)
+        QrCode::size('3000px')
                 ->format('png')
                 ->generate($patient->qr_code, base_path().$patient->patient_id.'.png');
         

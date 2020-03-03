@@ -79,7 +79,6 @@ class NurseController extends Controller
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
 
         $intake_outputs = IntakeOutput::where('patient_id', $patid)->get();
-        //dd($intake_outputs);
 
         return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'nurse', 'intake_outputs'));
     }
