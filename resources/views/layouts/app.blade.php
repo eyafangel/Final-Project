@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Lifeline</title>
 
     <link rel="shortcut icon" href="{{ asset('images/heart-shape.png') }}">
 
@@ -27,6 +27,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lifeline.css') }}" rel="stylesheet">
 
 
     <style>
