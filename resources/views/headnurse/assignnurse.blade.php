@@ -11,6 +11,10 @@
 				<option value="{{ $nurse->id }}">{{ $nurse->name }}</option>
 			@endforeach	
 		</select>
+		<label for="datea">Date:</label>
+		<input type="date" name="datea">
+		<label for="time">Time:</label>
+		<input type="time" name="timea">
 
 		<br><br>
 
@@ -63,7 +67,7 @@
 		</div>	
 	</div>
 
-	<div style="float: right; position: right;">
+	<div>
 		{!! Form::submit('Assign', ['class' => 'btn btn-info']) !!}
 		<a href="/headnurse" class="btn btn-danger" >Back</a>
 	</div>

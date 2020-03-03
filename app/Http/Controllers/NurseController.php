@@ -49,8 +49,10 @@ class NurseController extends Controller
         return view('nurses.nurseorders', compact('pat', 'admissions', 'patcharts', 'nurse_orders'));
     }
 
-    public function storeorders(Patient $pat){
+    public function storeorders(Request $request, Patient $pat){
+        $pat->update($request->status);
 
+        return redirect()->route('nurses.nurseorders');
     }
 
 
