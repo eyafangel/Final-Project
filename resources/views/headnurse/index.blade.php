@@ -3,8 +3,33 @@
 @section('content')
 
 <div class="container-fluid">
-	<h1>HI HEAD NURSE!</h1>
-	<a href="/assign" class="btn btn-primary">Assign Nurse to Patient</a>
+	<h2 style="color: indigo;">Hi Head Nurse {{ $user->name }}!</h2>
+	<div style="float:right;">
+		<a href="/assign" class="btn btn-primary">Assign Nurse to Patient</a>
+	</div>
+	
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Nurse</th>
+				<th>Patient</th>
+			</tr>
+		</thead>
+		<tbody>
+			@forelse($assigned as $assign)
+			<tr>
+				<td>{{ $assign->date }}</td>
+				<td>{{ $assign->time }}</td>
+				<td>{{ $assign->name }}</td>
+				<td>{{ $assign->last_name}}, {{$assign->first_name}}, {{ $assign->middle_name }}</td>
+			@empty
+				<td colspan="4">No records to show.</td>
+			</tr>
+			@endforelse
+		</tbody>
+	</table>
 </div>
 	
 @endsection

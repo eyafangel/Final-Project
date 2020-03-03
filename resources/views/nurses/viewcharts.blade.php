@@ -22,6 +22,12 @@
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
                 <div id="myDropdown" class="dropdown-menu">
+                    <a href="{{ route('show.orders', $pat->id)}}">
+                        Doctor's Order</a><br>
+                    <a href="{{ route('input.nursesnotes', $pat->id)}}">
+                        Nurses' Notes</a><br>
+                    <a href="{{ route('input.rbs', $pat->id)}}">
+                        RBS Monitoring</a><br>
                     <a href="{{ route('input.intakeoutput', $pat->id)}}">
                         Intake and Output Records</a><br>
                     <a href="{{ route('input.ivf', $pat->id)}}">

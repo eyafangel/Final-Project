@@ -29,7 +29,7 @@ class Nurse
             return redirect('admin');
         }
         elseif(Auth::check() && Auth::user()->role == 'admission'){
-            return redirect('admissions/home');
+            return redirect('admissions');
         }
         elseif(Auth::check() && Auth::user()->role == 'medRecords'){
             return redirect('medRecords/home');

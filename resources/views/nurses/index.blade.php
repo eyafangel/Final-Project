@@ -7,8 +7,45 @@
 	<a href="{{ route('nurse.list')}}">Patient list</a><br>
 	<a href="{{route('scan')}}">Scan QR Code</a>
 
-	{{-- <div>
-		<h5>Doctor's Orders</h5>
+	<div>
+
+	<div class="container-fluid">
+		
+		
+		<div class="card">
+			<div class="card-header">
+				<h1>List of patients</h1>
+			</div>
+			<div class="card-body">
+				<table id="patlist" class="table">
+	 				<thead>
+ 						<tr>
+	 					<td>Last Name</td>
+ 						<td>First Name</td>
+ 						<td>Middle Name</td>
+ 						<td>Action</td>
+		 				</tr>
+ 					</thead>
+
+	 				<tbody>
+ 						@forelse ($nurse->patient  as $patients) 					
+				 		<tr>
+ 							<td>{{ $patients->last_name }}</td>
+	 						<td>{{ $patients->first_name }}</td>
+	 						<td>{{ $patients->middle_name }}</td>
+ 							<td><a href="{{ route('show.chart', $patients->id)}}" class="btn btn-primary">Profile</a></td>
+		 				</tr>
+
+		 				@empty
+	 						<font color="darkviolet">There are no patients to show.</font>
+		 				@endforelse
+ 					</tbody>
+				</table>
+			</div>
+		</div>
+	<div>
+
+		{{-- <h5>Doctor's Orders</h5>
 
 		<table class="table">
 			<thead>
@@ -32,8 +69,10 @@
 			<tbody>
 				
 			</tbody>
-		</table>
-	</div> --}}
+		</table> --}}
+
+	</div>
+	</div>
 
 	
 </div>
