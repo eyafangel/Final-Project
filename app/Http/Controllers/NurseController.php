@@ -45,14 +45,9 @@ class NurseController extends Controller
     }
 
     public function updateorders(Patient $pat){
-        $patid = $pat->id; //id of patient from Patient $pat
+        $patid = $pat->id;
 
-        $order_id = Order::where('patient_id', $patid)->get('id');
-
-        $nurse_order = Orders::find($patid);
-        $nurse_order->status = 'done';
-
-        $nurse_order->save();
+        DB::table('orders')->where('patient_id', $patid)->update(['status' => 'done']);
 
         return redirect()->route('nurses.nurseorders');
     }

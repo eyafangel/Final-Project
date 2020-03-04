@@ -40,12 +40,12 @@ Route::group(['middleware' => ['nurse']], function () {
 
     Route::get('/nurselist', 'NurseController@nurselist')->name('nurse.list');
 
-    Route::any('/patientsearch', 'NurseController@search')->name('patient.search');
+    // Route::any('/patientsearch', 'NurseController@search')->name('patient.search');
 
-    Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
+    Route::get('/showChart/{pat}', 'NurseController@show')->name('showChart');
 
     Route::get('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
-    Route::post('/nurseorders/{pat}', 'NurseController@storeorders')->name('store.orders');
+    Route::post('/nurseorders/{pat}', 'NurseController@updateorders')->name('update.orders');
 
     Route::get('/rbsmonitoring/{pat}', 'NurseController@inputrbs')->name('input.rbs');
     Route::post('/rbsmonitoring/{pat}', 'NurseController@storerbs')->name('store.rbs');
@@ -81,6 +81,7 @@ Route::group(['middleware' => ['admission']], function () {
     Route::post('create', 'AdmissionsController@store')->name('store.patient');
     Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
     Route::any('qrcode', 'AdmissionsController@showQRCode');
+    Route::any('patientsearch', 'AdmissionsController@search')->name('pat.search');
 });
 //doctor
 Route::group(['middleware' => ['doctor']], function () {
@@ -98,8 +99,9 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::get('/show-ivf/{pat}', 'DoctorController@showIvf')->name('show.ivf');
     Route::get('/show-rbs/{pat}', 'DoctorController@showRbs')->name('show.rbs');
     Route::get('/show-vitals/{pat}', 'DoctorController@showVitals')->name('show.vitals');
-    Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');    
-}); 
+    Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');
+    });   
+
 
 //fullcalendar
 Route::get('fullcalendar','FullCalendarController@index')->name('calendar');
