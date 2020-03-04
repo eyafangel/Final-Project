@@ -4,23 +4,7 @@
 
 	<div class="container-fluid">
 		<h5>Hi nurse!</h5>		
-		{{-- <div class="col-md-6">
-            <form action="{{ route('patient.search')}}" method="POST" role="patientsearch">
-            {{ csrf_field() }}
-                <div class="input-group">
-                    <input type="text" class="form-control" name="patientsearch" placeholder="Search patients...">
-                        <span class="form-group-btn">
-                            <button type="submit" class="btn btn-primary">
-                                Search
-                            </button>
-                        </span>
-                </div>
-            </form>
-        </div>
- --}}
 		<div class="card">
-			
-
 			<div class="card-header">
 				<h1>List of patients</h1>
 			</div>
@@ -28,11 +12,10 @@
 				<table id="patlist" class="table">
 	 				<thead>
  						<tr>
- 							<th>Patient's Full Name</th>
-	 					{{-- <td>Last Name</td>
- 						<td>First Name</td>
- 						<td>Middle Name</td>
- 						<td>Action</td> --}}
+	 					<th>Last Name</th>
+ 						<th>First Name</th>
+ 						<th>Middle Name</th>
+ 						<th>Action</th>
 		 				</tr>
  					</thead>
 
@@ -40,13 +23,10 @@
  						@forelse ($nurse->patient  as $patients)
  					
 				 		<tr>
-				 			<td>
- 								<a href="{{ route('show.chart', $patients->id)}}">
- 									{{ $patients->last_name }}, {{ $patients->first_name }} {{ $patients->middle_name }}</td>
- 							{{-- <td>{{ $patients->last_name }}</td>
+ 							<td>{{ $patients->last_name }}</td>
 	 						<td>{{ $patients->first_name }}</td>
 	 						<td>{{ $patients->middle_name }}</td>
- 							<td><a href="{{ route('show.chart', $patients->id)}}" class="btn btn-primary">Profile</a></td> --}}
+ 							<td><a href="{{ route('showChart', $patients->id)}}" class="btn btn-info">Profile</a></td>
 		 				</tr>
 
 		 				@empty
@@ -56,5 +36,12 @@
 				</table>
 			</div>
 		</div>
+		
+		
+			<div style="float: right; position: right;">
+                <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
+            </div>
+
+
 	</div>
 @endsection
