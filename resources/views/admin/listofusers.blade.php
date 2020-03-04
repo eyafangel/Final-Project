@@ -22,10 +22,13 @@
 
             <div class="col-md-12" style="float: left">        
             <h5>Manage Users</h5>
-            <a class="button-default button button-line" href="{{ route('user.create') }}" style="float:right">Create User</a>
+            
+            <a class="button-default button button-line" href="{{ route('user.create') }}">Create User</a>
                     {{ csrf_field() }}
                     
                    {{--  @if(isset($users)) --}}
+
+                <div style="overflow-x:auto; margin-right:20px;">
                 <table class="table table-bordered" id="myTable">
                     <thead>
                         <tr>
@@ -45,12 +48,12 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>
-                            <a href="{{ route('user.edit', --$user->id) }}" class="button-default button btn">Edit</a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="button-default button btn-sm btn-info">Edit</a>
                                 <form method="POST" action="{{ route('user.destroy', $user->id) }}" style="margin-left">
                                         @csrf
                                         {{ method_field('DELETE') }}
 
-                                    <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete {{$user->name}} ?')" class="delete">
+                                    <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete {{$user->name}} ?')" class="button-delete btn-sm btn-danger">
                                 </form>
                             </td>
                         </tr>
@@ -62,6 +65,7 @@
                             
                         </tbody>
                     </table>
+                    </div>
 
                     {!! $users->links() !!}
                 </div>

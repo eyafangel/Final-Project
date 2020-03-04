@@ -161,7 +161,7 @@
 
                                         <div class="form-group row mb-0">
                                             <div class="col-md-8 offset-md-4">
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="button-default button-login btn btn-primary">
                                                     {{ __('Login') }}
                                                 </button>
 
@@ -174,10 +174,10 @@
                                         </div>
                                     </form>
                                     </div>
-                                    {{-- <div class="modal-footer">
+                                    <!-- {{-- <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div> --}}
+                                            </div> --}} -->
                                     </div>
                                 </div>
                             </div>

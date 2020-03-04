@@ -1,8 +1,3 @@
-*{
-    margin: 0;
-    padding-bottom: 0;
-}
-
 .header {
     height: 7vh;
 }
@@ -39,32 +34,48 @@
     color: white;
 }
 
+.button-login:hover {
+    background-image: linear-gradient(to right, #6cb2eb, #38c172);
+    border: 1.5px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+.button-login:focus {
+    background-image: linear-gradient(to right, #6cb2eb, #38c172);
+    border: 0;
+    border: 1.5px solid white;
+    color: white;
+}
+
 .line:hover {
     text-decoration: none;
 }
 
-.delete {
+.button-delete {
+    margin-top: 5px;
     background-color: white;
     border: 1.5px solid rgb(184, 50, 50);
     border-radius: 12px;
     padding: 3px 8px;
     color: teal;
+    float: left;
 }
 
-.delete:hover {
+.button-delete:hover {
     background-image: linear-gradient(to right, rgb(184, 50, 50), #d48748);
     border: 1.5px solid white;
     color: white;
     text-decoration: none;
 }
 
-.delete:focus {
+.button-delete:focus {
     background-image: linear-gradient(to right, rgb(184, 50, 50), #d48748);
     border: 1.5px solid white;
     color: white;
     text-decoration: none;
 }
 
-.margin {
-    margin-top: 0;
+.table-margin {
+    margin-right: 10px;
 }
