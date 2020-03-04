@@ -18,15 +18,20 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 //users
-    Route::group(['middleware' => ['auth']], function(){
-	
-	Route::get('/permission-denied', 'UserController@permissionDeniepd')->name('nopermission');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/permission-denied', 'UserController@permissionDeniepd')->name('nopermission');
 
-    //Patient
+//Patient
     Route::resource('/profile', 'PatientController');
-    // Route::any('/patientsearch', 'PatientController@search')->name('patient.search');
-
+});
 //admin
+<<<<<<< HEAD
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin', 'AdminController@home')->name('admin.home');
+    Route::resource('/admin/user', 'AdminController');
+    Route::any('/search', 'AdminController@search')->name('search');
+});
+=======
 	Route::group(['middleware' => ['admin']], function(){
         Route::get('/admin', 'AdminController@home')->name('admin.home');
         Route::resource('/admin/user', 'AdminController');
@@ -34,7 +39,7 @@ Auth::routes(['register' => false]);
     });
 
     //Nurse
-        Route::group(['middleware' => ['nurse']], function () {
+    Route::group(['middleware' => ['nurse']], function () {
         Route::get('/nurse', 'NurseController@index')->name('nurse.home');
 
         Route::get('/nurselist', 'NurseController@nurselist')->name('nurse.list');
@@ -44,47 +49,81 @@ Auth::routes(['register' => false]);
         Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
         Route::get('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
-        Route::post('/nurseorders/{pat}', 'NurseController@storeorders')->name('store.orders');
+        Route::post('/nurseorders/{nurse_order}', 'NurseController@updateorders')->name('update.orders');
+>>>>>>> d6c69d9f0ca8d29215432e9dc7a2df828b79e43e
 
-        Route::get('/rbsmonitoring/{pat}', 'NurseController@inputrbs')->name('input.rbs');
-        Route::post('/rbsmonitoring/{pat}', 'NurseController@storerbs')->name('store.rbs');
+//Nurse
+Route::group(['middleware' => ['nurse']], function () {
+    Route::get('/nurse', 'NurseController@index')->name('nurse.home');
 
-        Route::get('/nursesNotes/{pat}', 'NurseController@inputNursesNotes')->name('input.nursesnotes');
-        Route::post('/nursesNotes/{pat}', 'NurseController@storeNurseNotes')->name('store.nursesnotes');
+    Route::get('/nurselist', 'NurseController@nurselist')->name('nurse.list');
 
-        Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
-        Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
+    Route::any('/patientsearch', 'NurseController@search')->name('patient.search');
 
-        Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
-        Route::post('/inputIvf/{pat}', 'NurseController@storeIvf')->name('store.ivf');
+    Route::get('/showChart/{pat}', 'NurseController@show')->name('show.chart');
 
-        Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
-        Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
+    Route::get('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
+    Route::post('/nurseorders/{pat}', 'NurseController@storeorders')->name('store.orders');
 
-        Route::get('scan', 'NurseController@showScanner')->name('scan');
-    });
+    Route::get('/rbsmonitoring/{pat}', 'NurseController@inputrbs')->name('input.rbs');
+    Route::post('/rbsmonitoring/{pat}', 'NurseController@storerbs')->name('store.rbs');
 
-    //HeadNurse
-    Route::group(['middleware' => ['headNurse']], function () {
-        Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
+    Route::get('/nursesNotes/{pat}', 'NurseController@inputNursesNotes')->name('input.nursesnotes');
+    Route::post('/nursesNotes/{pat}', 'NurseController@storeNurseNotes')->name('store.nursesnotes');
 
-        Route::get('assign', 'HeadNurseController@create')->name('assign');
-        Route::post('assign', 'HeadNurseController@store')->name('store.assign');
+    Route::get('/inputIntake/{pat}', 'NurseController@inputIntakeOutput')->name('input.intakeoutput');
+    Route::post('/inputIntake/{pat}', 'NurseController@storeIntakeOutput')->name('store.intakeoutput');
 
-        Route::any('/searchpatient', 'HeadNurseController@search')->name('search.patient');
+    Route::get('/inputIvf/{pat}', 'NurseController@inputIvf')->name('input.ivf');
+    Route::post('/inputIvf/{pat}', 'NurseController@storeIvf')->name('store.ivf');
 
-    });
+    Route::get('/inputVitalsigns/{pat}', 'NurseController@inputVitalSigns')->name('input.vitalsigns');
+    Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
-    //Admissions
-    Route::group(['middleware' => ['admission']], function () {
-    
-        Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+    Route::get('scan', 'NurseController@showScanner')->name('scan');
+});
 
-        Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+//HeadNurse
+Route::group(['middleware' => ['headNurse']], function () {
+    Route::get('headnurse', 'HeadNurseController@index')->name('headnurse');
+    Route::get('assign', 'HeadNurseController@create')->name('assign');
+    Route::post('assign', 'HeadNurseController@store')->name('store.assign');
+    Route::any('/searchpatient', 'HeadNurseController@search')->name('search.patient');
+});
 
-        Route::get('create', 'AdmissionsController@create')->name('create.patient');
-        Route::post('create', 'AdmissionsController@store')->name('store.patient');
+//Admissions
+Route::group(['middleware' => ['admission']], function () {
 
+<<<<<<< HEAD
+    Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
+    Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
+    Route::get('create', 'AdmissionsController@create')->name('create.patient');
+    Route::post('create', 'AdmissionsController@store')->name('store.patient');
+    Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
+    Route::any('qrcode', 'AdmissionsController@showQRCode');
+});
+//doctor
+Route::group(['middleware' => ['doctor']], function () {
+    Route::get('patient-list', 'DoctorController@showList')->name('list.show');
+    Route::get('/patient/{pat}', 'DoctorController@showPatient')->name('show.patient');
+    Route::get('doctor', 'DoctorController@home')->name('doctor');
+    Route::post('/order/{pat}', 'DoctorController@storeOrder')->name('order.store');
+    Route::get('orders', 'DoctorController@showOrders')->name('order.show');
+    Route::get('patient-add', 'DoctorController@createPatient')->name('patient.add');
+    Route::post('patient-store', 'DoctorController@storePatient')->name('patient.store');
+    Route::get('patient-transfer/{pat}', 'DoctorController@createTransfer')->name('patient.transfer');
+    Route::any('transfer-store/{user}', 'DoctorController@storeTransfer')->name('transfer.store');
+    Route::any('/search-user/{pat}', 'DoctorController@search')->name('search.user');
+    Route::get('/show-chart/{pat}', 'DoctorController@showChart')->name('show.chart');
+    Route::get('/show-ivf/{pat}', 'DoctorController@showIvf')->name('show.ivf');
+    Route::get('/show-rbs/{pat}', 'DoctorController@showRbs')->name('show.rbs');
+    Route::get('/show-vitals/{pat}', 'DoctorController@showVitals')->name('show.vitals');
+    Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');    
+}); 
+
+//fullcalendar
+Route::get('fullcalendar','FullCalendarController@index')->name('calendar');
+=======
         Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
 
 
@@ -118,9 +157,14 @@ Auth::routes(['register' => false]);
 
 Route::get('fullcalendar','FullCalendarController@index')->name('index');
 
+>>>>>>> d6c69d9f0ca8d29215432e9dc7a2df828b79e43e
 Route::get('load-events', 'EventController@loadEvents')->name('routeLoadEvents');
 Route::put('event-update', 'EventController@update')->name('routeEventUpdate');
 Route::get('event-store', 'EventController@store')->name('routeEventStore');
 Route::delete('event-delete', 'EventController@destroy')->name('routeEventDelete');
+<<<<<<< HEAD
+=======
 
 Route::any('/search-patient', 'EventController@search')->name('patient.search');
+});
+>>>>>>> d6c69d9f0ca8d29215432e9dc7a2df828b79e43e

@@ -19,7 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //payment-get away url--session expired
-        'search'
+        // '/payment-gateway-url'
+        // 'search'
     ];
 }

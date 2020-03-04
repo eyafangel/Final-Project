@@ -28,10 +28,11 @@
 				<table id="patlist" class="table">
 	 				<thead>
  						<tr>
-	 					<td>Last Name</td>
+ 							<th>Patient's Full Name</th>
+	 					{{-- <td>Last Name</td>
  						<td>First Name</td>
  						<td>Middle Name</td>
- 						<td>Action</td>
+ 						<td>Action</td> --}}
 		 				</tr>
  					</thead>
 
@@ -39,10 +40,13 @@
  						@forelse ($nurse->patient  as $patients)
  					
 				 		<tr>
- 							<td>{{ $patients->last_name }}</td>
+				 			<td>
+ 								<a href="{{ route('show.chart', $patients->id)}}">
+ 									{{ $patients->last_name }}, {{ $patients->first_name }} {{ $patients->middle_name }}</td>
+ 							{{-- <td>{{ $patients->last_name }}</td>
 	 						<td>{{ $patients->first_name }}</td>
 	 						<td>{{ $patients->middle_name }}</td>
- 							<td><a href="{{ route('show.chart', $patients->id)}}" class="btn btn-primary">Profile</a></td>
+ 							<td><a href="{{ route('show.chart', $patients->id)}}" class="btn btn-primary">Profile</a></td> --}}
 		 				</tr>
 
 		 				@empty
