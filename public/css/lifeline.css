@@ -1,0 +1,70 @@
+*{
+    margin: 0;
+    padding-bottom: 0;
+}
+
+.header {
+    height: 7vh;
+}
+
+.navbar-style {
+    height: 7vh;
+    box-shadow: 0 5px 10px #efefef;
+}
+
+.logo {
+    height: 35px;
+    padding: 2px 10px;
+}
+
+.button-default {
+    background-color: white;
+    border: 1.5px solid teal;
+    border-radius: 12px;
+    padding: 3px 15px;
+    color: teal;
+}
+
+.button:hover {
+    background-image: linear-gradient(to right, #6cb2eb, #38c172);
+    border: 1.5px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+.button:focus {
+    background-image: linear-gradient(to right, #6cb2eb, #38c172);
+    border: 0;
+    border: 1.5px solid white;
+    color: white;
+}
+
+.line:hover {
+    text-decoration: none;
+}
+
+.delete {
+    background-color: white;
+    border: 1.5px solid rgb(184, 50, 50);
+    border-radius: 12px;
+    padding: 3px 8px;
+    color: teal;
+}
+
+.delete:hover {
+    background-image: linear-gradient(to right, rgb(184, 50, 50), #d48748);
+    border: 1.5px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+.delete:focus {
+    background-image: linear-gradient(to right, rgb(184, 50, 50), #d48748);
+    border: 1.5px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+.margin {
+    margin-top: 0;
+}

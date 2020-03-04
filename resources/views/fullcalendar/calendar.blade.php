@@ -9,7 +9,7 @@
 
         <div id='external-events-list'>
 
-            @isset($fastEvents)
+            {{-- @isset($fastEvents)
                 @forelse($fastEvents as $fastEvent)
                     <div id="boxFastEvent{{ $fastEvent->id }}"
                         style="padding: 4px; border: 1px solid {{ $fastEvent->color }}; background-color: {{ $fastEvent->color }}"
@@ -20,15 +20,15 @@
                 @empty
                     <p>There are no quick events to show.</p>
                 @endforelse
-            @endisset
+            @endisset --}}
 
         </div>
 
-        <p>
+        {{-- <p>
             <input type='checkbox' id='drop-remove'/>
             <label for='drop-remove'>Remove after dragging.</label>
             <button class="btn btn-sm btn-success" id="newFastEvent" style="font-size: 1em; width: 100%;">Create New Event</button>
-        </p>
+        </p> --}}
     </div>
 
     <div id='calendar'
@@ -38,9 +38,9 @@
         data-route-event-store="{{ route('routeEventStore') }}"
         data-route-event-delete="{{ route('routeEventDelete') }}"
 
-        data-route-fast-event-delete="{{ route('routeFastEventDelete') }}"
+        {{-- data-route-fast-event-delete="{{ route('routeFastEventDelete') }}"
         data-route-fast-event-update="{{ route('routeFastEventUpdate') }}"
-        data-route-fast-event-store="{{ route('routeFastEventStore') }}">
+        data-route-fast-event-store="{{ route('routeFastEventStore') }}"> --}}
     </div>
 
 @endsection

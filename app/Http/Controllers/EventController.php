@@ -21,9 +21,14 @@ class EventController extends Controller
     }
 
     public function store(AppointmentRequest $request)
-    {
+    {  
+        $id = Auth::id();
+
         Event::create($request->all());
 
+        $event = new Event();
+        $event->user_id = $id;
+        $event->save();
         return response()->json(true);
     }
 
@@ -42,5 +47,15 @@ class EventController extends Controller
     {
         Event::where('id', $request->id)->delete();
         return response()->json(true);
+    }
+
+    public function search(Request $request)
+    {
+        if ($request->has('last_name')) {
+            $last_name = $request->query('last_name');
+            return Patient::where('last_name','like','%'.$last_name.'%')->get();                        
+         }
+     
+         return response([]);        
     }
 }

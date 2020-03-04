@@ -7,7 +7,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Lifeline</title>
+
+    <link rel="shortcut icon" href="{{ asset('images/heart-shape.png') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -15,9 +17,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
     <script src="hhttps://cdnjs.cloudfare.com.ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="s
+     href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,11 +29,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lifeline.css') }}" rel="stylesheet">
 
 
     <style>
         html, body{
-            background: #fff;
+            background-color: #fff;
         }
     </style>
 

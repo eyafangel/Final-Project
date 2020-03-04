@@ -17,7 +17,6 @@
                 <strong>         </strong>
                 <label>Room:</label>
                 <strong>{{ $admissions->room }}</strong><br>
-
             </div>
 
             <div class="dropdown">
