@@ -48,7 +48,7 @@ class AdmissionsController extends Controller
 
     public function showQRCode()
     {
-        return view('admissions.qrcode');
+        return view('patients.qrcode');
     }
 
     public function createQRDocx($id)

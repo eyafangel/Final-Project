@@ -11,8 +11,8 @@
                      <tr>
                      <td>Last Name</td> 
                      <td>First Name</td> 
-                     <td>More</td>                    
-                     {{-- <td>View More</td> --}}
+                     <td>Action</td>               
+              
                      </tr>
                     </thead>
 
@@ -21,9 +21,7 @@
                      <tr>
                          <td>{{ $patient->last_name }}</td>
                          <td>{{ $patient->first_name }}</td>
-                         <td><a href="{{ route('show.patient',  $patient->id)}}">View More</a></td>
-                         {{-- <td>{{ $patient->middle_name }}</td>                         
-                         <td><a href="{{ route('patient.show', $patient->id)}}" class="btn btn-primary">View More</a></td> --}}
+                         <td><a href="{{ route('show.patient',  $patient->id)}}">View More</a></td>                     
                                                   
                      </tr>
                      @empty
@@ -33,6 +31,9 @@
             </table>
         </div>
 
-        <a href="add-patient" class="btn btn-primary btn-lg">Add Patients to List</a>
+        <a href="patient-add" class="btn btn-primary btn-lg">Add Patients to List</a>
+        <div style="float: right; position: right;">
+            <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
+        </div>
     </div>
     @endsection
