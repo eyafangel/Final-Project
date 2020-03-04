@@ -32,7 +32,7 @@
 
     <style>
         html, body{
-            background: #fff;
+            background-color: #fff;
         }
     </style>
 

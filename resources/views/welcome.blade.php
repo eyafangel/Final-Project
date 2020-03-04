@@ -27,6 +27,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/lifeline.css') }}" rel="stylesheet">
 
         <style>
             html, body {
@@ -57,7 +58,6 @@
                 background-image: linear-gradient(to right, #6cb2eb, #38c172);
                 border: 0;
             }
-
 
             .div-setting {
                 text-align: left;
@@ -191,7 +191,7 @@
             <img src="images\header.png" class="img-responsive" />
         </div>
 
-        <script
+        <script>
         src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous">

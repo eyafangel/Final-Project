@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -11,7 +12,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="search" placeholder="Search users..." >
                         <span class="form-group-btn">
-                            <button type="submit" class="btn-sm btn-primary">
+                            <button type="submit" class="button-default button btn-sm btn-primary">
                                 Search
                             </button>
                         </span>
@@ -21,7 +22,7 @@
 
             <div class="col-md-12" style="float: left">        
             <h5>Manage Users</h5>
-            <a class="button-default button" href="{{ route('user.create') }}" style="float:right">Create User</a>
+            <a class="button-default button button-line" href="{{ route('user.create') }}" style="float:right">Create User</a>
                     {{ csrf_field() }}
                     
                    {{--  @if(isset($users)) --}}
@@ -44,12 +45,12 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>
-                            <a href="{{ route('user.edit', --$user->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <form method="POST" action="{{ route('user.destroy', $user->id) }}">
+                            <a href="{{ route('user.edit', --$user->id) }}" class="button-default button btn">Edit</a>
+                                <form method="POST" action="{{ route('user.destroy', $user->id) }}" style="margin-left">
                                         @csrf
                                         {{ method_field('DELETE') }}
 
-                                    <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete {{$user->name}} ?')" class="btn btn-sm btn-danger" style="position:right;">
+                                    <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete {{$user->name}} ?')" class="delete">
                                 </form>
                             </td>
                         </tr>
