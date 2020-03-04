@@ -20,8 +20,6 @@ class NurseController extends Controller
 {
     public function index()
     {
-        $id = Auth::id();
-        $nurse = User::find($id);
         return view('nurses.index');
     }
 
@@ -29,27 +27,30 @@ class NurseController extends Controller
         $id = Auth::id();
         $nurse = User::find($id);
         $patid = $nurse->patient;
-
         return view('nurses.patientlist', ['nurse' => $nurse]);
     }
 
     public function nurseorders(Patient $pat){
         $patid = $pat->id;        
-
         $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
         $nurse_orders = Orders::where('patient_id', $patid)->paginate(5);
-        
-        // dd($nurse_order);
         return view('nurses.nurseorders', compact('pat', 'admissions', 'patcharts', 'nurse_orders'));
     }
 
-    public function updateorders(Patient $pat){
-        $patid = $pat->id;
+    public function editorders(Patient $pat, Orders $order){
+        $patid = $pat->id;        
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+        return view('nurses.editstatus', compact('pat', 'order', 'admissions', 'patcharts'));
+    }
 
-        DB::table('orders')->where('patient_id', $patid)->update(['status' => 'done']);
-
-        return redirect()->route('nurses.nurseorders');
+    public function updateorders(Patient $pat, Request $request, Orders $order){
+        $patid = $pat->id;        
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+        $order = Orders::where('id', $request->id)->update(['status' => $request->status]);
+        return redirect()->route('show.orders', $patid);
     }
 
 
@@ -71,10 +72,8 @@ class NurseController extends Controller
     public function show(Patient $pat)
     {
         $patid = $pat->id;        
-
         $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
-
     	return view('nurses.viewcharts', compact('pat','admissions', 'patcharts'));
     }
 

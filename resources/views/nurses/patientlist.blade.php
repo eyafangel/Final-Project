@@ -36,5 +36,12 @@
 				</table>
 			</div>
 		</div>
+		
+		
+			<div style="float: right; position: right;">
+                <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
+            </div>
+
+
 	</div>
 @endsection

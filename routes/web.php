@@ -44,8 +44,9 @@ Route::group(['middleware' => ['nurse']], function () {
 
     Route::get('/showChart/{pat}', 'NurseController@show')->name('showChart');
 
-    Route::get('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
-    Route::post('/nurseorders/{pat}', 'NurseController@updateorders')->name('update.orders');
+    Route::any('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
+    Route::get('/updateorders/{pat}/{order}', 'NurseController@editorders')->name('edit.orders');
+    Route::any('/nurseorder/{pat}', 'NurseController@updateorders')->name('update.order');
 
     Route::get('/rbsmonitoring/{pat}', 'NurseController@inputrbs')->name('input.rbs');
     Route::post('/rbsmonitoring/{pat}', 'NurseController@storerbs')->name('store.rbs');
