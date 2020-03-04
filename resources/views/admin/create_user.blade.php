@@ -35,7 +35,9 @@
                                 <option value="admission">Admission</option>
                                 <option value="doctor">Doctor</option>
                                 <option value="headNurse">Head Nurse</option>
+
                                 <option value="nurse">Nurse</option>
+
                              </select> 
                         </div>
                     </div>
@@ -46,10 +48,10 @@
                         @endif
                     @endforeach
  
-        <div class="form-group">
-            <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
-            <a href="{{ route('user.index') }}" class="btn btn-danger" >Cancel</a>
-        </div>
+                        <div class="form-group">
+                            <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{{ route('user.index') }}" class="btn btn-danger" >Cancel</a>
+                        </div>
                     </div>
                     
                 </div>

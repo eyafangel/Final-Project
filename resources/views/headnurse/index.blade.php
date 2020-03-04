@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container-fluid">
-	<h2 style="color: indigo;">Hi Head Nurse {{ $user->name }}!</h2>
-	<div style="float:right;">
-		<a href="/assign" class="btn btn-primary">Assign Nurse to Patient</a>
+	<h2 class="headnurse-heading">WELCOME, Head Nurse {{ $user->name }}!</h2>
+	<div class="button-hn-padding">
+		<a href="/assign" class="button button-default btn-primary">Assign Nurse to Patient</a>
 	</div>
 	
 	<table class="table">

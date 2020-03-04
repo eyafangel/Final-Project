@@ -76,6 +76,7 @@ Route::group(['middleware' => ['headNurse']], function () {
 
 //Admissions
 Route::group(['middleware' => ['admission']], function () {
+  
     Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
     Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
     Route::get('create', 'AdmissionsController@create')->name('create.patient');
@@ -100,6 +101,7 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::get('/show-ivf/{pat}', 'DoctorController@showIvf')->name('show.ivf');
     Route::get('/show-rbs/{pat}', 'DoctorController@showRbs')->name('show.rbs');
     Route::get('/show-vitals/{pat}', 'DoctorController@showVitals')->name('show.vitals');
+
     Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');
     });   
 
@@ -107,10 +109,12 @@ Route::group(['middleware' => ['doctor']], function () {
 //fullcalendar
 Route::get('fullcalendar','FullCalendarController@index')->name('calendar');
 
+
 Route::get('load-events', 'EventController@loadEvents')->name('routeLoadEvents');
 Route::put('event-update', 'EventController@update')->name('routeEventUpdate');
 Route::get('event-store', 'EventController@store')->name('routeEventStore');
 Route::delete('event-delete', 'EventController@destroy')->name('routeEventDelete');
+
 
 Route::any('/search-patient', 'EventController@search')->name('patient.search');
 });
