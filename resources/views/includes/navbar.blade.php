@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <style>
 
-    </style>
-</head>
 
-<body>
 <nav class="navbar navbar-expand-md navbar-inverse bg-black shadow-sm">
      <div class="container">
+        <img src="images\login.png" />
         <p class="navbar-brand">
             {{ config('app.name', 'Laravel') }}
                 </p>
@@ -58,5 +52,3 @@
                 </div>
             </div>
         </nav>
-</body>
-</html>
