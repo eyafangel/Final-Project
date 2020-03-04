@@ -86,25 +86,36 @@ Auth::routes(['register' => false]);
         Route::post('create', 'AdmissionsController@store')->name('store.patient');
 
         Route::get('profile/createQR/{id}', 'AdmissionsController@createQRDocx')->name('createQR');
-    }); 
-//doctor
+
+
+        Route::any('/patsearch', 'AdmissionsController@search')->name('pat.search');
+
+
+
+    });
+
+    //Doctor
+
     Route::group(['middleware' => ['doctor']], function () {
         Route::get('patient-list', 'DoctorController@showList')->name('list.show');
 
-    Route::get('/patient/{pat}', 'DoctorController@showPatient')->name('show.patient');   
-    Route::get('doctor', 'DoctorController@home')->name('doctor');
-      
-    Route::post('/order/{pat}', 'DoctorController@storeOrder')->name('order.store');
-    Route::get('orders', 'DoctorController@showOrders')->name('order.show');
-    Route::get('patient-add', 'DoctorController@createPatient')->name('patient.add');
-    Route::post('patient-store', 'DoctorController@storePatient')->name('patient.store');
-    Route::get('patient-transfer/{pat}', 'DoctorController@createTransfer')->name('patient.transfer');
-    Route::any('transfer-store/{user}', 'DoctorController@storeTransfer')->name('transfer.store');
-    Route::any('/search-user/{pat}', 'DoctorController@search')->name('search.user');
-    // Route::any('/patsearch', 'AdmissionsController@search')->name('pat.search');
-    }); 
 
-    //fullcalendar
+        Route::get('schedule', 'DoctorController@edit');
+        Route::get('list', 'DoctorController@show')->name('list');
+        Route::get('/doctor', 'DoctorController@home')->name('doctor');
+
+        Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
+    
+        Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
+    
+    });
+
+});
+
+
+
+//fullcalendar
+
 Route::get('fullcalendar','FullCalendarController@index')->name('index');
 
 Route::get('load-events', 'EventController@loadEvents')->name('routeLoadEvents');
