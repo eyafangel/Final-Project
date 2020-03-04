@@ -36,15 +36,14 @@
                                 <option value="admission">Admission</option>
                                 <option value="nurse">Nurse</option>
                                 <option value="headNurse">Head Nurse</option>
-                                <option value="medRecords">Medical Records</option>
                              </select> 
                         </div>
                     </div>
  
-        <div class="form-group">
-            <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
-            <a href="{{ route('user.index') }}" class="btn btn-danger" >Cancel</a>
-        </div>
+                        <div class="form-group">
+                            <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>
+                            <a href="{{ route('user.index') }}" class="btn btn-danger" >Cancel</a>
+                        </div>
                     </div>
                     
                 </div>

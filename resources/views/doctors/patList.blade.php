@@ -1,7 +1,18 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="container-fluid">
-    <div class="card">
+
+    <div id="content">
+
+    <span class="slide">
+        <a href="#" onclick="openSlideMenu()">
+            <i class=""></i> 
+        </a>
+    </span>
+    </div>
+
+    <div class="card card-margin">
         <div class="card-header">
             <h1>List of patients</h1>
         </div>

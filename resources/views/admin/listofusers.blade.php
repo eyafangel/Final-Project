@@ -6,7 +6,11 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-            <div class="col-md-4" style="float: right;">
+            <div class="manage-margin">
+                <h5 class="manage-font">Manage Users</h5>
+            </div>
+
+            <div class="col-md-4" style="float: left; margin-top:20px;">
                 <form action="/search" method="POST" role="search">
                     {{ csrf_field() }}
                     <div class="input-group">
@@ -20,15 +24,21 @@
                 </form>
             </div>
 
-            <div class="col-md-12" style="float: left">        
-            <h5>Manage Users</h5>
-            
-            <a class="button-default button button-line" href="{{ route('user.create') }}">Create User</a>
+            <div>
+            <a style="float:right; margin-top:20px; margin-right:10px;" class="button-default button button-line" href="{{ route('user.create') }}">Create User</a>
                     {{ csrf_field() }}
                     
                    {{--  @if(isset($users)) --}}
+            </div>
 
-                <div style="overflow-x:auto; margin-right:20px;">
+            <div class="col-md-12">        
+            
+                
+            
+            
+
+                <div style="overflow-x:auto;
+                margin-top:100px;">
                 <table class="table table-bordered" id="myTable">
                     <thead>
                         <tr>
