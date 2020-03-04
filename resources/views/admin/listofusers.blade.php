@@ -45,12 +45,12 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
                             <td>
-                            <a href="{{ route('user.edit', --$user->id) }}" class="button-default button btn">Edit</a>
+                            <a href="{{ route('user.edit', $user->id) }}" class="button-default button button-line">Edit</a>
                                 <form method="POST" action="{{ route('user.destroy', $user->id) }}" style="margin-left">
                                         @csrf
                                         {{ method_field('DELETE') }}
 
-                                    <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete {{$user->name}} ?')" class="delete">
+                                    <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete {{$user->name}} ?')" class="btn btn-sm btn-danger" style="position:right;">
                                 </form>
                             </td>
                         </tr>

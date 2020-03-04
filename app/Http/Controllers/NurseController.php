@@ -22,13 +22,6 @@ class NurseController extends Controller
     {
         $id = Auth::id();
         $nurse = User::find($id);
-        // $patid = $nurse->patient;
-        // dd($patid);
-        // $orders = DB::table('orders')
-        //             ->join('patients', 'patients.id', '=', 'orders.patient_id')
-        //             ->select('orders.*', 'patients.*')
-        //             ->paginate(10);
-        // dd($order);   
         return view('nurses.index');
     }
 
@@ -54,7 +47,8 @@ class NurseController extends Controller
     public function updateorders(Patient $pat){
         $patid = $pat->id; //id of patient from Patient $pat
 
-        $order_id = Order::where('patient_id', $patid);
+        $order_id = Order::where('patient_id', $patid)->get('id');
+
         $nurse_order = Orders::find($patid);
         $nurse_order->status = 'done';
 
@@ -239,7 +233,6 @@ class NurseController extends Controller
         $ivf->medication = $request->input('medication');
         $ivf->regulation = $request->input('regulation');
         $ivf->level = $request->input('level');
-        // $timestarted =$request->input('time_started');
         $ivf->time_started = $request->input('time_started');
         $ivf->time_consumed = $request->input('time_consumed');
         $ivf->notes = $request->input('notes');

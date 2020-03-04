@@ -18,7 +18,7 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 //users
-    Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function(){
 	
 	Route::get('/permission-denied', 'UserController@permissionDeniepd')->name('nopermission');
 
@@ -102,15 +102,13 @@ Auth::routes(['register' => false]);
 
         Route::get('schedule', 'DoctorController@edit');
         Route::get('list', 'DoctorController@show')->name('list');
-        Route::get('/doctor', 'DoctorController@home')->name('doctor');
+        Route::get('doctor', 'DoctorController@home')->name('doctor');
 
         Route::get('doctor/order', 'DoctorController@createOrder')->name('order.create');
     
         Route::post('doctor/order', 'DoctorController@storeOrder')->name('order.store');    
     
     });
-
-});
 
 
 
