@@ -12,27 +12,21 @@
                 <label>Age:</label>
                 <strong>{{ $pat->age }}</strong>
                 <label>Sex:</label>
-                <strong>{{ $pat->sex }}</strong><br>
-                <label>Attending Physician:</label>
-                <strong>         </strong>
+                <strong>{{ $pat->sex }}</strong><br>               
                 <label>Room:</label>
                 <strong>{{ $admissions->room }}</strong><br>
             </div>
 
             <div class="dropdown">
                 <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
-                <div id="myDropdown" class="dropdown-menu">
-                    <a href="{{ route('show.orders', $pat->id)}}">
-                        Doctor's Order</a><br>
-                    <a href="{{ route('input.nursesnotes', $pat->id)}}">
-                        Nurses' Notes</a><br>
-                    <a href="{{ route('input.rbs', $pat->id)}}">
+                <div id="myDropdown" class="dropdown-menu">                    
+                    <a href="{{ route('show.rbs', $pat->id)}}">
                         RBS Monitoring</a><br>
-                    <a href="{{ route('input.intakeoutput', $pat->id)}}">
+                    <a href="{{ route('show.intake', $pat->id)}}">
                         Intake and Output Records</a><br>
-                    <a href="{{ route('input.ivf', $pat->id)}}">
+                    <a href="{{ route('show.ivf', $pat->id)}}">
                         Intravenous Fluids Record</a><br>
-                    <a href="{{ route('input.vitalsigns', $pat->id)}}">
+                    <a href="{{ route('show.vitals', $pat->id)}}">
                         Vital Signs Monitoring</a>
                 </div>
             </div>
