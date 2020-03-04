@@ -34,7 +34,7 @@ Auth::routes(['register' => false]);
     });
 
     //Nurse
-        Route::group(['middleware' => ['nurse']], function () {
+    Route::group(['middleware' => ['nurse']], function () {
         Route::get('/nurse', 'NurseController@index')->name('nurse.home');
 
         Route::get('/nurselist', 'NurseController@nurselist')->name('nurse.list');
@@ -113,3 +113,4 @@ Route::get('event-store', 'EventController@store')->name('routeEventStore');
 Route::delete('event-delete', 'EventController@destroy')->name('routeEventDelete');
 
 Route::any('/search-patient', 'EventController@search')->name('patient.search');
+});

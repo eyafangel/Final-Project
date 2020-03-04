@@ -52,8 +52,9 @@ class NurseController extends Controller
     }
 
     public function updateorders(Patient $pat){
-        $patid = $pat->id; 
+        $patid = $pat->id; //id of patient from Patient $pat
 
+        $order_id = Order::where('patient_id', $patid);
         $nurse_order = Orders::find($patid);
         $nurse_order->status = 'done';
 
