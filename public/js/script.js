@@ -1,12 +1,12 @@
 //import { diffDay } from "fullcalendar";
 let objCalendar;
-let showModalUpdateFastEvent = false;
-let showModalCreateFastEvent = false;
+// let showModalUpdateFastEvent = false;
+// let showModalCreateFastEvent = false;
 
 $(function(){
 
-    $('.date-time').mask('0000-00-00 00:00:00');
-    $('.time').mask('00:00:00');
+    // $('.date-time').mask('0000-00-00 00:00:00');
+    // $('.time').mask('00:00:00');
 
     $.ajaxSetup({
         headers: {
@@ -14,18 +14,18 @@ $(function(){
         }
     });
 
-    $("#newFastEvent").click(function () {
+    // $("#newFastEvent").click(function () {
 
-        clearMessages('.message');
-        resetForm("#formFastEvent");
-        $("#modalFastEvent input[name='id']").val('');
+    //     clearMessages('.message');
+    //     resetForm("#formFastEvent");
+    //     $("#modalFastEvent input[name='id']").val('');
 
-        showModalCreateFastEvent = true;
+    //     showModalCreateFastEvent = true;
 
-        $('#modalFastEvent').modal('show');
-        $("#modalFastEvent #titleModal").text('Create Quick Event');
-        $("#modalFastEvent button.deleteFastEvent").css("display","none");
-    });
+    //     $('#modalFastEvent').modal('show');
+    //     $("#modalFastEvent #titleModal").text('Create Quick Event');
+    //     $("#modalFastEvent button.deleteFastEvent").css("display","none");
+    // });
 
     $(document).on('click','.event', function () {
 
@@ -48,57 +48,57 @@ $(function(){
 
     });
 
-    $(".saveFastEvent").click(function () {
+    // $(".saveFastEvent").click(function () {
 
-        let id = $("#modalFastEvent input[name='id']").val();
+    //     let id = $("#modalFastEvent input[name='id']").val();
 
-        let s_title = $("#modalFastEvent input[name='title']").val();        
+    //     let s_title = $("#modalFastEvent input[name='title']").val();        
 
-        let s_start = $("#modalFastEvent input[name='start']").val();
+    //     let s_start = $("#modalFastEvent input[name='start']").val();
 
-        let s_end = $("#modalFastEvent input[name='end']").val();
+    //     let s_end = $("#modalFastEvent input[name='end']").val();
 
-        let s_color = $("#modalFastEvent input[name='color']").val();
+    //     let s_color = $("#modalFastEvent input[name='color']").val();
 
-        let Event = {
-            title: s_title,           
-            start: s_start,
-            end: s_end,
-            color: s_color,
-        };
+    //     let Event = {
+    //         title: s_title,           
+    //         start: s_start,
+    //         end: s_end,
+    //         color: s_color,
+    //     };
 
-        let route;
+    //     let route;
 
-        if(id == ''){
-            route = routeEvents('routeFastEventStore');
-        }else{
-            route = routeEvents('routeFastEventUpdate');
-            Event.id = id;
-            Event._method = 'PUT';
-        }
+    //     if(id == ''){
+    //         route = routeEvents('routeFastEventStore');
+    //     }else{
+    //         route = routeEvents('routeFastEventUpdate');
+    //         Event.id = id;
+    //         Event._method = 'PUT';
+    //     }
 
-        sendEvent(route,Event);
+    //     sendEvent(route,Event);
 
-    });
+    // });
 
 
-    $(".deleteFastEvent").click(function () {
+    // $(".deleteFastEvent").click(function () {
 
-        let id = $("#modalFastEvent input[name='id']").val();
+    //     let id = $("#modalFastEvent input[name='id']").val();
 
-        let Event = {
-            id: id,
-            _method: 'DELETE'
-        };
+    //     let Event = {
+    //         id: id,
+    //         _method: 'DELETE'
+    //     };
 
-        let route = routeEvents('routeFastEventDelete');
+    //     let route = routeEvents('routeFastEventDelete');
 
-        showModalUpdateFastEvent = true;
-        sendEvent(route,Event);
+    //     showModalUpdateFastEvent = true;
+    //     sendEvent(route,Event);
 
-        $(`#boxFastEvent${id}`).remove();
+    //     $(`#boxFastEvent${id}`).remove();
 
-    });
+    // });
 
 
 
@@ -129,20 +129,15 @@ $(function(){
 
     $(".saveEvent").click(function(){
 
-
             let id = $("#modalCalendar input[name='id']").val();
 
-            let title = $("#modalCalendar input[name='title']").val();
-            
-            // let date = $("#modalCalendar input[name='date']").val();
-
-            
-            // let start = moment($("#modalCalendar input[name='start']").val(), "hh:mm a").format("HH:mm:ss");
-            // let end = moment($("#modalCalendar input[name='end']").val(), "hh:mm a").format("HH:mm:ss");
-            
-            
-            let start = moment($("#modalCalendar input[name='start']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");            
-            let end = moment($("#modalCalendar input[name='end']").val(), "DD/MM/YYYY HH:mm:ss").format("YYYY-MM-DD HH:mm:ss");            
+            let title = $("#modalCalendar input[name='title']").val();        
+                       
+            let date = moment($("#modalCalendar input[name='date']").val(), "MMMM D YYYY").format("YYYY-MM-DD");
+            var sdate=  moment($("#modalCalendar input[name='start']").val(), "hh:mm a").format("hh:mm:ss");
+            let start = date.concat(' ',sdate); 
+            var edate = moment($("#modalCalendar input[name='end']").val(), "hh:mm a").format("hh:mm:ss");                     
+            let end = date.concat(' ',edate);            
 
             let color =  $("#modalCalendar input[name='color']").val();           
 
@@ -212,34 +207,34 @@ function sendEvent(route, data_) {
                 $("#modalCalendar").modal('hide');
             }
 
-            if(showModalUpdateFastEvent === true){
-                showModalUpdateFastEvent = false;
-                $("#modalFastEvent").modal('hide');
+        //     if(showModalUpdateFastEvent === true){
+        //         showModalUpdateFastEvent = false;
+        //         $("#modalFastEvent").modal('hide');
 
-                let stringJson = `{"id":"${data_.id}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}", "date":"${data_.date}"}`;
+        //         let stringJson = `{"id":"${data_.id}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}", "date":"${data_.date}"}`;
 
-                $(`#boxFastEvent${data_.id}`).attr('data-event', stringJson);
-                $(`#boxFastEvent${data_.id}`).text(data_.title);
-                $(`#boxFastEvent${data_.id}`).css({
-                    "backgroundColor": `${data_.color}`,
-                    "border": `1px solid ${data_.color}`});
+        //         $(`#boxFastEvent${data_.id}`).attr('data-event', stringJson);
+        //         $(`#boxFastEvent${data_.id}`).text(data_.title);
+        //         $(`#boxFastEvent${data_.id}`).css({
+        //             "backgroundColor": `${data_.color}`,
+        //             "border": `1px solid ${data_.color}`});
 
-        }
-        if(showModalCreateFastEvent === true){
-            showModalCreateFastEvent = false;
-            $("#modalFastEvent").modal('hide');
+        // }
+        // if(showModalCreateFastEvent === true){
+        //     showModalCreateFastEvent = false;
+        //     $("#modalFastEvent").modal('hide');
 
-            let stringJson = `{"id":"${json.created}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}"}`;
+        //     let stringJson = `{"id":"${json.created}","title":"${data_.title}","color":"${data_.color}","start":"${data_.start}","end":"${data_.end}"}`;
 
-            let newEvent = `<div id="boxFastEvent${json.created}"
-                    style="padding: 4px; border: 1px solid ${data_.color}; background-color: ${data_.color}"
-                    class='fc-event event text-center'
-                    data-event='${stringJson}'>
-                    ${data_.title}
-                </div>`;
-            $('#external-events-list').append(newEvent);
+        //     let newEvent = `<div id="boxFastEvent${json.created}"
+        //             style="padding: 4px; border: 1px solid ${data_.color}; background-color: ${data_.color}"
+        //             class='fc-event event text-center'
+        //             data-event='${stringJson}'>
+        //             ${data_.title}
+        //         </div>`;
+        //     $('#external-events-list').append(newEvent);
 
-        }
+        // }
     },
 
     error:function (json) {
@@ -274,3 +269,4 @@ function clearMessages(element){
 function resetForm(form) {
     $(form)[0].reset();
 }
+

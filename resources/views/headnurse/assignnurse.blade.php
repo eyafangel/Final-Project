@@ -11,6 +11,10 @@
 				<option value="{{ $nurse->id }}">{{ $nurse->name }}</option>
 			@endforeach	
 		</select>
+		<label for="datea">Date:</label>
+		<input type="date" name="datea">
+		<label for="time">Time:</label>
+		<input type="time" name="timea">
 
 		<br><br>
 
@@ -56,22 +60,14 @@
 						</tr>
 					</thead>
 					<tbody id="two">
-						@foreach($patients as $patient)
-							<tr>
-								<td>{{ $patient->last_name }}</td>
-								<td>{{ $patient->first_name }}</td>
-								<td>{{ $patient->middle_name }}</td>
-								<td>{{ $patient->room }}</td>
-								<td><input type="checkbox" id="pat" name="pat[]" value="{{$patient->id}}"></td>
-							</tr>
-						@endforeach
+						
 					</tbody>
 				</table>
 			</div>
 		</div>	
 	</div>
 
-	<div style="float: right; position: right;">
+	<div>
 		{!! Form::submit('Assign', ['class' => 'btn btn-info']) !!}
 		<a href="/headnurse" class="btn btn-danger" >Back</a>
 	</div>

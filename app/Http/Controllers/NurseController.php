@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 // use Request;
 use Illuminate\Http\Request;
+use App\Rbs;
+use App\Orders;
 use App\IntakeOutput;
 use App\NurseNotes;
 use App\VitalSign;
@@ -27,7 +29,7 @@ class NurseController extends Controller
                     ->select('orders.*', 'patients.*')
                     ->paginate(10);
         // dd($order);   
-        return view('nurses.index', ['orders' => $orders]);
+        return view('nurses.index', ['nurse' => $nurse , 'orders' => $orders]);
     }
 
     public function nurselist(){
@@ -37,8 +39,20 @@ class NurseController extends Controller
         return view('nurses.patientlist', ['nurse' => $nurse]);
     }
 
-    public function storeorders(){
+    public function nurseorders(Patient $pat){
+        $patid = $pat->id;        
 
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+        $nurse_orders = Orders::where('patient_id', $patid)->where('status', '!=', 'done')->paginate(5);
+
+        return view('nurses.nurseorders', compact('pat', 'admissions', 'patcharts', 'nurse_orders'));
+    }
+
+    public function storeorders(Request $request, Patient $pat){
+        $pat->update($request->status);
+
+        return redirect()->route('nurses.nurseorders');
     }
 
 
@@ -67,6 +81,40 @@ class NurseController extends Controller
     	return view('nurses.viewcharts', compact('pat','admissions', 'patcharts'));
     }
 
+    public function inputrbs(Patient $pat){
+        $id = Auth::id();
+        $nurse = User::find($id);
+
+        $patid = $pat->id;
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+
+        $rbs_monitoring = Rbs::where('patient_id', $patid)->paginate(5);
+        //dd($intake_outputs);
+
+        return view('nurses.rbs', compact('pat','admissions', 'patcharts', 'nurse', 'rbs_monitoring'));
+    }
+
+    public function inputNursesNotes(Patient $pat)
+    {
+        $id = Auth::id();
+        $nurse = User::find($id);
+
+        $patid = $pat->id;
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+
+        $nurse_notes = NurseNotes::where('patient_id', $patid)->paginate(5);
+        //dd($intake_outputs);
+
+        return view('nurses.nursesnotes', compact('pat','admissions', 'patcharts', 'nurse', 'nurse_notes'));
+    }
+
+
     public function inputIntakeOutput(Patient $pat)
     {
         $id = Auth::id();
@@ -78,7 +126,7 @@ class NurseController extends Controller
 
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
 
-        $intake_outputs = IntakeOutput::where('patient_id', $patid)->get();
+        $intake_outputs = IntakeOutput::where('patient_id', $patid)->paginate(5);
         //dd($intake_outputs);
 
         return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'nurse', 'intake_outputs'));
@@ -95,7 +143,7 @@ class NurseController extends Controller
 
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
         
-        $ivfs = IVF::where('patient_id', $patid)->get();
+        $ivfs = IVF::where('patient_id', $patid)->paginate(5);
 
         return view('nurses.ivf', compact('pat','admissions', 'patcharts', 'ivfs'));
     }
@@ -110,12 +158,32 @@ class NurseController extends Controller
         $patcharts = DB::table('charts')
             ->where('patient_id', $patid)
             ->first();
-        $vitals = VitalSign::where('patient_id', $patid)->get();
+        $vitals = VitalSign::where('patient_id', $patid)->paginate(5);
 
         return view('nurses.vitalsigns', compact('pat','admissions', 'patcharts', 'nurse', 'vitals'));
     }
-    
 
+     public function storeNurseNotes(Request $request, Patient $pat)
+    {
+        //stores intake output
+        // dd($pat);
+        $patid = $pat->id;
+
+        $id = Auth::id();
+
+        $nurses_notes = new NurseNotes();
+
+        $nurses_notes->patient_id = $patid;
+        $nurses_notes->user_id = $id;
+        $nurses_notes->focus = $request->input('focus');
+        $nurses_notes->notes = $request->input('notes');
+
+        $nurses_notes->save();
+        
+
+        return redirect()->route('input.nursesnotes', $pat->id);
+    }
+    
     public function storeIntakeOutput(Request $request, Patient $pat)
     {
     	//stores intake output
@@ -188,12 +256,30 @@ class NurseController extends Controller
         $vital->temperature = $request->input('temperature');
         $vital->pulse_rate = $request->input('pulse_rate');
         $vital->respiratory_rate = $request->input('respiratory_rate');
+        $vital->blood_pressure = $request->input('blood_pressure');
         $vital->o2_saturation = $request->input('o2_saturation');
         $vital->remarks = $request->input('remarks');
 
         $vital->save();  
 
         return redirect()->route('input.vitalsigns', $pat->id);
+    }
+
+    public function storerbs(Request $request, Patient $pat)
+    {
+        $patid = $pat->id;
+
+        $id = Auth::id();
+        $rbs = new Rbs();
+        $rbs->patient_id = $patid;
+        $rbs->user_id = $id;
+        $rbs->rbs_result = $request->input('rbs_result');
+        $rbs->nod = $request->input('nod');
+        $rbs->remarks = $request->input('remarks');
+
+        $rbs->save();
+
+        return redirect()->route('input.rbs', $pat->id);
     }
 
     public function showScanner()

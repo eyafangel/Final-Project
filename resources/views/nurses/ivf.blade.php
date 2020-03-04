@@ -18,7 +18,7 @@
                         <th>Level</th>
                         <th>Time Started</th>
                         <th>Time Consumed</th>
-                        <th>Notes</th>
+                        <th>Remarks</th>
                     </tr>
                 </thead>
 
