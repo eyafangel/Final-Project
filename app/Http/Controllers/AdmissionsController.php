@@ -59,7 +59,7 @@ class AdmissionsController extends Controller
 
         $newSection = $wordTest->addSection();
 
-        QrCode::size(5000)
+        QrCode::size(500)
                 ->format('png')
                 ->generate($patient->qr_code, base_path().$patient->patient_id.'.png');
         
@@ -121,7 +121,7 @@ class AdmissionsController extends Controller
                 
 
         $patient_id = $patient->id;
-        $patient->qr_code = "http://127.0.0.1:8000/showChart/{$patient_id}";        
+        $patient->qr_code = "192.168.1.26:8000/showChart/{$patient_id}";        
         $admission->patient_id = $patient_id;
         $patient->residence_id = $patient_id;
         $patient->guardian_id = $patient_id;

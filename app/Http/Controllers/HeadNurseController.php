@@ -61,10 +61,10 @@ class HeadNurseController extends Controller
 
         $user->patient()->attach($pat, ['date' => $datea, 'time' => $timea]);
         // dd($user);
-        if ($user) {
-           $request->session()->flash('success', 'Nurse Already Assigned!');
-        }else{
-            $request->session()->flash('warning', 'Nurse not assigned!');
+        // if ($user) {
+        //    $request->session()->flash('success', 'Nurse Already Assigned!');
+        // }else{
+        //     $request->session()->flash('warning', 'Nurse not assigned!');
 
         return redirect('assign');
 

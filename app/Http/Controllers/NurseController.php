@@ -114,7 +114,7 @@ class NurseController extends Controller
 
         $patcharts = DB::table('charts')->where('patient_id', $pat->id)->first();
         
-        $ivfs = IVF::where('patient_id', $patid)->paginate(5);
+        $ivfs = IVF::where('patient_id', $pat->id)->paginate(5);
 
         return view('nurses.ivf', compact('pat','admissions', 'patcharts', 'ivfs'));
     }
@@ -125,9 +125,9 @@ class NurseController extends Controller
         $nurse = User::find($id);
         $admissions = DB::table('admissions')->where('patient_id', $pat->id)->first();
         $patcharts = DB::table('charts')
-            ->where('patient_id', $patid)
+            ->where('patient_id', $pat->id)
             ->first();
-        $vitals = VitalSign::where('patient_id', $patid)->paginate(5);
+        $vitals = VitalSign::where('patient_id', $pat->id)->paginate(5);
 
         return view('nurses.vitalsigns', compact('pat','admissions', 'patcharts', 'nurse', 'vitals'));
     }
@@ -254,8 +254,12 @@ class NurseController extends Controller
         return view('nurses.qrscanner');
     }
 
-    public function dischargepat(Patient $pat, Request $request){
-        $pat = DB::table('admissions')->where('id', $pat->id)->update(['status' => "discharge"]);
+    public function discharge(Patient $pat){
+
+    }
+
+    public function dischargepat(Patient $pat){
+        $pat = DB::table('admissions')->where('patient_id', $pat->id)->update(['status' => "discharge"]);
         return redirect()->route('nurse.home');
     }
     

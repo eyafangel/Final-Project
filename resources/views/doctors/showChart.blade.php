@@ -15,6 +15,8 @@
                 <strong>{{ $pat->sex }}</strong><br>               
                 <label>Room:</label>
                 <strong>{{ $admissions->room }}</strong><br>
+                 <label>Diagnosis:</label>
+                <strong>{{ $admissions->diagnosis }}</strong><br>
             </div>
 
             <div class="dropdown">
