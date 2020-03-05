@@ -126,9 +126,12 @@
 
 
 
-{{-- @if(Session::has('flash_message'))
-    <div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span><em> {!! session('flash_message') !!}</em></div>
-@endif --}}
+@foreach (['danger', 'warning', 'success', 'info'] as $key)
+    @if(Session::has($key))
+        <p class="alert alert-{{ $key }}">{{ Session::get($key) }}</p>
+    @endif
+@endforeach
+ 
 
 
 {!! Form::submit('Create', ['class' => 'button-admit-mgn button button-default btn btn-info']) !!}

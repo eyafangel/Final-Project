@@ -32,13 +32,21 @@
                         <div class="col-md-6">
                             <select name="role" class="form-control" required>
                                 <option value="">Choose a role</option>
-                                <option value="doctor">Doctor</option>
                                 <option value="admission">Admission</option>
-                                <option value="nurse">Nurse</option>
+                                <option value="doctor">Doctor</option>
                                 <option value="headNurse">Head Nurse</option>
+
+                                <option value="nurse">Nurse</option>
+
                              </select> 
                         </div>
                     </div>
+
+                    @foreach (['danger', 'warning', 'success', 'info'] as $key)
+                        @if(Session::has($key))
+                            <p class="alert alert-{{ $key }}">{{ Session::get($key) }}</p>
+                        @endif
+                    @endforeach
  
                         <div class="form-group">
                             <button style="cursor:pointer" type="submit" class="btn btn-primary">Submit</button>

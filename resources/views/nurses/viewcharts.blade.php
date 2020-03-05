@@ -13,8 +13,8 @@
                 <strong>{{ $pat->age }}</strong>
                 <label>Sex:</label>
                 <strong>{{ $pat->sex }}</strong><br>
-                <label>Attending Physician:</label>
-                <strong>         </strong>
+                {{-- <label>Attending Physician:</label>
+                <strong>         </strong> --}}
                 <label>Room:</label>
                 <strong>{{ $admissions->room }}</strong><br>
             </div>

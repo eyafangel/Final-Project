@@ -42,16 +42,16 @@
         </div>
 
                 <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Input IVF Chart
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ivfModal">
+            Input IVF Chart 
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="ivfModal" tabindex="-1" role="dialog" aria-labelledby="ivfModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">IVF</h5>
+                        <h5 class="modal-title" id="ivfModalLabel">Input IVF for Patient {{ $pat->last_name }}, {{ $pat->first_name }} {{ $pat->middle_name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

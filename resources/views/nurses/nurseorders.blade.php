@@ -20,39 +20,29 @@
                 <tbody>
                     @forelse($nurse_orders as $nurse_order)
                         <tr>
-                            <td>{{ $nurse_order->created_at }}</td>
-                            <td>{{ $nurse_order->order  }}</td>
-                            <td>
-                                <a href="{{route('update.orders',$pat->id)}}"> <span class="mj_btn  btn btn-info">Update</span>
-                                </a>
+                            <td>{{ $nurse_order->orderDate }}</td>
+                            <td>{{ $nurse_order->message  }}</td>
+                            <td><a href="{{ route('edit.orders', [$pat->id, $nurse_order->id]) }}" class="button-default button button-line">Update</a>
                             </td>
                             <td>
-                                
                                 @if ($nurse_order->status === 'done')
-                                    <span class="mj_btn btn btn-success">Done</span>
+                                    <span class="btn btn-success">Done</span>
                                 @else
-                                    <span class="mj_btn btn btn-warning">Pending</span>
+                                    <span class="btn btn-warning">Pending</span>
                                 @endif
-                            
                             </td>
                         </tr>
                     @empty
                         <tr colspan="4">No records to show.</tr>
                     @endforelse
+
+                    
                 </tbody>
             </table>
         </div>
 
         </div>
     </div>
-
-@push('scripts')
-<script type="text/javascript">
-    $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-</script>
-@endpush
 
 
 @endsection

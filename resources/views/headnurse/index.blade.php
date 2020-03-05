@@ -14,7 +14,7 @@
 				<th>Date</th>
 				<th>Time</th>
 				<th>Nurse</th>
-				<th>Patient</th>
+				<th>Patient (Last Name, First Name Middle Name)</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,7 +23,7 @@
 				<td>{{ $assign->date }}</td>
 				<td>{{ $assign->time }}</td>
 				<td>{{ $assign->name }}</td>
-				<td>{{ $assign->last_name}}, {{$assign->first_name}}, {{ $assign->middle_name }}</td>
+				<td>{{ $assign->last_name}}, {{$assign->first_name}} {{ $assign->middle_name }}</td>
 			@empty
 				<td colspan="4">No records to show.</td>
 			</tr>

@@ -9,13 +9,9 @@ use DB;
 class AdminController extends Controller
 {
     public function index(){
-       $users = User::paginate(10);
+       $users = User::paginate(5);
 
         return view('admin.listofusers', ['users' => $users]);
-    }
-
-    public function home(){
-         //home
     }
 
     public function search(Request $request){
@@ -52,8 +48,14 @@ class AdminController extends Controller
             'start_date' => $request->start_date
         ]);
         
-        
-        return redirect('admin/user');    
+        if ($user) {
+           $request->session()->flash('success', 'User successfully added!');
+           return redirect('admin/user');
+        }else{
+            $request->session()->flash('warning', 'User not added!');
+            return redirect()->route('admin.create_user');
+        }
+            
     }
 
     public function edit(User $user){
