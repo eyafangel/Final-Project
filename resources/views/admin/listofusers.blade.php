@@ -7,7 +7,7 @@
         <div class="col-md-12">
 
             <div class="manage-margin">
-                <h5 class="manage-font">Manage Users</h5>
+                <h5 class="manage-font">MANAGE USERS</h5>
             </div>
 
             <div class="col-md-4" style="float: left; margin-top:20px;">

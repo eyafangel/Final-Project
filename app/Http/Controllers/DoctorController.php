@@ -45,7 +45,6 @@ class DoctorController extends Controller
         $orders->orderDate = date("Y-m-d H:i:s");            
         $orders->message = $request->input('message');
         $orders->status = 'pending';       
-
         $orders->save();
 
         return redirect()->route('show.patient', $pat->id);

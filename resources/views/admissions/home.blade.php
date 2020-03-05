@@ -15,7 +15,7 @@
 
         <div class="nurse-btn-margin admit-btn">
             <a href="/create" class="button button-default btn-primary btn-lg">Create Patient</a>
-            <a href="/patientlist" class="button-default btn-primary btn-lg">Patient List</a>
+            <a href="/patientlist" class="button button-default btn-primary btn-lg">Patient List</a>
         </div>
 
     </div>
