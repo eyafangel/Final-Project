@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\Patient;
 use App\Admission;
+use App\Notifications\NewPatient;
 use DB;
 
 class HeadNurseController extends Controller
@@ -53,6 +54,8 @@ class HeadNurseController extends Controller
         $pat = $request->get('pat');
         // dd($pat);
         $user = \App\User::find($nurse);
+
+        User::find($nurse)->notify(new NewPatient);
 
         $user->patient()->attach($pat, ['date' => $datea, 'time' => $timea]);
         // dd($user);
