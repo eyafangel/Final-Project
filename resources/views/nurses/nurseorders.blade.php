@@ -21,7 +21,7 @@
                     @forelse($nurse_orders as $nurse_order)
                         <tr>
                             <td>{{ $nurse_order->orderDate }}</td>
-                            <td>{{ $nurse_order->message  }}</td>
+                            <td>{{ $nurse_order->message }}</td>
                             <td><a href="{{ route('edit.orders', [$pat->id, $nurse_order->id]) }}" class="button-default button button-line">Update</a>
                             </td>
                             <td>
@@ -34,13 +34,11 @@
                         </tr>
                     @empty
                         <tr colspan="4">No records to show.</tr>
-                    @endforelse
-
-                    
+                    @endforelse                    
                 </tbody>
             </table>
+            <a href="{{route('discharge.pat', $pat->id)}}" class="button">Discharge Patient</a>
         </div>
-
         </div>
     </div>
 

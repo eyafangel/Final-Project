@@ -14,6 +14,7 @@ use App\Rbs;
 use App\IntakeOutput;
 use App\VitalSign;
 use App\IVF;
+use App\Notifications\NewPatient;
 
 class DoctorController extends Controller
 {
@@ -23,30 +24,28 @@ class DoctorController extends Controller
     }    
     
     public function showOrders()
-    {   
+    {
         $id = Auth::id();
 
         $orders = DB::table('orders')
-        ->join('patients', 'patients.id', '=', 'orders.patient_id')
-        ->select('orders.*', 'patients.*')
-        ->where('orders.user_id', $id)
-        ->get();
+            ->join('patients', 'patients.id', '=', 'orders.patient_id')
+            ->select('orders.*', 'patients.*')
+            ->where('orders.user_id', $id)
+            ->get();
 
         return view('doctors.order', ['orders' => $orders]);   
-    }
-
-    
+    }    
 
     public function storeOrder(Request $request, Patient $pat)
-    {     
+    {
         $id = Auth::id();
-
         $orders = new Orders(); 
         $orders->patient_id = $pat->id;            
         $orders->user_id = $id;       
         $orders->orderDate = date("Y-m-d H:i:s");            
         $orders->message = $request->input('message');
         $orders->status = 'pending';       
+
         $orders->save();
 
         return redirect()->route('show.patient', $pat->id);
@@ -58,16 +57,17 @@ class DoctorController extends Controller
     }
 
     public function showList()
-    {             
+    {
         $user_id = Auth::id();
         $patients = DB::table('admissions')
-        ->where('users_id' , $user_id)
-        ->join('patients', 'admissions.patient_id', '=', 'patients.id')
-        ->select('patients.*')
-        ->paginate(10);
-    
-        return view('doctors.patList', [            
-            'patients' => $patients                      
+            ->where('users_id', $user_id)
+            ->join('patients', 'admissions.patient_id', '=', 'patients.id')
+            ->select('patients.*', 'admissions.status')
+            ->whereNotIn('status', ['discharge'])
+            ->paginate(10);
+
+        return view('doctors.patList', [
+            'patients' => $patients
         ]);             
     }
 
@@ -76,8 +76,8 @@ class DoctorController extends Controller
         $id = Auth::id();
 
         $patients = DB::table('patients')
-        ->join('admissions', 'admissions.patient_id', '=', 'patients.id')
-        ->where('admissions.users_id', '!=', $id)->get();
+            ->join('admissions', 'admissions.patient_id', '=', 'patients.id')
+            ->where('admissions.users_id', '!=', $id)->get();
         return view('doctors.addPatient', compact('patients'));
     }
 
@@ -87,11 +87,11 @@ class DoctorController extends Controller
 
         if($request->has('addedPatient'))
         {
-            $patid = $request->get('addedPatient');         
-                                    
+            $patid = $request->get('addedPatient');
+
             DB::table('admissions')
-            ->where('patient_id', $patid)
-            ->update(['users_id' => $id]);
+                ->where('patient_id', $patid)
+                ->update(['users_id' => $id]);
         }
 
         return redirect('doctor');
@@ -107,6 +107,15 @@ class DoctorController extends Controller
     	return view('doctors.patient', compact('patient', 'admission', 'patcharts'));       
     }
 
+    public function storeTransferMessage(User $user, Patient $pat)
+    {
+        $newUser = DB::table('users')->where('id', $user->id)->first();        
+        $patient = DB::table('patients')->where('id', $pat->id)->first();
+      
+
+        return view('doctors.createTransfer', compact('newUser', 'patient'));
+    }
+
     public function storeTransfer(User $user, Request $request)
     {
         $userID = Auth::id(); 
@@ -117,6 +126,8 @@ class DoctorController extends Controller
 
         $prevUser = DB::table('users')->where('id', $userID)->first();
         $message = $msg."transferred from Doctor" . $prevUser->name . $prevUser->id;
+
+        User::find($user->id)->notify(new NewPatient);
 
         $order = new Orders();
         $order->patient_id =$pat;
@@ -138,10 +149,10 @@ class DoctorController extends Controller
         $patient = DB::table('patients')->where('id', $pat->id)->first();
         $search = $request->get('search');
         $users = DB::table('users')
-                    ->where('name', 'like', '%'.$search.'%')
-                    ->orWhere('role', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%')
-                    ->paginate(5);
+            ->where('name', 'like', '%' . $search . '%')
+            ->orWhere('role', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%')
+            ->paginate(5);
         return view('doctors.transfer', compact('patient', 'users'));
     }
 
@@ -208,8 +219,7 @@ class DoctorController extends Controller
 
         $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
 
-        $intake_outputs = IntakeOutput::where('patient_id', $patid)->paginate(5);
-       
+        $intake_outputs = IntakeOutput::where('patient_id', $patid)->paginate(5);       
 
         return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'intake_outputs'));
     }

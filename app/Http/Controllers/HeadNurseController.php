@@ -7,6 +7,7 @@ use Auth;
 use App\User;
 use App\Patient;
 use App\Admission;
+use App\Notifications\NewPatient;
 use DB;
 
 class HeadNurseController extends Controller
@@ -19,7 +20,9 @@ class HeadNurseController extends Controller
         $assigned = DB::table('patient_user')
                     ->join('users', 'patient_user.user_id', '=', 'users.id')
                     ->join('patients', 'patient_user.patient_id', '=', 'patients.id')
+                    ->join('admissions', 'patients.id', '=', 'admissions.patient_id')
                     ->select('users.name', 'patients.*', 'patient_user.*')
+                    ->whereNotIn('status', ['discharge'])
                     ->paginate(10);
         // dd($assigned);
         return view('headnurse.index', compact('assigned', 'user'));
@@ -53,6 +56,8 @@ class HeadNurseController extends Controller
         $pat = $request->get('pat');
         // dd($pat);
         $user = \App\User::find($nurse);
+
+        User::find($nurse)->notify(new NewPatient);
 
         $user->patient()->attach($pat, ['date' => $datea, 'time' => $timea]);
         // dd($user);

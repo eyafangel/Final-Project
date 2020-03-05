@@ -23,8 +23,8 @@ class AdmissionsController extends Controller
     
     public function patientlist()
     {
-        $patients = Patient::paginate(10);
- 
+        //$patients = Patient::paginate(10);
+        $patients = DB::table('patients')->join('admissions', 'patients.id', '=', 'admissions.patient_id')->select('patients.*', 'admissions.status')->whereNotIn('status', ['discharge'])->paginate(10);
         return view('admissions.list', compact('patients'));
     }
     public function search(Request $request){
