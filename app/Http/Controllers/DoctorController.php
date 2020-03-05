@@ -39,21 +39,13 @@ class DoctorController extends Controller
     public function storeOrder(Request $request, Patient $pat)
     {
         $id = Auth::id();
-
-<<<<<<< HEAD
-        $orders = new Orders();
-        $orders->patient_id = $pat->id;
-        $orders->user_id = $id;
-        $orders->orderDate = date("Y-m-d H:i:s");
-        $orders->message = $request->input('message');
-=======
         $orders = new Orders(); 
         $orders->patient_id = $pat->id;            
         $orders->user_id = $id;       
         $orders->orderDate = date("Y-m-d H:i:s");            
         $orders->message = $request->input('message');
         $orders->status = 'pending';       
->>>>>>> 1810348fa9496e09f393c29fb9dabf42e2ebaf45
+
         $orders->save();
 
         return redirect()->route('show.patient', $pat->id);
@@ -70,7 +62,8 @@ class DoctorController extends Controller
         $patients = DB::table('admissions')
             ->where('users_id', $user_id)
             ->join('patients', 'admissions.patient_id', '=', 'patients.id')
-            ->select('patients.*')
+            ->select('patients.*', 'admissions.status')
+            ->whereNotIn('status', ['discharge'])
             ->paginate(10);
 
         return view('doctors.patList', [

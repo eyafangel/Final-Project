@@ -20,7 +20,7 @@
  					</thead>
 
 	 				<tbody>
- 						@forelse ($patient  as $pat)
+ 						@forelse ($patients  as $pat)
  					
 				 		<tr>
  							<td>{{ $pat->last_name }}</td>
