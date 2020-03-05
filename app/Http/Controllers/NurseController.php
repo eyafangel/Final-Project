@@ -26,11 +26,13 @@ class NurseController extends Controller
     public function nurselist(){
         $id = Auth::id();
         $nurse = User::find($id);
-        // $patid = $nurse->patient;
+        $patients = DB::table('patients')->join('admissions', 'patients.id', '=', 'admissions.patient_id')->select('patients.*', 'admissions.status')->whereNotIn('status', ['discharge'])->paginate(10);
+        $patient = $nurse->patient->where('patient_id', $patients->);
 
-        return view('nurses.patientlist', ['nurse' => $nurse]);
+
+        return view('nurses.patientlist', ['patient' => $patient]);
     }
-    
+
     public function show(Patient $pat)
     {
         $admissions = DB::table('admissions')->where('patient_id', $pat->id)->first();

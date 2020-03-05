@@ -65,15 +65,15 @@ Route::group(['middleware' => ['nurse']], function () {
     Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
     Route::get('scan', 'NurseController@showScanner')->name('scan');
-<<<<<<< HEAD
+
     Route::get('discharge/{pat}', 'NurseController@discharge')->name('patient.discharge');
     Route::any('discharge/{pat}', 'NurseController@dischargepat')->name('discharge.pat');
-=======
+
     Route::get('markAsRead', function () {
         auth()->user()->unreadNotifications->markAsRead();
         return redirect()->back();
     })->name('markRead');
->>>>>>> d21c92876d5d930bc67800468d72b8604bf688df
+
 });
 
 //HeadNurse
@@ -86,11 +86,7 @@ Route::group(['middleware' => ['headNurse']], function () {
 
 //Admissions
 Route::group(['middleware' => ['admission']], function () {
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> 1810348fa9496e09f393c29fb9dabf42e2ebaf45
     Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
     Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
     Route::get('create', 'AdmissionsController@create')->name('create.patient');
@@ -116,7 +112,7 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::get('/show-ivf/{pat}', 'DoctorController@showIvf')->name('show.ivf');
     Route::get('/show-rbs/{pat}', 'DoctorController@showRbs')->name('show.rbs');
     Route::get('/show-vitals/{pat}', 'DoctorController@showVitals')->name('show.vitals');
-<<<<<<< HEAD
+
     Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');
     Route::get('markAsRead', function () {
         auth()->user()->unreadNotifications->markAsRead();
@@ -126,25 +122,11 @@ Route::group(['middleware' => ['doctor']], function () {
 
 //fullcalendar
 Route::get('fullcalendar','FullCalendarController@index')->name('calendar');
-=======
-
-    Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');
-    });   
-
-
-//fullcalendar
-Route::get('fullcalendar','FullCalendarController@index')->name('calendar');
-
-
->>>>>>> 1810348fa9496e09f393c29fb9dabf42e2ebaf45
 Route::get('load-events', 'EventController@loadEvents')->name('routeLoadEvents');
 Route::put('event-update', 'EventController@update')->name('routeEventUpdate');
 Route::get('event-store', 'EventController@store')->name('routeEventStore');
 Route::delete('event-delete', 'EventController@destroy')->name('routeEventDelete');
-<<<<<<< HEAD
-=======
 
 
 Route::any('/search-patient', 'EventController@search')->name('patient.search');
 });
->>>>>>> 1810348fa9496e09f393c29fb9dabf42e2ebaf45
