@@ -24,6 +24,8 @@ class CreatePatientUserTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->date('date')->date_format('m/d/Y');
+            $table->time('time')->format('h:i:s');
         });
     }
 

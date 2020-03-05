@@ -3,9 +3,9 @@
 @section('content')
 
 <div class="container-fluid">
-	<h2 style="color: indigo;">Hi Head Nurse {{ $user->name }}!</h2>
-	<div style="float:right;">
-		<a href="/assign" class="btn btn-primary">Assign Nurse to Patient</a>
+	<h2 class="headnurse-heading">WELCOME, Head Nurse {{ $user->name }}!</h2>
+	<div class="button-hn-padding">
+		<a href="/assign" class="button button-default btn-primary">Assign Nurse to Patient</a>
 	</div>
 	
 	<table class="table">
@@ -14,7 +14,7 @@
 				<th>Date</th>
 				<th>Time</th>
 				<th>Nurse</th>
-				<th>Patient</th>
+				<th>Patient (Last Name, First Name Middle Name)</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,7 +23,7 @@
 				<td>{{ $assign->date }}</td>
 				<td>{{ $assign->time }}</td>
 				<td>{{ $assign->name }}</td>
-				<td>{{ $assign->last_name}}, {{$assign->first_name}}, {{ $assign->middle_name }}</td>
+				<td>{{ $assign->last_name}}, {{$assign->first_name}} {{ $assign->middle_name }}</td>
 			@empty
 				<td colspan="4">No records to show.</td>
 			</tr>

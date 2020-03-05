@@ -10,19 +10,26 @@ use App\Admission;
 use Auth;
 use App\Orders;
 use App\User;
+use App\Rbs;
+use App\IntakeOutput;
+use App\VitalSign;
+use App\IVF;
 
 class DoctorController extends Controller
 {
     public function home(Request $request)
     {
-        
+        return view('doctors.home');
     }    
     
     public function showOrders()
-    {
+    {   
+        $id = Auth::id();
+
         $orders = DB::table('orders')
         ->join('patients', 'patients.id', '=', 'orders.patient_id')
         ->select('orders.*', 'patients.*')
+        ->where('orders.user_id', $id)
         ->get();
 
         return view('doctors.order', ['orders' => $orders]);   
@@ -38,7 +45,8 @@ class DoctorController extends Controller
         $orders->patient_id = $pat->id;            
         $orders->user_id = $id;       
         $orders->orderDate = date("Y-m-d H:i:s");            
-        $orders->message = $request->input('message');       
+        $orders->message = $request->input('message');
+        $orders->status = 'pending';       
         $orders->save();
 
         return redirect()->route('show.patient', $pat->id);
@@ -65,7 +73,11 @@ class DoctorController extends Controller
 
     public function createPatient()
     {
-        $patients = DB::table('patients')->get();
+        $id = Auth::id();
+
+        $patients = DB::table('patients')
+        ->join('admissions', 'admissions.patient_id', '=', 'patients.id')
+        ->where('admissions.users_id', '!=', $id)->get();
         return view('doctors.addPatient', compact('patients'));
     }
 
@@ -138,5 +150,67 @@ class DoctorController extends Controller
         $users = DB::table('users')->get();
         $patient = DB::table('patients')->where('id', $pat->id)->first();
         return view('doctors.transfer', compact('patient', 'users'));       
+    }
+
+    public function showChart(Patient $pat)
+    {
+        $patid = $pat->id;        
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+
+    	return view('doctors.showChart', compact('pat','admissions', 'patcharts'));
+    }
+
+    public function showRbs(Patient $pat)
+    {
+        $patid = $pat->id;
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+
+        $rbs_monitoring = Rbs::where('patient_id', $patid)->paginate(5);
+
+        return view('nurses.rbs', compact('pat','admissions', 'patcharts', 'rbs_monitoring'));
+    }
+
+    public function showIvf(Patient $pat)
+    {
+        $patid = $pat->id;
+        
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+        
+        $ivfs = IVF::where('patient_id', $patid)->paginate(5);
+
+        return view('nurses.ivf', compact('pat','admissions', 'patcharts', 'ivfs'));
+    }
+
+    public function showVitals(Patient $pat)
+    {
+        $patid = $pat->id;
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+        $patcharts = DB::table('charts')
+            ->where('patient_id', $patid)
+            ->first();
+        $vitals = VitalSign::where('patient_id', $patid)->paginate(5);
+
+        return view('nurses.vitalsigns', compact('pat','admissions', 'patcharts', 'vitals'));
+    }
+
+    public function showIntakeoutput(Patient $pat)
+    {
+        $patid = $pat->id;
+
+        $admissions = DB::table('admissions')->where('patient_id', $patid)->first();
+
+        $patcharts = DB::table('charts')->where('patient_id', $patid)->first();
+
+        $intake_outputs = IntakeOutput::where('patient_id', $patid)->paginate(5);
+       
+
+        return view('nurses.intakeoutput', compact('pat','admissions', 'patcharts', 'intake_outputs'));
     }
 }

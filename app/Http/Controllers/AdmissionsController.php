@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use DB;
-use Request;
 use Exception;
 use App\Patient;
 use App\Guardian;
 use App\Residence;
 use App\Admission;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -29,7 +29,7 @@ class AdmissionsController extends Controller
     }
     public function search(Request $request){
         // dd($request);
-        $search = Request::get('search');
+        $search = $request->get('search');
 
         $patients = DB::table('patients')
                     ->where('last_name', 'like', '%'.$search.'%')
@@ -48,7 +48,7 @@ class AdmissionsController extends Controller
 
     public function showQRCode()
     {
-        return view('admissions.qrcode');
+        return view('patients.qrcode');
     }
 
     public function createQRDocx($id)
@@ -77,14 +77,12 @@ class AdmissionsController extends Controller
         return response()->download(storage_path('QRCode.docx'));
     }
 
-    public function store()
+    public function store(Request $request)
     {        
         $patient = new Patient();
         $residence = new Residence();
         $guardian = new Guardian();
-        $admission = new Admission();
-
-        // $id = Auth::id();        
+        $admission = new Admission();    
 
         $admission->room = request('room');
         $admission->category = request('category');
@@ -130,9 +128,13 @@ class AdmissionsController extends Controller
         $patient->save();
         $admission->save();     
 
-
-        // Session::flash('alert-success', 'User was successful added!');
-        return redirect('admissions')->with('message','Success');
+        if ($patient && $admission && $residence && $guardian) {
+           $request->session()->flash('success', 'Record successfully added!');
+        }else{
+            $request->session()->flash('warning', 'Record not added!');
+        }
+        
+        return redirect('admissions');
     }
 
     public function profile(Patient $profile){

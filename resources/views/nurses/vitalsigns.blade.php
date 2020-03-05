@@ -10,7 +10,7 @@
                 <h5>Vital Signs</h5>
                 <thead>
                     <tr>
-                        <th>Date</th>
+                        <th>Date & Time</th>
                         <th>Temperature</th>
                         <th>Pulse Rate</th>
                         <th>Respiratory Rate</th>
@@ -23,7 +23,7 @@
                 <tbody>
                     @forelse($vitals as $vital)
                         <tr>
-                            <th>{{ $vital->created_at->toDateString() }}</th>
+                            <th>{{ $vital->created_at}}</th>
                             <th>{{ $vital->temperature }}</th>
                             <th>{{ $vital->pulse_rate }}</th>
                             <th>{{ $vital->respiratory_rate }}</th>
@@ -39,16 +39,16 @@
         </div>
 
                 <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Input Vital Sign Chart
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vitalsModal">
+            Input Vital Sign Chart 
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="vitalsModal" tabindex="-1" role="dialog" aria-labelledby="vitalsModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Vital Signs</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Input Vital Signs for Patient {{ $pat->last_name }}, {{ $pat->first_name }} {{ $pat->middle_name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

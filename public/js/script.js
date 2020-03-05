@@ -27,26 +27,26 @@ $(function(){
     //     $("#modalFastEvent button.deleteFastEvent").css("display","none");
     // });
 
-    $(document).on('click','.event', function () {
+    // $(document).on('click','.event', function () {
 
-        clearMessages('.message');
-        resetForm("#formFastEvent");
+    //     clearMessages('.message');
+    //     resetForm("#formFastEvent");
 
-        showModalUpdateFastEvent = true;
+    //     showModalUpdateFastEvent = true;
 
-        let Event = JSON.parse($(this).attr('data-event'));
+    //     let Event = JSON.parse($(this).attr('data-event'));
 
-        $('#modalFastEvent').modal('show');
-        $("#modalFastEvent #titleModal").text('Change Fast Event');
-        $("#modalFastEvent button.deleteFastEvent").css("display","flex");
+    //     $('#modalFastEvent').modal('show');
+    //     $("#modalFastEvent #titleModal").text('Change Fast Event');
+    //     $("#modalFastEvent button.deleteFastEvent").css("display","flex");
 
-        $("#modalFastEvent input[name='id']").val(Event.id);
-        $("#modalFastEvent input[name='title']").val(Event.title);        
-        $("#modalFastEvent input[name='start']").val(Event.start);
-        $("#modalFastEvent input[name='end']").val(Event.end);
-        $("#modalFastEvent input[name='color']").val(Event.color);
+    //     $("#modalFastEvent input[name='id']").val(Event.id);
+    //     $("#modalFastEvent input[name='title']").val(Event.title);        
+    //     $("#modalFastEvent input[name='start']").val(Event.start);
+    //     $("#modalFastEvent input[name='end']").val(Event.end);
+    //     $("#modalFastEvent input[name='color']").val(Event.color);
 
-    });
+    // });
 
     // $(".saveFastEvent").click(function () {
 
@@ -131,7 +131,7 @@ $(function(){
 
             let id = $("#modalCalendar input[name='id']").val();
 
-            let title = $("#modalCalendar input[name='title']").val();        
+            let title = $("#modalCalendar input[name='title']").val();       
                        
             let date = moment($("#modalCalendar input[name='date']").val(), "MMMM D YYYY").format("YYYY-MM-DD");
             var sdate=  moment($("#modalCalendar input[name='start']").val(), "hh:mm a").format("hh:mm:ss");
@@ -192,6 +192,7 @@ $(function(){
             
             // sendEvent(route,Event);      
     });
+
 });
 
 function sendEvent(route, data_) {
