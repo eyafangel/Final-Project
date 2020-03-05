@@ -39,7 +39,6 @@ class DoctorController extends Controller
     public function storeOrder(Request $request, Patient $pat)
     {
         $id = Auth::id();
-
         $orders = new Orders(); 
         $orders->patient_id = $pat->id;            
         $orders->user_id = $id;       
@@ -62,7 +61,8 @@ class DoctorController extends Controller
         $patients = DB::table('admissions')
             ->where('users_id', $user_id)
             ->join('patients', 'admissions.patient_id', '=', 'patients.id')
-            ->select('patients.*')
+            ->select('patients.*', 'admissions.status')
+            ->whereNotIn('status', ['discharge'])
             ->paginate(10);
 
         return view('doctors.patList', [

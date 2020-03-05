@@ -20,7 +20,9 @@ class HeadNurseController extends Controller
         $assigned = DB::table('patient_user')
                     ->join('users', 'patient_user.user_id', '=', 'users.id')
                     ->join('patients', 'patient_user.patient_id', '=', 'patients.id')
+                    ->join('admissions', 'patients.id', '=', 'admissions.patient_id')
                     ->select('users.name', 'patients.*', 'patient_user.*')
+                    ->whereNotIn('status', ['discharge'])
                     ->paginate(10);
         // dd($assigned);
         return view('headnurse.index', compact('assigned', 'user'));
@@ -59,13 +61,12 @@ class HeadNurseController extends Controller
 
         $user->patient()->attach($pat, ['date' => $datea, 'time' => $timea]);
         // dd($user);
+        if ($user) {
+           $request->session()->flash('success', 'Nurse Already Assigned!');
+        }else{
+            $request->session()->flash('warning', 'Nurse not assigned!');
 
-
-        $notif = array(
-                'message' => 'Nurse Already Assigned!',
-                'alert-type' => 'success');
-
-        return redirect('assign')->with($notif);
+        return redirect('assign');
 
     }
     

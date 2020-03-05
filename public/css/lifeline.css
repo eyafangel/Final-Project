@@ -195,10 +195,52 @@
 
 /* Admissions */
 
-.admit-margin {
-    margin-left: 250px;
+.no-margin-admit{
+    margin: 0;
 }
 
-.admit-btn {
-    margin-left: 175px;
+.admit-margin {
+    margin-left: 270px;
 }
+
+.admit-btn{
+    margin-left: 150px;
+}
+.card-admit {
+    border-radius: 12px;
+    border: 1px solid #4dc090;
+    margin-top: 20px;
+    margin-left: 30px;
+    padding: 20px;
+}
+
+@media screen and (max-width: 1700px) {
+    .column-card {
+      width: 128%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+.move-admission {
+    margin-left: 30px;
+}
+
+.no-border {
+    border: 0;
+}
+
+.admission-mgn {
+    margin-right: 25px;
+}
+
+.admission-mgn-left {
+    margin-left: 50px;
+}
+
+.button-admit-mgn {
+    margin-left: 700px;
+    padding: 1%;
+    width: 100px;
+}
+

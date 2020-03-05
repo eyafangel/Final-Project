@@ -27,12 +27,13 @@ Route::group(['middleware' => ['auth']], function(){
 });
 //admin
 
-Route::group(['middleware' => ['admin']], function () {
-    Route::get('/admin', 'AdminController@home')->name('admin.home');
-    Route::resource('/admin/user', 'AdminController');
-    Route::any('/search', 'AdminController@search')->name('search');
-});
+	Route::group(['middleware' => ['admin']], function(){
+        Route::get('/admin', 'AdminController@home')->name('admin.home');
+        Route::resource('/admin/user', 'AdminController');
+        Route::any('/search', 'AdminController@search')->name('search');
+    });
 
+    
 
 //Nurse
 Route::group(['middleware' => ['nurse']], function () {
@@ -64,10 +65,15 @@ Route::group(['middleware' => ['nurse']], function () {
     Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
     Route::get('scan', 'NurseController@showScanner')->name('scan');
+
+    Route::get('discharge/{pat}', 'NurseController@discharge')->name('patient.discharge');
+    Route::any('discharge/{pat}', 'NurseController@dischargepat')->name('discharge.pat');
+
     Route::get('markAsRead', function () {
         auth()->user()->unreadNotifications->markAsRead();
         return redirect()->route('nurse.home');
     })->name('markRead');
+
 });
 
 //HeadNurse
@@ -80,7 +86,6 @@ Route::group(['middleware' => ['headNurse']], function () {
 
 //Admissions
 Route::group(['middleware' => ['admission']], function () {
-  
     Route::get('admissions', 'AdmissionsController@home')->name('admissions.home');
     Route::get('patientlist', 'AdmissionsController@patientlist')->name('patientlist');
     Route::get('create', 'AdmissionsController@create')->name('create.patient');

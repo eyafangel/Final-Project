@@ -51,7 +51,7 @@ class RegisterController extends Controller
         return('medrecords');
     }
     else {
-        return('/home');
+        return('/');
     }
 }
     
