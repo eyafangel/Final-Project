@@ -17,7 +17,7 @@
 <div class="card card-admit column-card">
 
     <div class="card-title" style="text-align:center;">
-        <h1 style="background:#4dc090; padding: 10px 10px; padding-top:1.5%; color:white; font-family: 'Martel Sans', sans-serif; border-radius: 12px; font-size: 28px;">PATIENT INFORMATION</h1>
+        <h1 style="background:#4dc090; padding: 10px 10px; padding-top:1.5%; color:white; font-family: 'Martel Sans', sans-serif; border-radius:12px 12px 0px 0px; font-size: 28px;">PATIENT INFORMATION</h1>
 
         {!! Form::label('admission_date', 'Admission Date:', ['class' => 'move-admission']) !!}
         {!! Form::text('admission_date', date("y-m-d"), ['class' => 'no-border', 'room-info', 'read-only']) !!}
@@ -102,16 +102,16 @@
         {!! Form::text('country', null, ['class' => 'form-control', 'required']) !!}<br>
     </div>
 
-    <div class ="guardian-form"><br><br>
-        <h5 style="background:#4dc090; padding: 10px 10px; padding-top:1.5%; color:white; font-family: 'Martel Sans', sans-serif; border-radius: 12px; font-size: 28px; text-align:center; margin-bottom: 30px;">GUARDIAN INFORMATION</h5>
-        {!! Form::label('last_name', 'Last Name') !!}
-        {!! Form::text('last_name', null, ['class' => 'admission-mgn', 'guardian-form', 'required']) !!}
+    <div><br><br>
+        <h5 style="background:#4dc090; padding: 10px 10px; padding-top:1.5%; color:white; font-family: 'Martel Sans', sans-serif; border-radius:12px 12px 0px 0px; font-size: 28px; text-align:center; margin-bottom: 30px;">GUARDIAN INFORMATION</h5>
+        {!! Form::label('guardian_ last_name', 'Last Name') !!}
+        {!! Form::text('guardian_last_name', null, ['class' => 'form-control', 'required']) !!}<br>
 
-        {!! Form::label('first_name', 'First Name') !!}
-        {!! Form::text('first_name', null, ['class' => 'admission-mgn', 'guardian-form', 'required']) !!}
+        {!! Form::label('guardian_first_name', 'First Name') !!}
+        {!! Form::text('guardian_first_name', null, ['class' =>  'form-control', 'required']) !!}<br>
 
-        {!! Form::label('middle_name', 'Middle Name') !!}
-        {!! Form::text('middle_name', null, ['class' => 'guardian-form', 'required']) !!}
+        {!! Form::label('guardian_middle_name', 'Middle Name') !!}
+        {!! Form::text('guardian_middle_name', null, ['class' =>  'form-control', 'required']) !!}
     </div><br>
 
     <div class ="guardian-form">

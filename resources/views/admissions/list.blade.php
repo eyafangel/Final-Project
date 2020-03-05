@@ -10,7 +10,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search patients...">
       	            <span class="form-group-btn">
-                        <button type="submit" class="btn-sm btn-primary">
+                        <button type="submit" class="button button-default">
                                 Search
                         </button>
                     </span>
@@ -18,11 +18,11 @@
         </form>
     </div>
 
-    <h1>List of Patients</h1>
- 	<div class="table-responsive">
+    <h1 style="font-family: 'Martel Sans', sans-serif; text-align:center;">PATIENT LIST</h1>
+ 	<div class="table table-bordered table-responsive" style="1px solid black;">
  		<table id="pat" class="table">
- 			<thead>
- 				<tr>
+ 			<thead style="background:teal; color:white;">
+ 				<tr style="text-transform:uppercase;">
 	 			<td>Last Name</td>
  				<td>First Name</td>
  				<td>Middle Name</td>
