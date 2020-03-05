@@ -40,13 +40,13 @@
                 <div style="overflow-x:auto;
                 margin-top:100px;">
                 <table class="table table-bordered" id="myTable">
-                    <thead>
+                    <thead style="background:teal; color:white;">
                         <tr>
                         <td>ID</td>
-                        <td>Name</td>
-                        <td>Email</td>
-                        <td>Role</td>
-                        <td colspan="2">Action</td>
+                        <td>NAME</td>
+                        <td>EMAIL</td>
+                        <td>ROLE</td>
+                        <td colspan="2">ACTION</td>
                         </tr>
                     </thead>
 
