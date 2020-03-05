@@ -30,6 +30,21 @@
 
 /* Welcome page */
 
+.button-default-yellow {
+    background-color: white;
+    border: 1.5px solid red;
+    border-radius: 12px;
+    padding: 3px 15px;
+    color: red;
+}
+
+.button-default-yellow:hover {
+    background-image: linear-gradient(to right, yellow, orange);
+    border: 1.5px solid white;
+    color: white;
+    text-decoration: none;
+}
+
 .button-default {
     background-color: white;
     border: 1.5px solid teal;
@@ -274,3 +289,11 @@
     width: 100px;
 }
 
+.bell-notif{
+    margin-top: 5px;
+    color: white;
+}
+
+.bell-notif:hover {
+    color: cyan;
+}

@@ -2,15 +2,14 @@
 
 @section('content')
 
-	<div class="container-fluid">
-		<h5>Hi nurse!</h5>		
-		<div class="card">
-			<div class="card-header">
-				<h1>List of patients</h1>
+	<div class="container-fluid">	
+		<div style="border: none;" class="card">
+			<div style="margin-top: 20px;" class="card-title">
+				<h1 style="text-align: center; text-transform: uppercase; margin-top: 10px; margin-bottom: 10px;">List of patients</h1>
 			</div>
-			<div class="card-body">
+			<div style="margin-left: 50px; margin-right: 50px;" class="table-bordered">
 				<table id="patlist" class="table">
-	 				<thead>
+	 				<thead style="background-color: teal; color: white;">
  						<tr>
 	 					<th>Last Name</th>
  						<th>First Name</th>
@@ -26,7 +25,7 @@
  							<td>{{ $pat->last_name }}</td>
 	 						<td>{{ $pat->first_name }}</td>
 	 						<td>{{ $pat->middle_name }}</td>
- 							<td><a href="{{ route('showChart', $pat->id)}}" class="btn btn-info">Profile</a></td>
+ 							<td><a href="{{ route('showChart', $pat->id)}}" class="button button-default btn-info">Profile</a></td>
 		 				</tr>
 
 		 				@empty
@@ -35,11 +34,11 @@
  					</tbody>
 				</table>
 			</div>
-		</div>
+		</div><br>
 		
 		
-			<div style="float: right; position: right;">
-                <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
+			<div style="margin-right: 50px; float: right; position: right;">
+                <a href="javascript:history.back()" style="padding: 10px 15px;" class="button-default-red btn-danger" >Back</a>
             </div>
 
 

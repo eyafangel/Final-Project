@@ -36,8 +36,8 @@
 
 
                                 {{-- Bell Notification --}}
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <li class="nav-item dropdown" style="margin-top: 9px;">
+                            <a id="navbarDropdown" class="bell-notif dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa fa-bell"></i>
                                 @if(auth()->user()->unreadnotifications->count())
                             <span class="badge badge-light">{{auth()->user()->unreadnotifications->count()}}</span>

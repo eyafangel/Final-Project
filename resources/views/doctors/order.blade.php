@@ -8,9 +8,9 @@
           {{-- insert search bar --}}
         </div>
         <div class="table-responsive">
-          <table class="table">
-              <h5>Orders for Patient</h5>
-              <thead>
+          <table class="table table-bordered">
+              <h5 calss="card-title" style="font-size: 32px; font-family: 'Martel Sans', sans-serif; text-align: center; text-transform: uppercase; margin-top: 35px;">Orders for Patient</h5>
+              <thead style="background-color: teal; color: white;">
                 <tr>
                   <th>Date</th>
                   <th>Last Name</th>

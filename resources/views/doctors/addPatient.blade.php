@@ -3,13 +3,15 @@
 @section('content')
 {!! Form::open(['route' => 'patient.store', 'class' => 'form-group']) !!}
 
+<div class="container">
+
 <div class="form-group">
-    <h5>Patient List</h5>
+    <h5 style="text-align: center; font-size: 32px; font-family: 'Martel Sans', sans-serif; margin-top: 20px;">Patient List</h5>
     
-    <div class="tab" style="float: left; padding: 20px">
+    <div class="tab" style="padding: 20px">
         <h6>Check checkbox to select patients.</h6>
-        <table >
-            <thead>
+        <table class="table table-bordered">
+            <thead style="background-color: teal; color: white;">
                 <tr>
                     <th>Last Name</th>
                     <th>First Name</th>
@@ -34,9 +36,11 @@
 
     <div style="float: right; position: right;">
 
-		{!! Form::submit('Add', ['class' => 'btn btn-info']) !!}
-		<a href="store-patient" class="btn btn-danger">Back</a>
+		{!! Form::submit('Add', ['class' => 'button button-default btn-info']) !!}
+		<a href="store-patient" class="button-default-red btn-danger">Back </a>
 	</div>
 
 	{!! Form::close() !!}
     @endsection
+
+</div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container-fluid">
+<div class="container">
 
     <div id="content">
 
@@ -12,13 +12,13 @@
     </span>
     </div>
 
-    <div class="card card-margin">
-        <div class="card-header">
-            <h1>List of patients</h1>
+    <div style="border: 0;" class="card">
+        <div class="card-title">
+            <h1 style="text-align: center; margin-top: 30px;">PATIENT LIST</h1>
         </div>
         <div class="card-body">
-            <table id="patlist" class="table">
-                 <thead>
+            <table id="patlist"  class="table table-bordered" style="border: 1px solid teal; border-radius: 12px;">
+                 <thead style="background-color: teal; color: white;">
                      <tr>
                      <td>Last Name</td> 
                      <td>First Name</td> 
@@ -42,9 +42,11 @@
             </table>
         </div>
 
-        <a href="patient-add" class="btn btn-primary btn-lg">Add Patients to List</a>
-        <div style="float: right; position: right;">
-            <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
+        <div class="container">
+            <a href="patient-add" style="text-align: center;" class="button button-default btn-lg">Add Patients to List</a>
+            
+                <a href="javascript:history.back()" style="padding: 5px 15px;" class="button-default-red btn-danger" >Back</a>
+            
         </div>
     </div>
     @endsection

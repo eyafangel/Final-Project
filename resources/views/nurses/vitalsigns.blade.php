@@ -3,12 +3,12 @@
 @section('chart_content')
 
     
-    <div class="container-fluid">
+    <div style="border: 1px solid teal; border-radius: 12px; padding: 3%;" class="card container-fluid">
         <div class="col-lg-12">
             <div class="table-responsive">
-            <table class="table">
-                <h5>Vital Signs</h5>
-                <thead>
+            <table class="table table-bordered">
+                <h5 class="card-title">Vital Signs</h5>
+                <thead style="background-color: #4dc090; color: white;">
                     <tr>
                         <th>Date & Time</th>
                         <th>Temperature</th>
@@ -39,16 +39,16 @@
         </div>
 
                 <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#vitalsModal">
+        <button type="button" style="margin-top: 20px;" class="button button-default btn-primary" data-toggle="modal" data-target="#vitalsModal">
             Input Vital Sign Chart 
         </button>
 
         <!-- Modal -->
         <div class="modal fade" id="vitalsModal" tabindex="-1" role="dialog" aria-labelledby="vitalsModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Input Vital Signs for Patient {{ $pat->last_name }}, {{ $pat->first_name }} {{ $pat->middle_name }}</h5>
+                <div style="width: 400px;" class="modal-content">
+                    <div style="color: white; background-color: teal;" class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Input Vital Signs for Patient <br> {{ $pat->last_name }}, {{ $pat->first_name }} {{ $pat->middle_name }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -58,41 +58,41 @@
                     <div class="modal-body">                        
                             {{ csrf_field() }}
                         
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="temperature">Temperature:</label>
-                                <input type="text" name="temperature" id="temperature" required><br>
+                                <input style="display:table-cell; width:100%; border: 1px solid teal;" type="text" name="temperature" id="temperature" required><br>
                             </div>
 
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="pulse_rate">Pulse Rate:</label>
-                                <input type="text" name="pulse_rate" id="pulse_rate" required><br>
+                                <input style="display:table-cell; width:100%;" type="text" name="pulse_rate" id="pulse_rate" required><br>
                             </div>
 
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="respiratory_rate">Respiratory Rate:</label>
-                                <input type="text" name="respiratory_rate" id="respiratory_rate" required><br>
+                                <input style="display:table-cell; width:100%;" type="text" name="respiratory_rate" id="respiratory_rate" required><br>
                             </div>
 
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="blood_pressure">Blood Pressure:</label>
-                                <input type="text" name="blood_pressure" id="blood_pressure" required><br>
+                                <input style="display:table-cell; width:100%;" type="text" name="blood_pressure" id="blood_pressure" required><br>
                             </div>
 
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="o2_saturation">O2 Saturation:</label>
-                                <input type="text" name="o2_saturation" id="o2_saturation" required><br>
+                                <input style="display:table-cell; width:100%;" type="text" name="o2_saturation" id="o2_saturation" required><br>
                             </div>
 
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="remarks">Remarks:</label>
-                                <input type="textarea" name="remarks" id="remarks" required><br>
+                                <input style="display:table-cell; width:100%;s" type="textarea" name="remarks" id="remarks" required><br>
                             </div>
 
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="button-default-red btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="button-default button btn-primary">Save</button>
                     </div>
                 </form>
             </div>

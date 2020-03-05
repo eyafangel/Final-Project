@@ -4,11 +4,11 @@
 
 <div class="container-fluid">
 
-    <div class="col-lg-12">
+    <div style="padding: 3%; border-radius: 12px; border: 1px solid teal;" class="col-lg-12 card">
         <div class="table-responsive">
-            <table class="table">
-                <h5>Nurses' Notes</h5>
-                <thead>
+            <table class="table table-bordered">
+                <h5 class="card-title">Nurses' Notes</h5>
+                <thead style="background-color: #4dc090; color: white;">
                     <tr>
                         <th>Date & Time</th>
                         <th>Focus</th>
@@ -33,16 +33,16 @@
         </div>
 
                 <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Input Nurses' Notes
+        <button type="button" style="margin-top: 20px;" class="button button-default btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Input Nurse's Notes
         </button>
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">IVF</h5>
+                <div style="width: 400px;" class="modal-content">
+                    <div style="color: white; background-color: teal;" class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nurse's Note</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -51,20 +51,20 @@
                     <form method="POST" action="{{ route('store.nursesnotes', $pat->id) }}">
                     <div class="modal-body">                        
                             {{ csrf_field() }}
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="focus">Focus:</label>
-                                <input type="text" name="focus" id="focus" required><br>
+                                <input style="display:table-cell; width:100%;" type="text" name="focus" id="focus" required><br>
                             </div>
                         
-                            <div class="form-group">
+                            <div style="width:300px; display:table;" class="form-group">
                                 <label for="notes">Notes:</label>
-                                <input type="textarea" name="notes" id="notes" required><br>
+                                <input style="display:table-cell; width:100%;" type="textarea" name="notes" id="notes" required><br>
                             </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="button-default-red btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="button button-default btn-primary">Save</button>
                     </div>
                 </form>
             </div>

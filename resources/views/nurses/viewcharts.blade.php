@@ -2,25 +2,27 @@
 
 @section('content')
 
+<div class="container">
+
 
 	<div class="container-fluid">
 		<div class="col-md-6">
-            <div class="container">
-                <h5>Patient's Information</h5>
-                <label>Name: </label>
-                <strong>{{ $pat->last_name }}, {{ $pat->first_name }} {{ $pat->middle_name }}</strong>
-                <label>Age:</label>
-                <strong>{{ $pat->age }}</strong>
-                <label>Sex:</label>
-                <strong>{{ $pat->sex }}</strong><br>
+            <div style="border-radius: 12px; padding: 3%; margin:0; padding-bottom: 0; border: 1px solid teal; margin-top: 10px;" class="card container">
+                <div style="border-radius: 12px 12px 0px 0px; border: 1px solid #4dc090; background-color: #4dc090; color: white;" class="card-title"><h5 style="text-transform: uppercase; text-align: center; padding-top: 1%; padding-bottom: 0; margin-top: 5px;">Patient Information</h5></div>
+                <div class="card-body"><label>Name:
+                <strong>{{ $pat->last_name }}, {{ $pat->first_name }} {{ $pat->middle_name }}</strong> </label><br>
+                <label>Age:
+                <strong>{{ $pat->age }}</strong></label><br>
+                <label>Sex:
+                <strong>{{ $pat->sex }}</strong></label><br>
                 {{-- <label>Attending Physician:</label>
                 <strong>         </strong> --}}
-                <label>Room:</label>
-                <strong>{{ $admissions->room }}</strong><br>
-            </div>
+                <label>Room:
+                <strong>{{ $admissions->room }}</strong></label></div>
+            </div><br>        
 
             <div class="dropdown">
-                <button onclick="myFunction()" class="dropdown-toggle">View Charts</button>
+                <button onclick="myFunction()" class="dropdown-toggle form-border" style="background-color: white;">View Charts</button>
                 <div id="myDropdown" class="dropdown-menu">
                     <a href="{{ route('show.orders', $pat->id)}}">
                         Doctor's Order</a><br>
@@ -41,8 +43,8 @@
 
             @yield('chart_content')
 
-            <div style="float: right; position: right;">
-                <a href="javascript:history.back()" class="btn btn-danger" >Back</a>
+            <div style="margin-top: 10px; float: right; position: right; padding: 10px 15px;">
+                <a href="javascript:history.back()" style="padding: 10px 15px;" class="button-default-red btn-danger">Back</a>
             </div>
         </div>
 
@@ -68,4 +70,5 @@
         }
     </script>
     @endpush
+</div>
 @endsection

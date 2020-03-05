@@ -14,9 +14,9 @@
                 <form action="/search" method="POST" role="search">
                     {{ csrf_field() }}
                     <div class="input-group">
-                        <input type="text" class="form-control" name="search" placeholder="Search users..." >
+                        <input type="text" class="form-control" style="border-radius:12px;border:solid teal; border-width:1px; margin-right:1px;" name="search" placeholder="Search users..." >
                         <span class="form-group-btn">
-                            <button type="submit" class="button-default button btn-sm btn-primary">
+                            <button type="submit" class="button-default button btn-primary">
                                 Search
                             </button>
                         </span>
