@@ -40,11 +40,20 @@ class DoctorController extends Controller
     {
         $id = Auth::id();
 
+<<<<<<< HEAD
         $orders = new Orders();
         $orders->patient_id = $pat->id;
         $orders->user_id = $id;
         $orders->orderDate = date("Y-m-d H:i:s");
         $orders->message = $request->input('message');
+=======
+        $orders = new Orders(); 
+        $orders->patient_id = $pat->id;            
+        $orders->user_id = $id;       
+        $orders->orderDate = date("Y-m-d H:i:s");            
+        $orders->message = $request->input('message');
+        $orders->status = 'pending';       
+>>>>>>> 1810348fa9496e09f393c29fb9dabf42e2ebaf45
         $orders->save();
 
         return redirect()->route('show.patient', $pat->id);

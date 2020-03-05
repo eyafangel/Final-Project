@@ -110,13 +110,13 @@
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+                                    <div class="modal-header modal-header-color">
+                                        <h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body modal-body-color">
                                         <form method="POST" action="{{ route('login') }}">
                                         @csrf
 
@@ -124,7 +124,7 @@
                                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                <input class="form-border" id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
@@ -138,7 +138,7 @@
                                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                             <div class="col-md-6">
-                                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                                <input class="form-border" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
@@ -162,7 +162,7 @@
 
                                         <div class="form-group row mb-0">
                                             <div class="col-md-8 offset-md-4">
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="button-default button-login btn btn-primary">
                                                     {{ __('Login') }}
                                                 </button>
 
@@ -175,10 +175,10 @@
                                         </div>
                                     </form>
                                     </div>
-                                    {{-- <div class="modal-footer">
+                                    <!-- {{-- <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div> --}}
+                                            </div> --}} -->
                                     </div>
                                 </div>
                             </div>

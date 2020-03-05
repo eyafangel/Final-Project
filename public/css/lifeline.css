@@ -1,21 +1,34 @@
-*{
-    margin: 0;
-    padding-bottom: 0;
-}
+/* Navbar */
 
 .header {
     height: 7vh;
+    background-color: teal; 
 }
 
 .navbar-style {
-    height: 7vh;
+    background-color: teal;
+    height: 9vh;
     box-shadow: 0 5px 10px #efefef;
 }
 
 .logo {
-    height: 35px;
-    padding: 2px 10px;
+    width: 10%;
+    height: auto;
+    padding: 5px 5px;
 }
+
+.nav-font {
+    margin-left: 10px;
+    color: white;
+    font-size: 14px;
+    font-family: 'Martel Sans', sans-serif;
+}
+
+.nav-link:hover {
+    color: rgb(0, 255, 191);
+}
+
+/* Welcome page */
 
 .button-default {
     background-color: white;
@@ -39,32 +52,153 @@
     color: white;
 }
 
+.modal-header-color {
+    color:white;
+    background: teal;
+}
+
+.modal-body-color {
+    background: white;
+}
+.form-border {
+    border-radius: 12px;
+    border: 1px solid teal;
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+/* Admin */
+
+.button-login:hover {
+    background-image: linear-gradient(to right, #6cb2eb, #38c172);
+    border: 1.5px solid white;
+    color: white;
+    text-decoration: none;
+}
+
+.button-login:focus {
+    background-image: linear-gradient(to right, #6cb2eb, #38c172);
+    border: 0;
+    border: 1.5px solid white;
+    color: white;
+}
+
 .line:hover {
     text-decoration: none;
 }
 
-.delete {
+.button-delete {
+    margin-top: 5px;
+    margin-bottom: 10px;
     background-color: white;
     border: 1.5px solid rgb(184, 50, 50);
     border-radius: 12px;
     padding: 3px 8px;
     color: teal;
+    float: left;
 }
 
-.delete:hover {
+.button-delete:hover {
     background-image: linear-gradient(to right, rgb(184, 50, 50), #d48748);
     border: 1.5px solid white;
     color: white;
     text-decoration: none;
 }
 
-.delete:focus {
+.button-delete:focus {
     background-image: linear-gradient(to right, rgb(184, 50, 50), #d48748);
     border: 1.5px solid white;
     color: white;
     text-decoration: none;
 }
 
-.margin {
-    margin-top: 0;
+.table-margin {
+    margin-right: 10px;
+}
+
+.manage-margin {
+    margin-top: 10px;
+    padding-bottom: 1%;
+}
+
+.manage-font {
+    text-align: center;
+    font-size: 32px;
+}
+
+/* Doctor */
+
+.background-doctor-hp {
+    background-color: rgb(250, 250, 75);
+}
+
+/* .img-center {
+    text-align: center;
+} */
+
+.card-margin {
+    margin-left:10px;
+}
+
+.img-responsive-home {
+    margin-top: 150px;
+    margin-left: 475px;
+    width: 10%;
+    height: auto;
+    position: absolute;
+}
+
+.doctor-home-margin {
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 300px;
+}
+
+.welcome-font {
+    font-family: 'Martel Sans', sans-serif;
+    font-size: 48px;
+    text-transform: uppercase;
+}
+
+.button-padding {
+    margin-left: 15px;
+    font-size: 17px;
+    background-color: white;
+    border: 1.5px solid teal;
+    border-radius: 12px;
+    padding: 7px 30px;
+}
+
+/* Nurse */
+
+.welcome-nurse {
+    margin-left: 350px;
+}
+
+.nurse-btn-margin {
+    margin-left: 40px;
+}
+
+/* Head Nurse */
+
+.headnurse-heading {
+    font-family: 'Martel Sans', sans-serif;
+    text-align: center;
+    padding-bottom: 5%;
+    margin-top: 30px;
+}
+
+.button-hn-padding {
+    margin-left: 1275px;
+    margin-bottom: 20px;
+}
+
+/* Admissions */
+
+.admit-margin {
+    margin-left: 250px;
+}
+
+.admit-btn {
+    margin-left: 175px;
 }
