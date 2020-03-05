@@ -19,7 +19,9 @@ class HeadNurseController extends Controller
         $assigned = DB::table('patient_user')
                     ->join('users', 'patient_user.user_id', '=', 'users.id')
                     ->join('patients', 'patient_user.patient_id', '=', 'patients.id')
+                    ->join('admissions', 'patients.id', '=', 'admissions.patient_id')
                     ->select('users.name', 'patients.*', 'patient_user.*')
+                    ->whereNotIn('status', ['discharge'])
                     ->paginate(10);
         // dd($assigned);
         return view('headnurse.index', compact('assigned', 'user'));

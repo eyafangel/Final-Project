@@ -64,6 +64,8 @@ Route::group(['middleware' => ['nurse']], function () {
     Route::post('/inputVitalsigns/{pat}', 'NurseController@storeVitalSigns')->name('store.vitalsigns');
 
     Route::get('scan', 'NurseController@showScanner')->name('scan');
+    Route::get('discharge/{pat}', 'NurseController@discharge')->name('patient.discharge');
+    Route::any('discharge/{pat}', 'NurseController@dischargepat')->name('discharge.pat');
 });
 
 //HeadNurse
