@@ -20,13 +20,13 @@
  					</thead>
 
 	 				<tbody>
- 						@forelse ($nurse->patient  as $patients)
+ 						@forelse ($patients  as $pat)
  					
 				 		<tr>
- 							<td>{{ $patients->last_name }}</td>
-	 						<td>{{ $patients->first_name }}</td>
-	 						<td>{{ $patients->middle_name }}</td>
- 							<td><a href="{{ route('showChart', $patients->id)}}" class="btn btn-info">Profile</a></td>
+ 							<td>{{ $pat->last_name }}</td>
+	 						<td>{{ $pat->first_name }}</td>
+	 						<td>{{ $pat->middle_name }}</td>
+ 							<td><a href="{{ route('showChart', $pat->id)}}" class="btn btn-info">Profile</a></td>
 		 				</tr>
 
 		 				@empty

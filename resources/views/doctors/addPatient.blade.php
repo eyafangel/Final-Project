@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 {!! Form::open(['route' => 'patient.store', 'class' => 'form-group']) !!}
 
 <div class="form-group">
@@ -36,3 +39,4 @@
 	</div>
 
 	{!! Form::close() !!}
+    @endsection
