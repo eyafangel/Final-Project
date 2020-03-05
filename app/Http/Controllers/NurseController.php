@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-// use Request;
 use Illuminate\Http\Request;
 use App\Rbs;
 use App\Orders;
@@ -61,8 +60,6 @@ class NurseController extends Controller
         
         return redirect()->route('show.orders', $pat->id);
     }
-
-    
 
     public function inputrbs(Patient $pat){
         $id = Auth::id();
@@ -257,14 +254,7 @@ class NurseController extends Controller
         return view('nurses.qrscanner');
     }
 
-    // public function discharge(Patient $pat){ 
-    //     $admission = DB::table('admissions')->where('patient_id', $pat->id)->first();
-    //     $guardian = DB::table('guardians')->where('id', $pat->guardian_id)->first();
-
-    //     return view('nurses.discharge', compact('pat', 'admission', 'guardian'));
-    // }
     public function dischargepat(Patient $pat, Request $request){
-
         $pat = DB::table('admissions')->where('id', $pat->id)->update(['status' => "discharge"]);
         return redirect()->route('nurse.home');
     }

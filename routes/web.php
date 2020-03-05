@@ -112,7 +112,6 @@ Route::group(['middleware' => ['doctor']], function () {
     Route::get('/show-ivf/{pat}', 'DoctorController@showIvf')->name('show.ivf');
     Route::get('/show-rbs/{pat}', 'DoctorController@showRbs')->name('show.rbs');
     Route::get('/show-vitals/{pat}', 'DoctorController@showVitals')->name('show.vitals');
-
     Route::get('/show-inatake-output/{pat}', 'DoctorController@showIntakeoutput')->name('show.intake');
     Route::get('markAsRead', function () {
         auth()->user()->unreadNotifications->markAsRead();
