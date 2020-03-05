@@ -46,7 +46,6 @@
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <li><a style="color: green" class="dropdown-item" href="{{route('markRead')}}">Mark All As Read</a></li>
                                 @foreach(auth()->user()->unreadNotifications as $notification)
-
                             <li><a class="dropdown-item" style="background-color: lightgray" href="#">{{$notification->data['data']}}</a></li> 
                             @endforeach                               
                             </ul>
