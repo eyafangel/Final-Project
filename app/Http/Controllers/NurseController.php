@@ -22,10 +22,28 @@ class NurseController extends Controller
         return view('nurses.index');
     }
 
-    public function nurselist(){
+    public function nurselist(Request $request){
         $id = Auth::id();
         $nurse = User::find($id);
-        $patients = DB::table('patient_user')->join('patients', 'patient_user.patient_id', '=', 'patients.id')->join('admissions', 'patient_user.patient_id', '=', 'admissions.patient_id')->select('patient_user.*', 'patients.*', 'admissions.status')->whereNotIn('status', ['discharge'])->paginate(10);
+        $search = $request->get('search');
+
+        if (is_null($search)){
+            $patients = DB::table('patient_user')
+            ->join('patients', 'patient_user.patient_id', '=', 'patients.id')
+            ->join('admissions', 'patient_user.patient_id', '=', 'admissions.patient_id')
+            ->select('patient_user.*', 'patients.*', 'admissions.status')
+            ->whereNotIn('status', ['discharge'])
+            ->paginate(10);
+        }else{
+            $patients=DB::table('patient_user')
+            ->join('patients', 'patient_user.patient_id', '=', 'patients.id')
+            ->select('patient_user.*', 'patients.*')
+            ->where('patients.last_name', 'like', '%'.$search.'%')
+            ->orWhere('patients.first_name', 'like', '%'.$search.'%')
+            ->orWhere('patients.middle_name', 'like', '%'.$search.'%')
+            ->orWhere('patients.middle_name', 'like', '%'.$search.'%')
+            ->paginate(5);
+        }
         return view('nurses.patientlist', ['patients' => $patients]);
     }
 

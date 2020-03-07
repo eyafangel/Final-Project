@@ -16,7 +16,6 @@ class HeadNurseController extends Controller
     {
         $id = Auth::id();
         $user = User::find($id);
-
         $assigned = DB::table('patient_user')
                     ->join('users', 'patient_user.user_id', '=', 'users.id')
                     ->join('patients', 'patient_user.patient_id', '=', 'patients.id')
@@ -24,7 +23,6 @@ class HeadNurseController extends Controller
                     ->select('users.name', 'patients.*', 'patient_user.*')
                     ->whereNotIn('status', ['discharge'])
                     ->paginate(10);
-        // dd($assigned);
         return view('headnurse.index', compact('assigned', 'user'));
     }
 
@@ -44,30 +42,14 @@ class HeadNurseController extends Controller
     
     public function store(Request $request)
     {
-        //checking for all requested values
-        // dd(request()->all());
-
         $nurse = request('nurse');
-        
         $datea = $request->get('datea');
-
         $timea = $request->get('timea');
-
         $pat = $request->get('pat');
-        // dd($pat);
         $user = \App\User::find($nurse);
-
         User::find($nurse)->notify(new NewPatient);
-
         $user->patient()->attach($pat, ['date' => $datea, 'time' => $timea]);
-        // dd($user);
-        // if ($user) {
-        //    $request->session()->flash('success', 'Nurse Already Assigned!');
-        // }else{
-        //     $request->session()->flash('warning', 'Nurse not assigned!');
-
         return redirect('assign');
-
     }
     
 }

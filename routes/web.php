@@ -39,10 +39,7 @@ Route::group(['middleware' => ['auth']], function(){
 Route::group(['middleware' => ['nurse']], function () {
     Route::get('/nurse', 'NurseController@index')->name('nurse.home');
 
-    Route::get('/nurselist', 'NurseController@nurselist')->name('nurse.list');
-
-    // Route::any('/patientsearch', 'NurseController@search')->name('patient.search');
-
+    Route::any('/nurselist', 'NurseController@nurselist')->name('nurse.list');
     Route::get('/showChart/{pat}', 'NurseController@show')->name('showChart');
 
     Route::any('/nurseorders/{pat}', 'NurseController@nurseorders')->name('show.orders');
